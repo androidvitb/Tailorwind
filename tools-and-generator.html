@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TailorWind</title>
+    <link rel="stylesheet" href="main.css">
+    <style>
+      .list-view > div {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        margin-bottom: 1rem;
+        border-radius: 0;
+        box-shadow: none;
+      }
+      .list-view img {
+        width: 10rem;
+        margin-right: 1rem;
+      }
+      .list-view h2,
+      .list-view p {
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50 font-sans">
+    <!-- Navbar -->
+    <header class="bg-white shadow p-4 flex justify-between items-center px-10">
+      <div class="flex items-center space-x-2">
+        <div class="w-10 h-10 rounded">
+          <img src="/Logo.png" alt="Tailwind Generator Logo" />
+        </div>
+        <span class="font-bold text-xl text-gray-800">TailorWind</span>
+      </div>
+      <nav class="space-x-4">
+        <a href="/index.html" class="text-black hover:text-[#049b9f]">Home</a>
+        <a
+          href="/tools-and-generator.html"
+          class="text-black hover:text-[#049b9f]"
+          >Tools & Generator</a
+        >
+        <a href="/index.html" class="text-black hover:text-[#049b9f]">FAQ</a>
+        <a href="/index.html" class="text-black hover:text-[#049b9f]">Blog</a>
+      </nav>
+      <button class="bg-[#049b9f] text-white px-4 py-2 rounded">
+        Get started
+      </button>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-10">
+      <h1 class="text-3xl font-bold text-gray-800 mb-8">Generators</h1>
+      <p class="text-gray-600 mb-12">
+        Generate all kind of components and export the source code.
+      </p>
+
+      <!-- Grid View / List View Toggle -->
+      <div class="flex justify-end items-center mb-6 space-x-4">
+        <button
+          id="grid-view"
+          class="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300"
+        >
+          Grid View
+        </button>
+        <button
+          id="list-view"
+          class="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300"
+        >
+          List View
+        </button>
+      </div>
+
+      <!-- Generators Cards -->
+      <div id="card-container" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Card Generator -->
+        <div
+          class="bg-white shadow rounded-lg flex flex-col justify-center items-center overflow-hidden"
+        >
+          <div
+            class="card-content p-6 flex flex-col justify-center items-center"
+          >
+            <img src="/Homepage-HeroImage.png" alt="" class="mb-4" />
+            <div>
+              <h2 class="text-xl font-bold text-gray-800 mb-2">
+                Card Generator
+              </h2>
+              <p class="text-gray-600">
+                Cards are a modern way of displaying information on a website.
+                Create, design and customize beautiful card components.
+              </p>
+            </div>
+          </div>
+          <button
+            class="card-button bg-gray-100 w-full m-auto mr-8 text-left px-6 h-12 text-blue-600 font-medium"
+            onclick="window.location.href='card-generator.html'"
+          >
+            Get started
+          </button>
+        </div>
+
+        <!-- Grid Layout Generator -->
+        <div
+          class="bg-white shadow rounded-lg flex flex-col justify-center items-center overflow-hidden"
+        >
+          <div
+            class="card-content p-6 flex flex-col justify-center items-center"
+          >
+            <img src="/Homepage-HeroImage.png" alt="" class="mb-4" />
+            <div>
+              <h2 class="text-xl font-bold text-gray-800 mb-2">
+                Grid Layout Generator
+              </h2>
+              <p class="text-gray-600">
+                Easily create grid layouts using a graphical editor. Customize
+                columns, rows, etc... or choose from various grid layout
+                presets.
+              </p>
+            </div>
+          </div>
+          <button
+            class="card-button bg-gray-100 w-full m-auto mr-8 text-left px-6 h-12 text-blue-600 font-medium"
+          >
+            Get started
+          </button>
+        </div>
+
+        <!-- Table Generator -->
+        <div
+          class="bg-white shadow rounded-lg flex flex-col justify-center items-center overflow-hidden"
+        >
+          <div
+            class="card-content p-6 flex flex-col justify-center items-center"
+          >
+            <img src="/Homepage-HeroImage.png" alt="" class="mb-4" />
+            <div>
+              <h2 class="text-xl font-bold text-gray-800 mb-2">
+                Table Generator
+              </h2>
+              <p class="text-gray-600">
+                Create and design tables for Tailwind using a graphical editor.
+                Leverage various export options, e.g. HTML + Tailwind source
+                code.
+              </p>
+            </div>
+          </div>
+          <button
+            class="card-button bg-gray-100 w-full m-auto mr-8 text-left px-6 h-12 text-blue-600 font-medium"
+          >
+            Get started
+          </button>
+        </div>
+      </div>
+    </main>
+    <footer class="bg-gray-800 text-white py-6">
+      <div class="container mx-auto text-center">
+        <p class="text-sm mb-4">
+          © 2024 TailorWind. All rights reserved.
+        </p>
+        <a
+          href="https://github.com/your-repo-link"
+          target="_blank"
+          class="text-[#049b9f] hover:underline"
+        >
+          Visit us on GitHub
+        </a>
+      </div>
+    </footer>
+    <script src="js/tools-and-generator.js"></script>
+  </body>
+</html>
