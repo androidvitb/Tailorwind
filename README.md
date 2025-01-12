@@ -2,6 +2,8 @@
 
 TailorWind is a versatile web application designed to streamline the creation and customization of web components using **Tailwind CSS**. With a user-friendly interface and powerful tools, TailorWind makes it easy to design and generate various elements for your projects.
 
+This Site is a Replica of - https://tailwind-generator.com/ and is Made for Educational Purposes
+
 🔗 **Live Preview**: [TailorWind Website](https://tailorwind-generator.vercel.app/)
 
 ### (Beginner Friendly)  
