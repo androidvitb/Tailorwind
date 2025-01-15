@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+/* Add your custom styles here for grid-layout-generator.html */
+.collapsible {
+    cursor: pointer;
+}
+
+.collapsible.active .content {
+    display: block;
+}
+
+.content {
+    display: none;
+}
