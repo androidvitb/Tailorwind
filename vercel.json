@@ -1,7 +1,9 @@
 {
   "version": 2,
-  "routes": [
-    { "source": "/tools-and-generator", "destination": "/tools-and-generator.html" },
-    { "source": "/card-generator", "destination": "/card-generator.html" }
+  "builds": [
+    {
+      "src": "dist/**",
+      "use": "@vercel/static"
+    }
   ]
 }
