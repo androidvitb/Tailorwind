@@ -1,7 +1,9 @@
 {
-    "rewrites": [
-      { "source": "/tools-and-generator", "destination": "/" },
-      { "source": "/card-generator", "destination": "/" }
-    ]
-  }
-  
+  "version": 2,
+  "rewrites": [
+    { "source": "/tools-and-generator", "destination": "/tools-and-generator.html" },
+    { "source": "/card-generator", "destination": "/card-generator.html" },
+    { "source": "/grid-layout-generator", "destination": "/grid-layout-generator.html" },
+    { "source": "/table-generator", "destination": "/table-generator.html" }
+  ]
+}
