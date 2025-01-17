@@ -1,9 +1,7 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "dist/**",
-      "use": "@vercel/static"
-    }
-  ]
-}
+    "rewrites": [
+      { "source": "/tools-and-generator", "destination": "/" },
+      { "source": "/card-generator", "destination": "/" }
+    ]
+  }
+  
