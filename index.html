@@ -23,7 +23,7 @@
         </div>
         <span class="text-lg font-bold text-gray-800 md:text-xl">TailorWind</span>
       </div>
-    
+
       <!-- Hamburger Button -->
       <button
         id="menu-toggle"
@@ -44,7 +44,7 @@
           />
         </svg>
       </button>
-    
+
       <!-- Navigation Menu -->
       <nav
         id="menu"
@@ -59,7 +59,7 @@
         </button>
       </nav>
     </header>
-    
+
 
     <main class="main">
       <!-- Hero Section -->
@@ -77,6 +77,7 @@
           </p>
           <button
             class="bg-[#049b9f] text-white py-3 px-6 md:px-8 rounded-lg text-base cursor-pointer transition duration-300 ease-in-out hover:bg-[#027074]"
+            onclick="window.location.href='tools-and-generator'"
           >
             >> Tools & Generators - 100% Free!
           </button>
@@ -87,7 +88,7 @@
           />
         </div>
       </section>
-    
+
       <!-- Tools Section -->
       <section class="px-6 pb-20 md:px-10">
         <div class="mb-8 text-center">
@@ -123,13 +124,13 @@
               </button>
             </div>
           </div>
-    
+
           <!-- Grid Layout Generator -->
           <div
             class="flex flex-col items-center overflow-hidden bg-white rounded-lg shadow-lg"
           >
             <img
-              src="/Homepage-HeroImage.png"
+              src="/grid_layout_gen_image.png"
               alt="Grid Layout Generator"
               class="object-cover w-full h-40"
             />
@@ -143,19 +144,19 @@
               </p>
               <button
                 class="bg-[#049b9f] text-white px-4 py-2 rounded-lg"
-                onclick="window.location.href='grid-generator'"
+                onclick="window.location.href='grid-layout-generator'"
               >
                 Get Started
               </button>
             </div>
           </div>
-    
+
           <!-- Table Generator -->
           <div
             class="flex flex-col items-center overflow-hidden bg-white rounded-lg shadow-lg"
           >
             <img
-              src="/Homepage-HeroImage.png"
+              src="/table_gen_image.png"
               alt="Table Generator"
               class="object-cover w-full h-40"
             />
@@ -175,9 +176,36 @@
               </button>
             </div>
           </div>
+
+          <!-- Form Generator -->
+          <div
+            class="flex flex-col items-center overflow-hidden bg-white rounded-lg shadow-lg"
+          >
+            <img
+              src="/form-generator.png"
+              alt="Table Generator"
+              class="object-cover w-full h-40"
+            />
+            <div class="p-6 text-center">
+              <h4 class="mb-2 text-xl font-bold text-gray-800">
+                Form Generator
+              </h4>
+              <p class="mb-4 text-gray-600">
+                Create and design dynamic forms using a user-friendly editor.
+                Customize fields, add buttons, preview live changes, and export
+                forms with HTML + TailwindCSS code for seamless integration.
+              </p>
+              <button
+                class="bg-[#049b9f] text-white px-4 py-2 rounded-lg"
+                onclick="window.location.href='form-generator'"
+              >
+                Get Started
+              </button>
+            </div>
+          </div>
         </div>
       </section>
-    
+
       <!-- FAQ Section -->
       <section id="faq" class="px-6 py-16 bg-gray-100">
         <div class="mb-10 text-center">
@@ -217,7 +245,7 @@
           </div>
         </div>
       </section>
-    
+
       <!-- Contact Section -->
       <section id="contact" class="px-6 py-16">
         <div class="mb-10 text-center">
@@ -267,7 +295,7 @@
         </div>
       </section>
     </main>
-    
+
     <footer class="py-6 text-white bg-gray-800">
       <div class="container mx-auto text-center">
         <p class="mb-4 text-sm">© <script>document.write(new Date().getFullYear());</script> TailorWind. All rights reserved.</p>
@@ -284,13 +312,13 @@
       // Toggle the menu on mobile
       const menuToggle = document.getElementById('menu-toggle');
       const menu = document.getElementById('menu');
-    
+
       menuToggle.addEventListener('click', () => {
         menu.classList.toggle('hidden');
       });
     </script>
     <script>
- 
+
       document.addEventListener("DOMContentLoaded", () => {
             const scrollButton = document.getElementById("scrollButton");
 
