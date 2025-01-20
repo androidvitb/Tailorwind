@@ -81,15 +81,18 @@ cardButtonInput.addEventListener("input", () => {
 cardFooterInput.addEventListener("input", () => {
   cardFooter.innerHTML = cardFooterInput.value;
 });
+
+// Add dark mode sync to export code functionality
 exportCodeButton.addEventListener("click", () => {
   const uniqueId = `popup-${Date.now()}`; 
+  const isDark = document.documentElement.classList.contains('dark');
 
   const cardHTML = `
     <div class="p-4 bg-[${cardBackground.value}] ${
     roundedCorners.checked ? "rounded-lg" : ""
   } ${centerText.checked ? "text-center" : ""} shadow max-w-[${
     cardWidth.value
-  }px]">
+  }px] ${isDark ? 'dark' : ''}">
       ${
         useImage.checked
           ? `<div class="bg-gray-800 w-full h-32 rounded-t-lg flex items-center justify-center">
@@ -114,17 +117,20 @@ exportCodeButton.addEventListener("click", () => {
     </div>
   `;
 
-  const popup = document.createElement("div");
-  popup.id = uniqueId; 
-  popup.className =
+  const popupClass = isDark ? 
+    "fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50" :
     "fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50";
+
+  const popup = document.createElement("div");
+  popup.id = uniqueId;
+  popup.className = popupClass;
   popup.innerHTML = `
-    <div class="bg-white p-6 rounded-lg w-4/5 max-w-screen-lg shadow-lg my-5 relative" id="${uniqueId}-container">
-      <button id="${uniqueId}-closeCross" class="absolute top-2 right-2 text-gray-500 hover:text-gray-700 text-xl font-bold">×</button>
-      <h2 class="text-lg font-bold mb-4">Copy the Code</h2>
-      <textarea id="${uniqueId}-codeArea" class="w-full h-48 bg-gray-100 p-2 rounded border border-gray-300" readonly>${cardHTML}</textarea>
-      <button id="${uniqueId}-copyButton" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded w-full">Copy to Clipboard</button>
-      <button id="${uniqueId}-closeButton" class="mt-2 bg-slate-600 text-white px-4 py-2 rounded w-full">Close</button>
+    <div class="bg-${isDark ? 'gray-800' : 'white'} p-6 rounded-lg w-4/5 max-w-screen-lg shadow-lg my-5 relative" id="${uniqueId}-container">
+      <button id="${uniqueId}-closeCross" class="absolute top-2 right-2 text-gray-500 hover:text-${isDark ? 'gray-300' : 'gray-700'} text-xl font-bold">×</button>
+      <h2 class="text-lg font-bold mb-4 ${isDark ? 'text-white' : ''}">Copy the Code</h2>
+      <textarea id="${uniqueId}-codeArea" class="w-full h-48 ${isDark ? 'bg-gray-700 text-gray-100' : 'bg-gray-100'} p-2 rounded border ${isDark ? 'border-gray-600' : 'border-gray-300'}" readonly>${cardHTML}</textarea>
+      <button id="${uniqueId}-copyButton" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded w-full hover:bg-blue-700">Copy to Clipboard</button>
+      <button id="${uniqueId}-closeButton" class="mt-2 bg-slate-600 text-white px-4 py-2 rounded w-full hover:bg-slate-700">Close</button>
     </div>
   `;
 
@@ -148,4 +154,11 @@ exportCodeButton.addEventListener("click", () => {
     const popupToRemove = event.target.closest(`#${uniqueId}`);
     document.body.removeChild(popupToRemove);
   });
+});
+
+// Initialize dark mode state
+document.addEventListener('DOMContentLoaded', () => {
+    if (localStorage.getItem('darkMode') === 'enabled') {
+        document.documentElement.classList.add('dark');
+    }
 });

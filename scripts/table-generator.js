@@ -9,6 +9,51 @@ document.addEventListener('DOMContentLoaded', () => {
       exportCode.value = table.outerHTML;
     };
 
+    // Check initial dark mode state
+    const isDark = document.documentElement.classList.contains('dark');
+    if (isDark) {
+        updateTableForDarkMode();
+    }
+
+    // Function to update table styles for dark mode
+    function updateTableForDarkMode() {
+        const cells = table.querySelectorAll('th, td');
+        cells.forEach(cell => {
+            if (cell.tagName === 'TH') {
+                cell.style.backgroundColor = '#2d2d2d';
+            } else {
+                cell.style.backgroundColor = '#404040';
+            }
+            cell.style.borderColor = '#555';
+            cell.style.color = 'white';
+        });
+    }
+
+    // Observer for dark mode changes
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            if (mutation.attributeName === 'class') {
+                const isDark = document.documentElement.classList.contains('dark');
+                if (isDark) {
+                    updateTableForDarkMode();
+                } else {
+                    // Reset to light mode colors
+                    const cells = table.querySelectorAll('th, td');
+                    cells.forEach(cell => {
+                        cell.style.backgroundColor = cell.tagName === 'TH' ? '#f3f4f6' : '#ffffff';
+                        cell.style.borderColor = '#e5e7eb';
+                        cell.style.color = '#111827';
+                    });
+                }
+            }
+        });
+    });
+
+    observer.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['class']
+    });
+
     // Add Row
     document.getElementById('add-row').addEventListener('click', () => {
       const row = document.createElement('tr');
