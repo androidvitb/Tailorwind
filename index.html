@@ -22,6 +22,12 @@
           <img src="/Logo.png" alt="Tailwind Generator Logo" />
         </div>
         <span class="text-lg font-bold text-gray-800 md:text-xl">TailorWind</span>
+        
+        <!-- Add Dark Mode Toggle Button -->
+        <button id="darkModeToggle" class="ml-4 relative w-8 h-8 flex items-center justify-center">
+          <i class="fas fa-sun text-xl text-[#ffbc00] absolute" id="lightIcon"></i>
+          <i class="fas fa-moon text-xl text-[#ffbc00] absolute hidden" id="darkIcon"></i>
+        </button>
       </div>
 
       <!-- Hamburger Button -->
@@ -345,6 +351,56 @@
                 });
             });
         });
+    </script>
+    <script>
+      // Existing menu toggle script
+      // ...existing code...
+
+      // Dark mode implementation
+      document.addEventListener('DOMContentLoaded', () => {
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const lightIcon = document.getElementById('lightIcon');
+        const darkIcon = document.getElementById('darkIcon');
+        
+        // Add transition class to html element
+        document.documentElement.classList.add('transition-colors', 'duration-500');
+        
+        // Check for saved dark mode preference
+        if (localStorage.getItem('darkMode') === 'enabled') {
+          document.documentElement.classList.add('dark');
+          lightIcon.classList.add('hidden');
+          darkIcon.classList.remove('hidden');
+        }
+
+        darkModeToggle.addEventListener('click', () => {
+          // Animate icons
+          lightIcon.style.transform = 'rotate(180deg) scale(0.5)';
+          darkIcon.style.transform = 'rotate(180deg) scale(0.5)';
+          
+          setTimeout(() => {
+            // Toggle dark mode
+            document.documentElement.classList.toggle('dark');
+            
+            // Toggle icons
+            lightIcon.classList.toggle('hidden');
+            darkIcon.classList.toggle('hidden');
+            
+            // Reset transforms
+            lightIcon.style.transform = 'rotate(0) scale(1)';
+            darkIcon.style.transform = 'rotate(0) scale(1)';
+            
+            // Save preference
+            if (document.documentElement.classList.contains('dark')) {
+              localStorage.setItem('darkMode', 'enabled');
+            } else {
+              localStorage.setItem('darkMode', 'disabled');
+            }
+          }, 150);
+        });
+      });
+
+      // Existing scroll button script
+      // ...existing code...
     </script>
   </body>
 </html>

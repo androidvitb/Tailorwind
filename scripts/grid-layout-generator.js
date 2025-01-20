@@ -52,39 +52,46 @@ function updateRowConfig() {
     columnSpans[row][col] = span;
   }
 
-  // Generate Grid
+  // Update generateGrid function to handle dark mode
   function generateGrid() {
     const rows = document.getElementById("rows").value;
     const columns = document.getElementById("columns").value;
     const container = document.getElementById("grid-container");
-    container.innerHTML = ''; // Clear existing grid
+    const isDark = document.documentElement.classList.contains('dark');
+    
+    container.innerHTML = '';
 
-    // Generate grid layout
-    const gridClasses = `grid gap-4 p-4 bg-gray-50 border rounded shadow`;
+    const gridClasses = `grid gap-4 p-4 ${isDark ? 'bg-gray-800' : 'bg-gray-50'} border rounded shadow`;
     container.className = gridClasses;
     container.style.gridTemplateColumns = `repeat(${columns}, minmax(0, 1fr))`;
 
     // Populate grid items with column spans
     for (let row = 1; row <= rows; row++) {
-      for (let col = 1; col <= columns; col++) {
-        const span = (columnSpans[row] && columnSpans[row][col]) || 1;
-        const item = document.createElement("div");
-        item.className = `bg-blue-500 text-white font-bold py-2 px-4 rounded text-center col-span-${span}`;
-        item.innerText = `Row ${row} - Item ${col}`;
-        container.appendChild(item);
-      }
+        for (let col = 1; col <= columns; col++) {
+            const span = (columnSpans[row] && columnSpans[row][col]) || 1;
+            const item = document.createElement("div");
+            item.className = `bg-blue-500 text-white font-bold py-2 px-4 rounded text-center col-span-${span}`;
+            item.innerText = `Row ${row} - Item ${col}`;
+            container.appendChild(item);
+        }
     }
 
-    // Generate Tailwind CSS output
-    let outputCode = `<div class="grid gap-4 p-4 bg-gray-50 border rounded shadow">\n`;
+    // Update code output for dark mode
+    const outputCode = generateOutputCode(rows, columns, isDark);
+    document.getElementById("output-code").innerText = outputCode.trim();
+  }
+
+  // New function to generate output code
+  function generateOutputCode(rows, columns, isDark) {
+    let outputCode = `<div class="grid gap-4 p-4 ${isDark ? 'bg-gray-800' : 'bg-gray-50'} border rounded shadow">\n`;
     for (let row = 1; row <= rows; row++) {
-      for (let col = 1; col <= columns; col++) {
-        const span = (columnSpans[row] && columnSpans[row][col]) || 1;
-        outputCode += `  <div class="col-span-${span} bg-blue-500 text-white font-bold py-2 px-4 rounded text-center">Row ${row} - Item ${col}</div>\n`;
-      }
+        for (let col = 1; col <= columns; col++) {
+            const span = (columnSpans[row] && columnSpans[row][col]) || 1;
+            outputCode += `  <div class="col-span-${span} bg-blue-500 text-white font-bold py-2 px-4 rounded text-center">Row ${row} - Item ${col}</div>\n`;
+        }
     }
     outputCode += `</div>`;
-    document.getElementById("output-code").innerText = outputCode.trim();
+    return outputCode;
   }
 
   // Copy to Clipboard
@@ -98,3 +105,11 @@ function updateRowConfig() {
   // Initialize default configuration
   updateRowConfig();
   generateGrid();
+
+  // Initialize dark mode state
+  document.addEventListener('DOMContentLoaded', () => {
+    if (localStorage.getItem('darkMode') === 'enabled') {
+        document.documentElement.classList.add('dark');
+        generateGrid(); // Regenerate grid with dark mode styles
+    }
+  });

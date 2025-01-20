@@ -5,6 +5,44 @@ document.addEventListener("DOMContentLoaded", () => {
   const fieldOptions = document.getElementById("fieldOptions");
   const buttonColorInput = document.getElementById("buttonColor");
 
+  // Check initial dark mode state
+  const isDark = document.documentElement.classList.contains('dark');
+  if (isDark) {
+      updateFormPreview();
+  }
+
+  // Function to update form preview for dark mode
+  function updateFormPreview() {
+      const inputs = formPreview.querySelectorAll('input, textarea');
+      const isDark = document.documentElement.classList.contains('dark');
+      
+      inputs.forEach(input => {
+          if (isDark) {
+              input.style.backgroundColor = '#404040';
+              input.style.borderColor = '#555';
+              input.style.color = 'white';
+          } else {
+              input.style.backgroundColor = '';
+              input.style.borderColor = '';
+              input.style.color = '';
+          }
+      });
+  }
+
+  // Observer for dark mode changes
+  const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+          if (mutation.attributeName === 'class') {
+              updateFormPreview();
+          }
+      });
+  });
+
+  observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class']
+  });
+
   // Add new field group dynamically
   document.getElementById("addFieldGroup").addEventListener("click", () => {
     const fieldGroup = document.createElement("div");
