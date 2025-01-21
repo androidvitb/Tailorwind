@@ -305,7 +305,8 @@
               <input
                 type="text"
                 id="name"
-                class="w-full mt-2 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#049b9f]"
+                class="w-full mt-2 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#049b9f] 
+                       transition-all duration-300 hover:shadow-md hover:border-[#049b9f]"
                 placeholder="Your name"
               />
             </div>
@@ -314,27 +315,30 @@
               <input
                 type="email"
                 id="email"
-                class="w-full mt-2 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#049b9f]"
+                class="w-full mt-2 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#049b9f] 
+                       transition-all duration-300 hover:shadow-md hover:border-[#049b9f]"
                 placeholder="Your email"
               />
             </div>
             <div>
-              <label for="message" class="block font-medium text-gray-700">
-                Message
-              </label>
+              <label for="message" class="block font-medium text-gray-700">Message</label>
               <textarea
                 id="message"
-                class="w-full mt-2 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#049b9f]"
+                class="w-full mt-2 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#049b9f] 
+                          transition-all duration-300 hover:shadow-md hover:border-[#049b9f]"
                 rows="5"
                 placeholder="Your message"
               ></textarea>
             </div>
-            <button
-              type="submit"
-              class="bg-[#049b9f] text-white px-6 py-3 rounded-lg w-full text-lg font-medium"
-            >
-              Send Message
-            </button>
+            <div class="mt-4">
+              <button
+                type="submit"
+                class="w-full bg-[#049b9f] text-white font-medium py-3 rounded-lg 
+                       transition-all duration-300 hover:bg-[#037b7f] hover:shadow-lg hover:scale-105 focus:outline-none"
+              >
+                Send Message
+              </button>
+            </div>
           </form>
         </div>
       </section>
