@@ -1,9 +1,20 @@
 {
   "version": 2,
-  "rewrites": [
-    { "source": "/tools-and-generator", "destination": "/tools-and-generator.html" },
-    { "source": "/card-generator", "destination": "/card-generator.html" },
-    { "source": "/grid-layout-generator", "destination": "/grid-layout-generator.html" },
-    { "source": "/table-generator", "destination": "/table-generator.html" }
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build"
+    }
+  ],
+  "routes": [
+    { "src": "^/tools-and-generator/?$", "dest": "/tools-and-generator.html" },
+    { "src": "^/card-generator/?$", "dest": "/card-generator.html" },
+    { "src": "^/grid-layout-generator/?$", "dest": "/grid-layout-generator.html" },
+    { "src": "^/table-generator/?$", "dest": "/table-generator.html" },
+    { "src": "^/form-generator/?$", "dest": "/form-generator.html" },
+    { "src": "^/assets/(.*)", "dest": "/assets/$1" },
+    { "src": "^/public/(.*)", "dest": "/public/$1" },
+    { "src": "^/scripts/(.*)", "dest": "/scripts/$1" },
+    { "src": "/(.*)", "dest": "/$1" }
   ]
 }
