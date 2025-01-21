@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beautiful Navbar Generator</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+
+
+        #generator {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        #generator h1 {
+            font-weight: 800;
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+        }
+
+
+        #generator label {
+            font-weight: bold;
+            margin-top: 10px;
+            display: block;
+        }
+
+        #generator input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        #generator button {
+            margin-top: 15px;
+            padding: 10px;
+            width: 100%;
+            background-color: #4caf50;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #generator button:hover {
+            background-color: #45a049;
+        }
+
+        #navbarPreview {
+            width: 100%;
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: transparent; /* Make the preview container background transparent */
+            color: inherit;
+        }
+
+        #navbarPreview a {
+            text-decoration: none;
+            margin-right: 10px;
+            color: inherit;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        #navbarPreview a:hover {
+            background-color: #575757;
+        }
+
+        .popup {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .popup textarea {
+            width: 100%;
+            height: 120px;
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .popup button {
+            display: block;
+            margin-top: 10px;
+            padding: 10px;
+            width: 100%;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .popup button:hover {
+            background-color: #45a049;
+        }
+
+        .close-btn {
+            background-color: #e74c3c;
+            margin-top: 5px;
+        }
+
+        .close-btn:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="generator">
+        <h1>Beautiful Navbar Generator</h1>
+
+        <label for="navTitle">Navbar Title:</label>
+        <input type="text" id="navTitle" placeholder="Enter Navbar Title" />
+
+        <label for="navItems">Menu Items (comma separated):</label>
+        <input type="text" id="navItems" placeholder="Home, About, Services, Contact" />
+
+        <label for="navBgColor">Navbar Background Color:</label>
+        <input type="color" id="navBgColor" value="#333333" />
+
+        <label for="navTextColor">Navbar Text Color:</label>
+        <input type="color" id="navTextColor" value="#ffffff" />
+
+        <button id="generateNavbar">Generate Navbar</button>
+    </div>
+
+    <h2 style="font:bold">Navbar Preview</h2>
+    <div id="navbarPreview"></div>
+
+    <div id="codeOutput"></div>
+
+    <script>
+        function generateNavbar() {
+    const navTitle = document.getElementById("navTitle").value;
+    const navItems = document.getElementById("navItems").value.split(",");
+    const navBgColor = document.getElementById("navBgColor").value;
+    const navTextColor = document.getElementById("navTextColor").value;
+
+    // Generate Navbar Preview
+    const linksHtml = navItems
+        .map(item => `<a href="#" style="color: ${navTextColor};">${item.trim()}</a>`)
+        .join("");
+    const navbarHtml = `
+        <div style="display: flex; justify-content: space-between; align-items: center; background-color: ${navBgColor}; color: ${navTextColor}; padding: 10px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+            <div>${navTitle}</div>
+            <div style="display: flex; gap: 10px;">${linksHtml}</div>
+        </div>
+    `;
+    document.getElementById("navbarPreview").innerHTML = navbarHtml;
+
+    // Generate HTML and CSS Code
+    const generatedCode = `
+<div class="w-full flex justify-between items-center p-4 rounded-lg shadow-md" style="background-color: ${navBgColor}; color: ${navTextColor};">
+    <div class="text-lg font-bold">${navTitle}</div>
+    <div class="flex space-x-4">
+        ${navItems.map(item => `<a href="#" class="hover:bg-gray-700 px-3 py-2 rounded">${item.trim()}</a>`).join("\n        ")}
+    </div>
+</div>
+    `;
+
+    // Show code output below the preview
+    showCodeOutput(generatedCode);
+}
+
+
+        function showCodeOutput(code) {
+            const codeOutput = document.getElementById("codeOutput");
+
+            // Clear previous code output
+            codeOutput.innerHTML = "";
+
+            // Create code container
+            const popup = document.createElement("div");
+            popup.className = "popup";
+
+            const textarea = document.createElement("textarea");
+            textarea.readOnly = true;
+            textarea.value = code;
+
+            const copyButton = document.createElement("button");
+            copyButton.textContent = "Copy Code";
+            copyButton.onclick = () => {
+                navigator.clipboard.writeText(code);
+                alert("Code copied to clipboard!");
+            };
+
+            const closeButton = document.createElement("button");
+            closeButton.textContent = "Close";
+            closeButton.className = "close-btn";
+            closeButton.onclick = () => popup.remove();
+
+            popup.appendChild(textarea);
+            popup.appendChild(copyButton);
+            popup.appendChild(closeButton);
+
+            codeOutput.appendChild(popup);
+        }
+
+        document.getElementById("generateNavbar").addEventListener("click", generateNavbar);
+    </script>
+</body>
+</html>
