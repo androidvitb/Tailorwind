@@ -12,6 +12,7 @@
     { "src": "^/grid-layout-generator/?$", "dest": "/grid-layout-generator.html" },
     { "src": "^/table-generator/?$", "dest": "/table-generator.html" },
     { "src": "^/form-generator/?$", "dest": "/form-generator.html" },
+    { "src": "^/navbar-generator/?$", "dest": "/navbar.html" },
     { "src": "^/assets/(.*)", "dest": "/assets/$1" },
     { "src": "^/public/(.*)", "dest": "/public/$1" },
     { "src": "^/scripts/(.*)", "dest": "/scripts/$1" },

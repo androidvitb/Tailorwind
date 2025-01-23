@@ -11,7 +11,8 @@ export default defineConfig({
         card: resolve(__dirname, 'card-generator.html'),
         grid: resolve(__dirname, 'grid-layout-generator.html'),
         table: resolve(__dirname, 'table-generator.html'),
-        form: resolve(__dirname, 'form-generator.html')
+        form: resolve(__dirname, 'form-generator.html'),
+        navbar: resolve(__dirname, 'navbar.html')
       }
     }
   },
