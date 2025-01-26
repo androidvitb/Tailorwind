@@ -32,28 +32,54 @@
 
 <body class="bg-gray-50 font-sans">
     <!-- Navbar -->
-    <header class="bg-white shadow p-4 flex justify-between items-center px-10">
+    <header class="flex items-center justify-between p-4 px-6 bg-white shadow md:px-10">
         <div class="flex items-center space-x-2">
             <div class="w-10 h-10 rounded">
                 <img src="/Logo.png" alt="Tailwind Generator Logo" />
             </div>
             <span class="font-bold text-xl text-gray-800">TailorWind</span>
             
-            <!-- Update Dark Mode Toggle Button -->
+            <!-- Dark Mode Toggle Button -->
             <button id="darkModeToggle" class="ml-4 relative w-8 h-8 flex items-center justify-center">
                 <i class="fas fa-sun text-xl text-[#ffbc00] absolute" id="lightIcon"></i>
                 <i class="fas fa-moon text-xl text-[#ffbc00] absolute hidden" id="darkIcon"></i>
             </button>
         </div>
-        <nav class="space-x-4">
-            <a href="/index.html" class="text-black hover:text-[#049b9f]">Home</a>
-            <a href="/tools-and-generator.html" class="text-black hover:text-[#049b9f]">Tools & Generator</a>
-            <a href="/index.html" class="text-black hover:text-[#049b9f]">FAQ</a>
-            <a href="/index.html" class="text-black hover:text-[#049b9f]">Blog</a>
-        </nav>
-        <button class="bg-[#049b9f] text-white px-4 py-2 rounded">
-            Get started
+
+        <!-- Hamburger Button -->
+        <button
+            id="menu-toggle"
+            class="block text-gray-800 md:hidden focus:outline-none"
+        >
+            <svg
+                class="w-6 h-6"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+            >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4 6h16M4 12h16M4 18h16"
+                />
+            </svg>
         </button>
+
+        <!-- Navigation Menu -->
+        <nav
+            id="menu"
+            class="absolute left-0 flex flex-col hidden w-full py-4 bg-white shadow md:flex md:flex-row md:static top-16 md:w-auto md:shadow-none md:bg-transparent md:p-0"
+        >
+            <a href="/" class="text-black hover:text-[#049b9f] px-6 py-2 text-justify transition-colors duration-200">Home</a>
+            <a href="tools-and-generator" class="text-black hover:text-[#049b9f] px-6 py-2 text-justify transition-colors duration-200">Tools & Generator</a>
+            <a href="/#faq" class="text-black hover:text-[#049b9f] px-6 py-2 text-justify transition-colors duration-200">FAQ</a>
+            <a href="/#contact" class="text-black hover:text-[#049b9f] px-6 py-2 text-justify transition-colors duration-200">Contact</a>
+            <button class="bg-[#049b9f] text-white px-4 py-2 rounded mx-6 my-2 md:mx-0 md:my-0 hover:bg-[#037a7b] transition-colors duration-200" onclick="window.location.href='get-started.html'">
+                Get started
+            </button>
+        </nav>
     </header>
 
     <!-- Main Content -->
@@ -157,6 +183,28 @@
                     Get started
                 </button>
             </div>
+
+            <!-- Navbar Generator -->
+            <div class="bg-white shadow rounded-lg flex flex-col justify-center items-center overflow-hidden">
+                <div class="card-content p-6 flex flex-col justify-center items-center">
+                    <img src="/navbar.png" alt="" class="mb-4" />
+                    <div>
+                        <h2 class="text-xl font-bold text-gray-800 mb-2">
+                            Navbar Generator
+                        </h2>
+                        <p class="text-gray-600">
+                            Create and design responsive navigation bars using a user-friendly editor.
+                            Customize links, add dropdowns, preview live changes, and export
+                            navbars with HTML + TailwindCSS code for seamless integration.
+                        </p>
+                    </div>
+                </div>
+                <button class="card-button bg-gray-100 w-full m-auto mr-8 text-left px-6 h-12 text-blue-600 font-medium"
+                    onclick="window.location.href='/navbar.html'">
+                    Get started
+                </button>
+            </div>
+
         </div>
     </main>
     <footer class="bg-gray-800 text-white py-6">
@@ -172,7 +220,7 @@
           Visit us on GitHub
         </a>
     </footer>
-    <script src="js/tools-and-generator.js"></script>
+    <script src="scripts/tools-and-generator.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const darkModeToggle = document.getElementById('darkModeToggle');
@@ -214,6 +262,14 @@
                     );
                 }, 150);
             });
+        });
+
+        // Toggle the menu on mobile
+        const menuToggle = document.getElementById('menu-toggle');
+        const menu = document.getElementById('menu');
+
+        menuToggle.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
         });
     </script>
 </body>

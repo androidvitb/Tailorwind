@@ -12,7 +12,7 @@ export default defineConfig({
         grid: resolve(__dirname, 'grid-layout-generator.html'),
         table: resolve(__dirname, 'table-generator.html'),
         form: resolve(__dirname, 'form-generator.html'),
-        navbar: resolve(__dirname, 'navbar.html')
+        navbar: resolve(__dirname, 'navbar-generator.html')
       }
     }
   },
