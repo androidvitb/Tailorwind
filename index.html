@@ -53,17 +53,56 @@
 
       <!-- Navigation Menu -->
       <nav
-        id="menu"
-        class="absolute left-0 flex flex-col hidden w-full py-4 bg-white shadow md:flex md:flex-row md:static top-16 md:w-auto md:shadow-none md:bg-transparent md:p-0"
+      id="menu"
+      class="absolute left-0 flex flex-col hidden w-full space-x-4 space-y-4 bg-white shadow md:flex md:flex-row md:space-y-0 md:static top-16 md:w-auto md:shadow-none md:bg-transparent md:p-0"
+    >
+      <!-- Navigation Links with Visible Hover Effects -->
+      <a
+        href="/"
+        class="relative text-black px-6 py-2 font-medium transition-all duration-300 ease-in-out group"
       >
-        <a href="/" class="text-black hover:text-[#049b9f] px-6 py-2 text-justify transition-colors duration-200">Home</a>
-        <a href="tools-and-generator" class="text-black hover:text-[#049b9f] px-6 py-2 text-justify transition-colors duration-200">Tools & Generator</a>
-        <a href="#faq" class="text-black hover:text-[#049b9f] px-6 py-2 text-justify transition-colors duration-200">FAQ</a>
-        <a href="#contact" class="text-black hover:text-[#049b9f] px-6 py-2 text-justify transition-colors duration-200">Contact</a>
-        <button class="bg-[#049b9f] text-white px-4 py-2 rounded mx-6 my-2 md:mx-0 md:my-0 hover:bg-[#037a7b] transition-colors duration-200" onclick="redirectToPage()">
-          Get started
-        </button>
-      </nav>
+        <span
+          class="absolute inset-0 bg-[#049b9f] rounded-full scale-95 opacity-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 ease-in-out"
+        ></span>
+        <span class="relative z-10 group-hover:text-white transition-colors duration-300">Home</span>
+      </a>
+      <a
+        href="tools-and-generator"
+        class="relative text-black px-6 py-2 font-medium transition-all duration-300 ease-in-out group"
+      >
+        <span
+          class="absolute inset-0 bg-[#049b9f] rounded-full scale-95 opacity-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 ease-in-out"
+        ></span>
+        <span class="relative z-10 group-hover:text-white transition-colors duration-300">Tools & Generator</span>
+      </a>
+      <a
+        href="#faq"
+        class="relative text-black px-6 py-2 font-medium transition-all duration-300 ease-in-out group"
+      >
+        <span
+          class="absolute inset-0 bg-[#049b9f] rounded-full scale-95 opacity-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 ease-in-out"
+        ></span>
+        <span class="relative z-10 group-hover:text-white transition-colors duration-300">FAQ</span>
+      </a>
+      <a
+        href="#contact"
+        class="relative text-black px-6 py-2 font-medium transition-all duration-300 ease-in-out group"
+      >
+        <span
+          class="absolute inset-0 bg-[#049b9f] rounded-full scale-95 opacity-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 ease-in-out"
+        ></span>
+        <span class="relative z-10 group-hover:text-white transition-colors duration-300">Contact</span>
+      </a>
+      <button
+        class="bg-[#049b9f] text-white px-6 py-2 rounded-lg mx-6 md:mx-0 shadow-md transition-all duration-300 ease-in-out hover:bg-[#037f7d] hover:shadow-lg hover:scale-105"
+        onclick="redirectToPage()"
+      >
+        Get started
+      </button>
+    </nav>
+    
+
+
     </header>
 
 
@@ -436,7 +475,6 @@
       });
 
       // Existing scroll button script
-      // ...existing code...
     </script>
 
 <script>
