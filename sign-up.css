@@ -1,0 +1,169 @@
+/* Reset and base styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: hite;
+
+}
+  
+.container {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
+  overflow: hidden;
+}
+img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* margin: 1rem 0; */
+}
+  
+.left-section {
+    flex: 1;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+  
+.right-section {
+    flex: 1;
+    padding: 9.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: white; 
+    color: black;
+}
+  
+.right-section h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: black;
+}
+  
+.google-button, .email-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #4285F4;
+    color: white;
+    padding: 0.8rem 1rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+  
+.google-icon , .email-icon{
+    width: 20px;
+    margin-right: 0.6rem;
+    color: #fff;
+}
+  
+.google-button:hover {
+    background-color: #494f55;
+}
+  
+.email-button {
+    background-color: rgb(32, 1, 82);
+    color: white;
+    border: 1px solid #ccc;
+    border:none;
+
+}
+  
+.email-button:hover {
+    background-color: #737373;
+}
+  
+.divider {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+    color: black;
+    position: relative;
+    background: white;
+}
+  
+.divider span {
+    background-color: #fff;
+    padding: 0 10px;
+}
+  
+.divider::before,
+  .divider::after {
+    content: '';
+    position: absolute;
+    height: 1px;
+    width: 100%;
+    background-color: #ddd;
+    top: 50%;
+    transform: translateY(-50%);
+}
+  
+.divider::before {
+    left: 0;
+}
+  
+.divider::after {
+    right: 0;
+}
+  
+.terms {
+    font-size: 0.8rem;
+    color: rgb(61, 61, 61);
+}
+  
+.terms a {
+    color: #6c63ff;
+    text-decoration: none;
+}
+  
+.terms a:hover {
+    text-decoration: underline;
+}
+  
+.signin {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #8c8b8b;
+}
+  
+.signin a {
+    color: #6c63ff;
+    text-decoration: none;
+}
+  
+.signin a:hover {
+    text-decoration: underline;
+}
+  
+@media (max-width: 768px) {
+    .container {
+      flex-direction: column;
+      align-items: center;
+      padding: 5rem 2rem;
+      margin: 6rem 0;
+    }
+  
+    .left-section, .right-section {
+      flex: none;
+      width: 100%;
+      padding-top: 7rem 1rem;
+    }
+  
+    .left-section {
+      height: 200px;
+    }
+
+}
+  
