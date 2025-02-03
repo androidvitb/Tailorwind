@@ -19,9 +19,6 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
     overflow: hidden;
 }
-span {
-    background: rgba(29, 10, 47,0.9);
-}
 
 .left-panel {
     flex: 1;
