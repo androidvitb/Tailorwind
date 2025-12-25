@@ -7,7 +7,7 @@ This Site is a Replica of - https://tailwind-generator.com/ and is Made for Educ
 🔗 **Live Preview**: [TailorWind Website](https://tailorwind-generator.vercel.app/)
 
 ### (Beginner Friendly)  
-### **Repository Under**: AcWoC'25  
+### **Repository Under**: AcWoC'26  
 ### **Club**: Android Club, VIT Bhopal University  
 ---
 
