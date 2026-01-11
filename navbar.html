@@ -384,7 +384,7 @@
             // Check initial theme
             if (localStorage.getItem('darkMode') === 'enabled' || 
                 (localStorage.getItem('darkMode') === null && 
-                 window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                window.matchMedia('(prefers-color-scheme: dark)').matches)) {
                 htmlElement.classList.add('dark');
                 lightIcon.classList.add('hidden');
                 darkIcon.classList.remove('hidden');
