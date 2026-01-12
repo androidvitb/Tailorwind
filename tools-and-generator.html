@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tools & Generator - TailorWind</title>
+    <link rel="icon" type="image/png" href="/Logo.png">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="main.css">
     <style>
@@ -45,7 +46,7 @@
                 <img src="/Logo.png" alt="Tailwind Generator Logo" />
             </div>
             <span class="font-bold text-xl text-gray-800">TailorWind</span>
-            
+
             <!-- Dark Mode Toggle Button -->
             <button id="darkModeToggle" class="ml-4 relative w-8 h-8 flex items-center justify-center">
                 <i class="fas fa-sun text-xl text-[#ffbc00] absolute" id="lightIcon"></i>
@@ -54,75 +55,47 @@
         </div>
 
         <!-- Hamburger Button -->
-        <button
-            id="menu-toggle"
-            class="block text-gray-800 md:hidden focus:outline-none"
-        >
-            <svg
-                class="w-6 h-6"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-            >
-                <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M4 6h16M4 12h16M4 18h16"
-                />
+        <button id="menu-toggle" class="block text-gray-800 md:hidden focus:outline-none">
+            <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
         </button>
 
         <!-- Navigation Menu -->
-        <nav
-      id="menu"
-      class="absolute left-0 flex flex-col hidden w-full space-x-4 space-y-4 bg-white shadow md:flex md:flex-row md:space-y-0 md:static top-16 md:w-auto md:shadow-none md:bg-transparent md:p-0"
-    >
-      <!-- Navigation Links with Visible Hover Effects -->
-      <a
-        href="/"
-        class="relative text-black px-6 py-2 font-medium transition-all duration-300 ease-in-out group"
-      >
-        <span
-          class="absolute inset-0 bg-[#049b9f] rounded-full scale-95 opacity-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 ease-in-out"
-        ></span>
-        <span class="relative z-10 group-hover:text-white transition-colors duration-300">Home</span>
-      </a>
-      <a
-        href="tools-and-generator"
-        class="relative text-black px-6 py-2 font-medium transition-all duration-300 ease-in-out group"
-      >
-        <span
-          class="absolute inset-0 bg-[#049b9f] rounded-full scale-95 opacity-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 ease-in-out"
-        ></span>
-        <span class="relative z-10 group-hover:text-white transition-colors duration-300">Tools & Generator</span>
-      </a>
-      <a
-        href="#faq"
-        class="relative text-black px-6 py-2 font-medium transition-all duration-300 ease-in-out group"
-      >
-        <span
-          class="absolute inset-0 bg-[#049b9f] rounded-full scale-95 opacity-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 ease-in-out"
-        ></span>
-        <span class="relative z-10 group-hover:text-white transition-colors duration-300">FAQ</span>
-      </a>
-      <a
-        href="#contact"
-        class="relative text-black px-6 py-2 font-medium transition-all duration-300 ease-in-out group"
-      >
-        <span
-          class="absolute inset-0 bg-[#049b9f] rounded-full scale-95 opacity-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 ease-in-out"
-        ></span>
-        <span class="relative z-10 group-hover:text-white transition-colors duration-300">Contact</span>
-      </a>
-      <button
-        class="bg-[#049b9f] text-white px-6 py-2 rounded-lg mx-6 md:mx-0 shadow-md transition-all duration-300 ease-in-out hover:bg-[#037f7d] hover:shadow-lg hover:scale-105"
-        onclick="redirectToPage()"
-      >
-        Get started
-      </button>
-    </nav>
+        <nav id="menu"
+            class="absolute left-0 flex flex-col hidden w-full space-x-4 space-y-4 bg-white shadow md:flex md:flex-row md:space-y-0 md:static top-16 md:w-auto md:shadow-none md:bg-transparent md:p-0">
+            <!-- Navigation Links with Visible Hover Effects -->
+            <a href="/" class="relative text-black px-6 py-2 font-medium transition-all duration-300 ease-in-out group">
+                <span
+                    class="absolute inset-0 bg-[#049b9f] rounded-full scale-95 opacity-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 ease-in-out"></span>
+                <span class="relative z-10 group-hover:text-white transition-colors duration-300">Home</span>
+            </a>
+            <a href="tools-and-generator"
+                class="relative text-black px-6 py-2 font-medium transition-all duration-300 ease-in-out group">
+                <span
+                    class="absolute inset-0 bg-[#049b9f] rounded-full scale-95 opacity-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 ease-in-out"></span>
+                <span class="relative z-10 group-hover:text-white transition-colors duration-300">Tools &
+                    Generator</span>
+            </a>
+            <a href="#faq"
+                class="relative text-black px-6 py-2 font-medium transition-all duration-300 ease-in-out group">
+                <span
+                    class="absolute inset-0 bg-[#049b9f] rounded-full scale-95 opacity-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 ease-in-out"></span>
+                <span class="relative z-10 group-hover:text-white transition-colors duration-300">FAQ</span>
+            </a>
+            <a href="#contact"
+                class="relative text-black px-6 py-2 font-medium transition-all duration-300 ease-in-out group">
+                <span
+                    class="absolute inset-0 bg-[#049b9f] rounded-full scale-95 opacity-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 ease-in-out"></span>
+                <span class="relative z-10 group-hover:text-white transition-colors duration-300">Contact</span>
+            </a>
+            <button
+                class="bg-[#049b9f] text-white px-6 py-2 rounded-lg mx-6 md:mx-0 shadow-md transition-all duration-300 ease-in-out hover:bg-[#037f7d] hover:shadow-lg hover:scale-105"
+                onclick="redirectToPage()">
+                Get started
+            </button>
+        </nav>
     </header>
 
     <!-- Main Content -->
@@ -272,17 +245,14 @@
         </div>
     </main>
     <footer class="bg-gray-800 text-white py-6">
-    <div class="container mx-auto text-center">
-        <p class="text-sm mb-4">
-            © <script>document.write(new Date().getFullYear());</script> TailorWind. All rights reserved.
-        </p>
-        <a
-            href="https://github.com/androidvitb/Tailorwind"
-            target="_blank"
-            class="text-[#049b9f] hover:underline"
-        >
-        Visit us on GitHub
-        </a>
+        <div class="container mx-auto text-center">
+            <p class="text-sm mb-4">
+                ©
+                <script>document.write(new Date().getFullYear());</script> TailorWind. All rights reserved.
+            </p>
+            <a href="https://github.com/androidvitb/Tailorwind" target="_blank" class="text-[#049b9f] hover:underline">
+                Visit us on GitHub
+            </a>
     </footer>
     <script src="scripts/tools-and-generator.js"></script>
     <script>
@@ -290,7 +260,7 @@
             const darkModeToggle = document.getElementById('darkModeToggle');
             const lightIcon = document.getElementById('lightIcon');
             const darkIcon = document.getElementById('darkIcon');
-            
+
             // Check for saved dark mode preference without animation
             if (localStorage.getItem('darkMode') === 'enabled') {
                 document.documentElement.classList.add('dark');
@@ -312,16 +282,16 @@
                 // Only animate on click
                 lightIcon.style.transform = 'rotate(180deg) scale(0.5)';
                 darkIcon.style.transform = 'rotate(180deg) scale(0.5)';
-                
+
                 setTimeout(() => {
                     document.documentElement.classList.toggle('dark');
                     lightIcon.classList.toggle('hidden');
                     darkIcon.classList.toggle('hidden');
-                    
+
                     lightIcon.style.transform = 'rotate(0) scale(1)';
                     darkIcon.style.transform = 'rotate(0) scale(1)';
-                    
-                    localStorage.setItem('darkMode', 
+
+                    localStorage.setItem('darkMode',
                         document.documentElement.classList.contains('dark') ? 'enabled' : 'disabled'
                     );
                 }, 150);

@@ -1,498 +1,417 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TailorWind</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/main.css" />
-  </head>
-  <body>
 
-    <!-- Scroll-to-Top Button -->
-    <button id="scrollButton" title="Go to top">
-      <i class="fas fa-arrow-up"></i>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TailorWind</title>
+  <link rel="icon" type="image/png" href="/Logo.png">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/main.css" />
+</head>
+
+<body>
+
+  <!-- Scroll-to-Top Button -->
+  <button id="scrollButton" title="Go to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- Navbar -->
+  <header class="flex items-center justify-between p-4 px-6 bg-white shadow md:px-10 fixed top-0 w-full z-50">
+    <!-- Logo and Branding -->
+    <div class="flex items-center space-x-2">
+      <div class="w-10 h-10 rounded">
+        <img src="/Logo.png" alt="Tailwind Generator Logo" />
+      </div>
+      <span class="text-lg font-bold text-gray-800 md:text-xl">TailorWind</span>
+
+      <!-- Add Dark Mode Toggle Button -->
+      <button id="darkModeToggle" class="ml-4 relative w-8 h-8 flex items-center justify-center">
+        <i class="fas fa-sun text-xl text-[#ffbc00] absolute" id="lightIcon"></i>
+        <i class="fas fa-moon text-xl text-[#ffbc00] absolute hidden" id="darkIcon"></i>
+      </button>
+    </div>
+
+    <!-- Hamburger Button -->
+    <button id="menu-toggle" class="block text-gray-800 md:hidden focus:outline-none">
+      <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
     </button>
 
-    <!-- Navbar -->
-    <header class="flex items-center justify-between p-4 px-6 bg-white shadow md:px-10 fixed top-0 w-full z-50">
-      <!-- Logo and Branding -->
-      <div class="flex items-center space-x-2">
-        <div class="w-10 h-10 rounded">
-          <img src="/Logo.png" alt="Tailwind Generator Logo" />
-        </div>
-        <span class="text-lg font-bold text-gray-800 md:text-xl">TailorWind</span>
-        
-        <!-- Add Dark Mode Toggle Button -->
-        <button id="darkModeToggle" class="ml-4 relative w-8 h-8 flex items-center justify-center">
-          <i class="fas fa-sun text-xl text-[#ffbc00] absolute" id="lightIcon"></i>
-          <i class="fas fa-moon text-xl text-[#ffbc00] absolute hidden" id="darkIcon"></i>
-        </button>
-      </div>
-
-      <!-- Hamburger Button -->
-      <button
-        id="menu-toggle"
-        class="block text-gray-800 md:hidden focus:outline-none"
-      >
-        <svg
-          class="w-6 h-6"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M4 6h16M4 12h16M4 18h16"
-          />
-        </svg>
-      </button>
-
-      <!-- Navigation Menu -->
-      <nav
-      id="menu"
-      class="absolute left-0 flex flex-col hidden w-full space-x-4 space-y-4 bg-white shadow md:flex md:flex-row md:space-y-0 md:static top-16 md:w-auto md:shadow-none md:bg-transparent md:p-0 .sticky .top-0"
-    >
+    <!-- Navigation Menu -->
+    <nav id="menu"
+      class="absolute left-0 flex flex-col hidden w-full space-x-4 space-y-4 bg-white shadow md:flex md:flex-row md:space-y-0 md:static top-16 md:w-auto md:shadow-none md:bg-transparent md:p-0 .sticky .top-0">
       <!-- Navigation Links with Visible Hover Effects -->
-      <a
-        href="/"
-        class="relative text-black px-6 py-2 font-medium transition-all duration-300 ease-in-out group"
-      >
+      <a href="/" class="relative text-black px-6 py-2 font-medium transition-all duration-300 ease-in-out group">
         <span
-          class="absolute inset-0 bg-[#049b9f] rounded-full scale-95 opacity-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 ease-in-out"
-        ></span>
+          class="absolute inset-0 bg-[#049b9f] rounded-full scale-95 opacity-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 ease-in-out"></span>
         <span class="relative z-10 group-hover:text-white transition-colors duration-300">Home</span>
       </a>
-      <a
-        href="tools-and-generator"
-        class="relative text-black px-6 py-2 font-medium transition-all duration-300 ease-in-out group"
-      >
+      <a href="tools-and-generator"
+        class="relative text-black px-6 py-2 font-medium transition-all duration-300 ease-in-out group">
         <span
-          class="absolute inset-0 bg-[#049b9f] rounded-full scale-95 opacity-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 ease-in-out"
-        ></span>
+          class="absolute inset-0 bg-[#049b9f] rounded-full scale-95 opacity-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 ease-in-out"></span>
         <span class="relative z-10 group-hover:text-white transition-colors duration-300">Tools & Generator</span>
       </a>
-      <a
-        href="#faq"
-        class="relative text-black px-6 py-2 font-medium transition-all duration-300 ease-in-out group"
-      >
+      <a href="#faq" class="relative text-black px-6 py-2 font-medium transition-all duration-300 ease-in-out group">
         <span
-          class="absolute inset-0 bg-[#049b9f] rounded-full scale-95 opacity-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 ease-in-out"
-        ></span>
+          class="absolute inset-0 bg-[#049b9f] rounded-full scale-95 opacity-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 ease-in-out"></span>
         <span class="relative z-10 group-hover:text-white transition-colors duration-300">FAQ</span>
       </a>
-      <a
-        href="#contact"
-        class="relative text-black px-6 py-2 font-medium transition-all duration-300 ease-in-out group"
-      >
+      <a href="#contact"
+        class="relative text-black px-6 py-2 font-medium transition-all duration-300 ease-in-out group">
         <span
-          class="absolute inset-0 bg-[#049b9f] rounded-full scale-95 opacity-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 ease-in-out"
-        ></span>
+          class="absolute inset-0 bg-[#049b9f] rounded-full scale-95 opacity-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 ease-in-out"></span>
         <span class="relative z-10 group-hover:text-white transition-colors duration-300">Contact</span>
       </a>
-      <a 
-        class="bg-[#049b9f] text-white px-6 py-2 rounded-lg mx-6 md:mx-0 shadow-md transition-all duration-300 ease-in-out hover:bg-[#037f7d] hover:shadow-lg hover:scale-105"
+      <a class="bg-[#049b9f] text-white px-6 py-2 rounded-lg mx-6 md:mx-0 shadow-md transition-all duration-300 ease-in-out hover:bg-[#037f7d] hover:shadow-lg hover:scale-105"
         href="./get-started.html">
         Get started
       </a>
 
     </nav>
-    </header>
+  </header>
 
 
-    <main class="main pt-[10vh]">
-      <!-- Hero Section -->
-      <section class="px-4 py-12 text-center">
-        <div class="container mx-auto">
-          <h2 class="text-4xl md:text-6xl text-[#049b9f] my-5 font-bold">
-            Tailwind Generator
-          </h2>
-          <p
-            class="max-w-2xl mx-auto text-base leading-relaxed text-gray-700 md:text-lg mb-7"
-          >
-            Collection of useful tools and generators for Tailwind to create,
-            design, and customize all kinds of web components using a graphical
-            editor.
-          </p>
-          <button
-            class="bg-[#049b9f] text-white py-3 px-6 md:px-8 rounded-lg text-base cursor-pointer transition duration-300 ease-in-out hover:bg-[#027074]"
-            onclick="window.location.href='tools-and-generator'"
-          >
-            >> Tools & Generators - 100% Free!
-          </button>
-          <img
-            src="/Homepage-HeroImage.png"
-            class="w-full h-auto max-w-5xl mx-auto mt-8 border border-gray-300 shadow-lg rounded-xl"
-            alt="Tailwind Generator Preview"
-          />
-        </div>
-      </section>
-
-      <!-- Tools Section -->
-      <section class="px-6 pb-20 md:px-10">
-        <div class="mb-8 text-center">
-          <h3 class="text-3xl font-bold text-gray-800 md:text-4xl">
-            Tools & Generators
-          </h3>
-          <p class="mt-2 text-lg text-gray-600">
-            Check out the most useful tools and generators built by Tailwind
-            Generator.
-          </p>
-        </div>
-        <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-          <!-- Card Generator -->
-          <div
-            class="flex flex-col items-center overflow-hidden bg-white rounded-lg shadow-lg"
-          >
-            <img
-              src="/Homepage-HeroImage.png"
-              alt="Card Generator"
-              class="object-cover w-full h-40"
-            />
-            <div class="p-6 text-center">
-              <h4 class="mb-2 text-xl font-bold text-gray-800">Card Generator</h4>
-              <p class="mb-4 text-gray-600">
-                Cards are a modern way of displaying information on a website.
-                Create, design, and customize beautiful card components.
-              </p>
-              <button
-  class="bg-[#049b9f] text-white px-4 py-2 rounded-lg shadow-md transform transition duration-300 ease-in-out hover:bg-[#037a7b] hover:scale-105 hover:shadow-lg hover:text-[#e0f7f8] focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-[#049b9f] active:scale-95 active:bg-[#026a6c] relative overflow-hidden group text-sm"
-  onclick="window.location.href='card-generator'"
->
-  <span class="absolute inset-0 bg-gradient-to-r from-[#04c4d0] via-[#049b9f] to-[#037a7b] opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out"></span>
-  <span class="relative z-10">Get Started</span>
-</button>
-            </div>
-          </div>
-
-          <!-- Grid Layout Generator -->
-          <div
-            class="flex flex-col items-center overflow-hidden bg-white rounded-lg shadow-lg"
-          >
-            <img
-              src="grid_layout_gen_image.png"
-              alt="Grid Layout Generator"
-              class="object-cover w-full h-40"
-            />
-            <div class="p-6 text-center">
-              <h4 class="mb-2 text-xl font-bold text-gray-800">
-                Grid Layout Generator
-              </h4>
-              <p class="mb-4 text-gray-600">
-                Easily create grid layouts using a graphical editor. Customize
-                columns, rows, and more or choose from various grid presets.
-              </p>
-              <button
-  class="bg-[#049b9f] text-white px-4 py-2 rounded-lg shadow-md transform transition duration-300 ease-in-out hover:bg-[#037a7b] hover:scale-105 hover:shadow-lg hover:text-[#e0f7f8] focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-[#049b9f] active:scale-95 active:bg-[#026a6c] relative overflow-hidden group text-sm"
-  onclick="window.location.href='grid-layout-generator'"
->
-  <span class="absolute inset-0 bg-gradient-to-r from-[#04c4d0] via-[#049b9f] to-[#037a7b] opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out"></span>
-  <span class="relative z-10">Get Started</span>
-</button>
-
-            </div>
-          </div>
-
-          <!-- Table Generator -->
-          <div
-            class="flex flex-col items-center overflow-hidden bg-white rounded-lg shadow-lg"
-          >
-            <img
-              src="/table_gen_image.png"
-              alt="Table Generator"
-              class="object-cover w-full h-40"
-            />
-            <div class="p-6 text-center">
-              <h4 class="mb-2 text-xl font-bold text-gray-800">
-                Table Generator
-              </h4>
-              <p class="mb-4 text-gray-600">
-                Create and design tables for Tailwind using a graphical editor.
-                Export as HTML + Tailwind CSS code.
-              </p>
-              <button
-  class="bg-[#049b9f] text-white px-4 py-2 rounded-lg shadow-md transform transition duration-300 ease-in-out hover:bg-[#037a7b] hover:scale-105 hover:shadow-lg hover:text-[#e0f7f8] focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-[#049b9f] active:scale-95 active:bg-[#026a6c] relative overflow-hidden group text-sm"
-  onclick="window.location.href='table-generator'"
->
-  <span class="absolute inset-0 bg-gradient-to-r from-[#04c4d0] via-[#049b9f] to-[#037a7b] opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out"></span>
-  <span class="relative z-10">Get Started</span>
-</button>
-            </div>
-          </div>
-
-          <!-- Form Generator -->
-          <div
-            class="flex flex-col items-center overflow-hidden bg-white rounded-lg shadow-lg"
-          >
-            <img
-              src="/form-generator.png"
-              alt="Table Generator"
-              class="object-cover w-full h-40"
-            />
-            <div class="p-6 text-center">
-              <h4 class="mb-2 text-xl font-bold text-gray-800">
-                Form Generator
-              </h4>
-              <p class="mb-4 text-gray-600">
-                Create and design dynamic forms using a user-friendly editor.
-                Customize fields, add buttons, preview live changes, and export
-                forms with HTML + TailwindCSS code for seamless integration.
-              </p>
-              <button
-  class="bg-[#049b9f] text-white px-4 py-2 rounded-lg shadow-md transform transition duration-300 ease-in-out hover:bg-[#037a7b] hover:scale-105 hover:shadow-lg hover:text-[#e0f7f8] focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-[#049b9f] active:scale-95 active:bg-[#026a6c] relative overflow-hidden group text-sm"
-  onclick="window.location.href='form-generator'"
->
-  <span class="absolute inset-0 bg-gradient-to-r from-[#04c4d0] via-[#049b9f] to-[#037a7b] opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out"></span>
-  <span class="relative z-10">Get Started</span>
-</button>
-
-            </div>
-          </div>
-
-
-          <!-- navbar-generator -->
-          <div
-            class="flex flex-col items-center overflow-hidden bg-white rounded-lg shadow-lg"
-          >
-            <img
-              src="public/navbar.png"
-              alt="Navbar Generator"
-              class="object-cover w-full h-40"
-            />
-            <div class="p-6 text-center">
-              <h4 class="mb-2 text-xl font-bold text-gray-800">
-                Navbar Generator
-              </h4>
-              <p class="mb-4 text-gray-600">
-                Create and customize responsive navigation bars using a graphical editor
-                . Export as clean HTML and Tailwind CSS code.
-              </p>
-              <button
-  class="bg-[#049b9f] text-white px-4 py-2 rounded-lg shadow-md transform transition duration-300 ease-in-out hover:bg-[#037a7b] hover:scale-105 hover:shadow-lg hover:text-[#e0f7f8] focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-[#049b9f] active:scale-95 active:bg-[#026a6c] relative overflow-hidden group text-sm"
-  onclick="window.location.href='navbar.html'"
->
-  <span class="absolute inset-0 bg-gradient-to-r from-[#04c4d0] via-[#049b9f] to-[#037a7b] opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out"></span>
-  <span class="relative z-10">Get Started</span>
-</button>
-            </div>
-          </div>
-
-          <!-- Button Generator -->
-          <div class="flex flex-col items-center overflow-hidden bg-white rounded-lg shadow-lg">
-            <img
-              src="public/button.png"
-              alt="Button Generator"
-              class="object-cover w-full h-40"
-            />
-            <div class="p-6 text-center">
-              <h4 class="mb-2 text-xl font-bold text-gray-800">Button Generator</h4>
-              <p class="mb-4 text-gray-600">
-                Create customizable buttons with colors, radius, border, and hover effects.
-                Export clean HTML + TailwindCSS code instantly.
-              </p>
-              <button
-                class="bg-[#049b9f] text-white px-4 py-2 rounded-lg shadow-md transform transition duration-300 ease-in-out hover:bg-[#037a7b] hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-[#049b9f] active:scale-95 relative overflow-hidden group text-sm"
-                onclick="window.location.href='button-generator.html'"
-              >
-                <span class="absolute inset-0 bg-gradient-to-r from-[#04c4d0] via-[#049b9f] to-[#037a7b] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-                <span class="relative z-10">Get Started</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- FAQ Section -->
-      <section id="faq" class="px-6 py-16 bg-gray-100">
-        <div class="mb-10 text-center">
-          <h3 class="text-3xl font-bold text-gray-800 md:text-4xl">
-            Frequently Asked Questions
-          </h3>
-          <p class="mt-4 text-gray-600">
-            Answers to the most common questions about Tailwind Generator.
-          </p>
-        </div>
-        <div class="max-w-4xl mx-auto space-y-6">
-          <div class="p-6 bg-white rounded-lg shadow-md transform transition-transform duration-300 hover:scale-105 hover:shadow-xl hover:bg-gray-50">
-            <h4 class="text-lg font-bold text-gray-800 hover:text-blue-600">
-              What is Tailwind Generator?
-            </h4>
-            <p class="mt-2 text-gray-600">
-              Tailwind Generator is a collection of tools and graphical editors to
-              help you create and customize web components using Tailwind CSS.
-            </p>
-          </div>
-          <div class="p-6 bg-white rounded-lg shadow-md transform transition-transform duration-300 hover:scale-105 hover:shadow-xl hover:bg-gray-50">
-            <h4 class="text-lg font-bold text-gray-800 hover:text-blue-600">
-              Is Tailwind Generator free to use?
-            </h4>
-            <p class="mt-2 text-gray-600">
-              Yes, all the tools and generators are completely free to use.
-            </p>
-          </div>
-          <div class="p-6 bg-white rounded-lg shadow-md transform transition-transform duration-300 hover:scale-105 hover:shadow-xl hover:bg-gray-50">
-            <h4 class="text-lg font-bold text-gray-800 hover:text-blue-600">
-              Can I export the generated components?
-            </h4>
-            <p class="mt-2 text-gray-600">
-              Absolutely! You can export the components as HTML and Tailwind CSS
-              code.
-            </p>
-          </div>
-        </div>
-      </section>
-      
-
-      <!-- Contact Section -->
-      <section id="contact" class="px-6 py-16">
-        <div class="mb-10 text-center">
-          <h3 class="text-3xl font-bold text-gray-800 md:text-4xl">Contact Us</h3>
-          <p class="mt-4 text-gray-600">
-            Have questions or feedback? We'd love to hear from you!
-          </p>
-        </div>
-        <div class="max-w-4xl mx-auto">
-          <form class="p-8 space-y-6 bg-white rounded-lg shadow">
-            <div>
-              <label for="name" class="block font-medium text-gray-700">Name</label>
-              <input
-                type="text"
-                id="name"
-                class="w-full mt-2 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#049b9f] 
-                       transition-all duration-300 hover:shadow-md hover:border-[#049b9f]"
-                placeholder="Your name"
-              />
-            </div>
-            <div>
-              <label for="email" class="block font-medium text-gray-700">Email</label>
-              <input
-                type="email"
-                id="email"
-                class="w-full mt-2 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#049b9f] 
-                       transition-all duration-300 hover:shadow-md hover:border-[#049b9f]"
-                placeholder="Your email"
-              />
-            </div>
-            <div>
-              <label for="message" class="block font-medium text-gray-700">Message</label>
-              <textarea
-                id="message"
-                class="w-full mt-2 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#049b9f] 
-                          transition-all duration-300 hover:shadow-md hover:border-[#049b9f]"
-                rows="5"
-                placeholder="Your message"
-              ></textarea>
-            </div>
-            <div class="mt-4">
-              <button
-                type="submit"
-                class="w-full bg-[#049b9f] text-white font-medium py-3 rounded-lg 
-                       transition-all duration-300 hover:bg-[#037b7f] hover:shadow-lg hover:scale-105 focus:outline-none"
-              >
-                Send Message
-              </button>
-            </div>
-          </form>
-        </div>
-      </section>
-    </main>
-
-    <footer class="py-6 text-white bg-gray-800">
-      <div class="container mx-auto text-center">
-        <p class="mb-4 text-sm">© <script>document.write(new Date().getFullYear());</script> TailorWind. All rights reserved.</p>
-        <a
-          href="https://github.com/androidvitb/Tailorwind"
-          target="_blank"
-          class="text-[#049b9f] hover:underline"
-        >
-          Visit us on GitHub
-        </a>
+  <main class="main pt-[10vh]">
+    <!-- Hero Section -->
+    <section class="px-4 py-12 text-center">
+      <div class="container mx-auto">
+        <h2 class="text-4xl md:text-6xl text-[#049b9f] my-5 font-bold">
+          Tailwind Generator
+        </h2>
+        <p class="max-w-2xl mx-auto text-base leading-relaxed text-gray-700 md:text-lg mb-7">
+          Collection of useful tools and generators for Tailwind to create,
+          design, and customize all kinds of web components using a graphical
+          editor.
+        </p>
+        <button
+          class="bg-[#049b9f] text-white py-3 px-6 md:px-8 rounded-lg text-base cursor-pointer transition duration-300 ease-in-out hover:bg-[#027074]"
+          onclick="window.location.href='tools-and-generator'">
+          >> Tools & Generators - 100% Free!
+        </button>
+        <img src="/Homepage-HeroImage.png"
+          class="w-full h-auto max-w-5xl mx-auto mt-8 border border-gray-300 shadow-lg rounded-xl"
+          alt="Tailwind Generator Preview" />
       </div>
-    </footer>
-    <script>
-      // Toggle the menu on mobile
-      const menuToggle = document.getElementById('menu-toggle');
-      const menu = document.getElementById('menu');
+    </section>
 
-      menuToggle.addEventListener('click', () => {
-        menu.classList.toggle('hidden');
-      });
-    </script>
-    <script>
+    <!-- Tools Section -->
+    <section class="px-6 pb-20 md:px-10">
+      <div class="mb-8 text-center">
+        <h3 class="text-3xl font-bold text-gray-800 md:text-4xl">
+          Tools & Generators
+        </h3>
+        <p class="mt-2 text-lg text-gray-600">
+          Check out the most useful tools and generators built by Tailwind
+          Generator.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <!-- Card Generator -->
+        <div class="flex flex-col items-center overflow-hidden bg-white rounded-lg shadow-lg">
+          <img src="/Homepage-HeroImage.png" alt="Card Generator" class="object-cover w-full h-40" />
+          <div class="p-6 text-center">
+            <h4 class="mb-2 text-xl font-bold text-gray-800">Card Generator</h4>
+            <p class="mb-4 text-gray-600">
+              Cards are a modern way of displaying information on a website.
+              Create, design, and customize beautiful card components.
+            </p>
+            <button
+              class="bg-[#049b9f] text-white px-4 py-2 rounded-lg shadow-md transform transition duration-300 ease-in-out hover:bg-[#037a7b] hover:scale-105 hover:shadow-lg hover:text-[#e0f7f8] focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-[#049b9f] active:scale-95 active:bg-[#026a6c] relative overflow-hidden group text-sm"
+              onclick="window.location.href='card-generator'">
+              <span
+                class="absolute inset-0 bg-gradient-to-r from-[#04c4d0] via-[#049b9f] to-[#037a7b] opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out"></span>
+              <span class="relative z-10">Get Started</span>
+            </button>
+          </div>
+        </div>
 
-      document.addEventListener("DOMContentLoaded", () => {
-            const scrollButton = document.getElementById("scrollButton");
+        <!-- Grid Layout Generator -->
+        <div class="flex flex-col items-center overflow-hidden bg-white rounded-lg shadow-lg">
+          <img src="grid_layout_gen_image.png" alt="Grid Layout Generator" class="object-cover w-full h-40" />
+          <div class="p-6 text-center">
+            <h4 class="mb-2 text-xl font-bold text-gray-800">
+              Grid Layout Generator
+            </h4>
+            <p class="mb-4 text-gray-600">
+              Easily create grid layouts using a graphical editor. Customize
+              columns, rows, and more or choose from various grid presets.
+            </p>
+            <button
+              class="bg-[#049b9f] text-white px-4 py-2 rounded-lg shadow-md transform transition duration-300 ease-in-out hover:bg-[#037a7b] hover:scale-105 hover:shadow-lg hover:text-[#e0f7f8] focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-[#049b9f] active:scale-95 active:bg-[#026a6c] relative overflow-hidden group text-sm"
+              onclick="window.location.href='grid-layout-generator'">
+              <span
+                class="absolute inset-0 bg-gradient-to-r from-[#04c4d0] via-[#049b9f] to-[#037a7b] opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out"></span>
+              <span class="relative z-10">Get Started</span>
+            </button>
 
-            // Show button when scrolled down
-            window.addEventListener("scroll", () => {
-                if (window.scrollY > 200) {
-                    scrollButton.style.display = "block"; // Show button
-                } else {
-                    scrollButton.style.display = "none"; // Hide button
-                }
-            });
+          </div>
+        </div>
 
-            // Scroll to the top when the button is clicked
-            scrollButton.addEventListener("click", () => {
-                window.scrollTo({
-                    top: 0,
-                    behavior: "smooth", // Smooth scroll effect
-                });
-            });
-        });
-    </script>
-    <script>
-      // Existing menu toggle script
-      // ...existing code...
+        <!-- Table Generator -->
+        <div class="flex flex-col items-center overflow-hidden bg-white rounded-lg shadow-lg">
+          <img src="/table_gen_image.png" alt="Table Generator" class="object-cover w-full h-40" />
+          <div class="p-6 text-center">
+            <h4 class="mb-2 text-xl font-bold text-gray-800">
+              Table Generator
+            </h4>
+            <p class="mb-4 text-gray-600">
+              Create and design tables for Tailwind using a graphical editor.
+              Export as HTML + Tailwind CSS code.
+            </p>
+            <button
+              class="bg-[#049b9f] text-white px-4 py-2 rounded-lg shadow-md transform transition duration-300 ease-in-out hover:bg-[#037a7b] hover:scale-105 hover:shadow-lg hover:text-[#e0f7f8] focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-[#049b9f] active:scale-95 active:bg-[#026a6c] relative overflow-hidden group text-sm"
+              onclick="window.location.href='table-generator'">
+              <span
+                class="absolute inset-0 bg-gradient-to-r from-[#04c4d0] via-[#049b9f] to-[#037a7b] opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out"></span>
+              <span class="relative z-10">Get Started</span>
+            </button>
+          </div>
+        </div>
 
-      // Dark mode implementation
-      document.addEventListener('DOMContentLoaded', () => {
-        const darkModeToggle = document.getElementById('darkModeToggle');
-        const lightIcon = document.getElementById('lightIcon');
-        const darkIcon = document.getElementById('darkIcon');
-        
-        // Add transition class to html element
-        document.documentElement.classList.add('transition-colors', 'duration-500');
-        
-        // Check for saved dark mode preference
-        if (localStorage.getItem('darkMode') === 'enabled') {
-          document.documentElement.classList.add('dark');
-          lightIcon.classList.add('hidden');
-          darkIcon.classList.remove('hidden');
+        <!-- Form Generator -->
+        <div class="flex flex-col items-center overflow-hidden bg-white rounded-lg shadow-lg">
+          <img src="/form-generator.png" alt="Table Generator" class="object-cover w-full h-40" />
+          <div class="p-6 text-center">
+            <h4 class="mb-2 text-xl font-bold text-gray-800">
+              Form Generator
+            </h4>
+            <p class="mb-4 text-gray-600">
+              Create and design dynamic forms using a user-friendly editor.
+              Customize fields, add buttons, preview live changes, and export
+              forms with HTML + TailwindCSS code for seamless integration.
+            </p>
+            <button
+              class="bg-[#049b9f] text-white px-4 py-2 rounded-lg shadow-md transform transition duration-300 ease-in-out hover:bg-[#037a7b] hover:scale-105 hover:shadow-lg hover:text-[#e0f7f8] focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-[#049b9f] active:scale-95 active:bg-[#026a6c] relative overflow-hidden group text-sm"
+              onclick="window.location.href='form-generator'">
+              <span
+                class="absolute inset-0 bg-gradient-to-r from-[#04c4d0] via-[#049b9f] to-[#037a7b] opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out"></span>
+              <span class="relative z-10">Get Started</span>
+            </button>
+
+          </div>
+        </div>
+
+
+        <!-- navbar-generator -->
+        <div class="flex flex-col items-center overflow-hidden bg-white rounded-lg shadow-lg">
+          <img src="/navbar.png" alt="Navbar Generator" class="object-cover w-full h-40" />
+          <div class="p-6 text-center">
+            <h4 class="mb-2 text-xl font-bold text-gray-800">
+              Navbar Generator
+            </h4>
+            <p class="mb-4 text-gray-600">
+              Create and customize responsive navigation bars using a graphical editor
+              . Export as clean HTML and Tailwind CSS code.
+            </p>
+            <button
+              class="bg-[#049b9f] text-white px-4 py-2 rounded-lg shadow-md transform transition duration-300 ease-in-out hover:bg-[#037a7b] hover:scale-105 hover:shadow-lg hover:text-[#e0f7f8] focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-[#049b9f] active:scale-95 active:bg-[#026a6c] relative overflow-hidden group text-sm"
+              onclick="window.location.href='navbar-generator'">
+              <span
+                class="absolute inset-0 bg-gradient-to-r from-[#04c4d0] via-[#049b9f] to-[#037a7b] opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out"></span>
+              <span class="relative z-10">Get Started</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Button Generator -->
+        <div class="flex flex-col items-center overflow-hidden bg-white rounded-lg shadow-lg">
+          <img src="/button.png" alt="Button Generator" class="object-cover w-full h-40" />
+          <div class="p-6 text-center">
+            <h4 class="mb-2 text-xl font-bold text-gray-800">Button Generator</h4>
+            <p class="mb-4 text-gray-600">
+              Create customizable buttons with colors, radius, border, and hover effects.
+              Export clean HTML + TailwindCSS code instantly.
+            </p>
+            <button
+              class="bg-[#049b9f] text-white px-4 py-2 rounded-lg shadow-md transform transition duration-300 ease-in-out hover:bg-[#037a7b] hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-[#049b9f] active:scale-95 relative overflow-hidden group text-sm"
+              onclick="window.location.href='button-generator'">
+              <span
+                class="absolute inset-0 bg-gradient-to-r from-[#04c4d0] via-[#049b9f] to-[#037a7b] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+              <span class="relative z-10">Get Started</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="px-6 py-16 bg-gray-100">
+      <div class="mb-10 text-center">
+        <h3 class="text-3xl font-bold text-gray-800 md:text-4xl">
+          Frequently Asked Questions
+        </h3>
+        <p class="mt-4 text-gray-600">
+          Answers to the most common questions about Tailwind Generator.
+        </p>
+      </div>
+      <div class="max-w-4xl mx-auto space-y-6">
+        <div
+          class="p-6 bg-white rounded-lg shadow-md transform transition-transform duration-300 hover:scale-105 hover:shadow-xl hover:bg-gray-50">
+          <h4 class="text-lg font-bold text-gray-800 hover:text-blue-600">
+            What is Tailwind Generator?
+          </h4>
+          <p class="mt-2 text-gray-600">
+            Tailwind Generator is a collection of tools and graphical editors to
+            help you create and customize web components using Tailwind CSS.
+          </p>
+        </div>
+        <div
+          class="p-6 bg-white rounded-lg shadow-md transform transition-transform duration-300 hover:scale-105 hover:shadow-xl hover:bg-gray-50">
+          <h4 class="text-lg font-bold text-gray-800 hover:text-blue-600">
+            Is Tailwind Generator free to use?
+          </h4>
+          <p class="mt-2 text-gray-600">
+            Yes, all the tools and generators are completely free to use.
+          </p>
+        </div>
+        <div
+          class="p-6 bg-white rounded-lg shadow-md transform transition-transform duration-300 hover:scale-105 hover:shadow-xl hover:bg-gray-50">
+          <h4 class="text-lg font-bold text-gray-800 hover:text-blue-600">
+            Can I export the generated components?
+          </h4>
+          <p class="mt-2 text-gray-600">
+            Absolutely! You can export the components as HTML and Tailwind CSS
+            code.
+          </p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Contact Section -->
+    <section id="contact" class="px-6 py-16">
+      <div class="mb-10 text-center">
+        <h3 class="text-3xl font-bold text-gray-800 md:text-4xl">Contact Us</h3>
+        <p class="mt-4 text-gray-600">
+          Have questions or feedback? We'd love to hear from you!
+        </p>
+      </div>
+      <div class="max-w-4xl mx-auto">
+        <form class="p-8 space-y-6 bg-white rounded-lg shadow">
+          <div>
+            <label for="name" class="block font-medium text-gray-700">Name</label>
+            <input type="text" id="name" class="w-full mt-2 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#049b9f] 
+                       transition-all duration-300 hover:shadow-md hover:border-[#049b9f]" placeholder="Your name" />
+          </div>
+          <div>
+            <label for="email" class="block font-medium text-gray-700">Email</label>
+            <input type="email" id="email" class="w-full mt-2 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#049b9f] 
+                       transition-all duration-300 hover:shadow-md hover:border-[#049b9f]" placeholder="Your email" />
+          </div>
+          <div>
+            <label for="message" class="block font-medium text-gray-700">Message</label>
+            <textarea id="message" class="w-full mt-2 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#049b9f] 
+                          transition-all duration-300 hover:shadow-md hover:border-[#049b9f]" rows="5"
+              placeholder="Your message"></textarea>
+          </div>
+          <div class="mt-4">
+            <button type="submit"
+              class="w-full bg-[#049b9f] text-white font-medium py-3 rounded-lg 
+                       transition-all duration-300 hover:bg-[#037b7f] hover:shadow-lg hover:scale-105 focus:outline-none">
+              Send Message
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="py-6 text-white bg-gray-800">
+    <div class="container mx-auto text-center">
+      <p class="mb-4 text-sm">©
+        <script>document.write(new Date().getFullYear());</script> TailorWind. All rights reserved.
+      </p>
+      <a href="https://github.com/androidvitb/Tailorwind" target="_blank" class="text-[#049b9f] hover:underline">
+        Visit us on GitHub
+      </a>
+    </div>
+  </footer>
+  <script>
+    // Toggle the menu on mobile
+    const menuToggle = document.getElementById('menu-toggle');
+    const menu = document.getElementById('menu');
+
+    menuToggle.addEventListener('click', () => {
+      menu.classList.toggle('hidden');
+    });
+  </script>
+  <script>
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const scrollButton = document.getElementById("scrollButton");
+
+      // Show button when scrolled down
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 200) {
+          scrollButton.style.display = "block"; // Show button
+        } else {
+          scrollButton.style.display = "none"; // Hide button
         }
-
-        darkModeToggle.addEventListener('click', () => {
-          // Animate icons
-          lightIcon.style.transform = 'rotate(180deg) scale(0.5)';
-          darkIcon.style.transform = 'rotate(180deg) scale(0.5)';
-          
-          setTimeout(() => {
-            // Toggle dark mode
-            document.documentElement.classList.toggle('dark');
-            
-            // Toggle icons
-            lightIcon.classList.toggle('hidden');
-            darkIcon.classList.toggle('hidden');
-            
-            // Reset transforms
-            lightIcon.style.transform = 'rotate(0) scale(1)';
-            darkIcon.style.transform = 'rotate(0) scale(1)';
-            
-            // Save preference
-            if (document.documentElement.classList.contains('dark')) {
-              localStorage.setItem('darkMode', 'enabled');
-            } else {
-              localStorage.setItem('darkMode', 'disabled');
-            }
-          }, 150);
-        });
       });
 
-      // Existing scroll button script
-    </script>
+      // Scroll to the top when the button is clicked
+      scrollButton.addEventListener("click", () => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth", // Smooth scroll effect
+        });
+      });
+    });
+  </script>
+  <script>
+    // Existing menu toggle script
+    // ...existing code...
 
-  </body>
+    // Dark mode implementation
+    document.addEventListener('DOMContentLoaded', () => {
+      const darkModeToggle = document.getElementById('darkModeToggle');
+      const lightIcon = document.getElementById('lightIcon');
+      const darkIcon = document.getElementById('darkIcon');
+
+      // Add transition class to html element
+      document.documentElement.classList.add('transition-colors', 'duration-500');
+
+      // Check for saved dark mode preference
+      if (localStorage.getItem('darkMode') === 'enabled') {
+        document.documentElement.classList.add('dark');
+        lightIcon.classList.add('hidden');
+        darkIcon.classList.remove('hidden');
+      }
+
+      darkModeToggle.addEventListener('click', () => {
+        // Animate icons
+        lightIcon.style.transform = 'rotate(180deg) scale(0.5)';
+        darkIcon.style.transform = 'rotate(180deg) scale(0.5)';
+
+        setTimeout(() => {
+          // Toggle dark mode
+          document.documentElement.classList.toggle('dark');
+
+          // Toggle icons
+          lightIcon.classList.toggle('hidden');
+          darkIcon.classList.toggle('hidden');
+
+          // Reset transforms
+          lightIcon.style.transform = 'rotate(0) scale(1)';
+          darkIcon.style.transform = 'rotate(0) scale(1)';
+
+          // Save preference
+          if (document.documentElement.classList.contains('dark')) {
+            localStorage.setItem('darkMode', 'enabled');
+          } else {
+            localStorage.setItem('darkMode', 'disabled');
+          }
+        }, 150);
+      });
+    });
+
+    // Existing scroll button script
+  </script>
+
+</body>
+
 </html>

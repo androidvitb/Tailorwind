@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TailorWind - Button Generator</title>
-
+    <title>Button Generator - TailorWind</title>
+    <link rel="icon" type="image/png" href="/Logo.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
@@ -15,7 +15,8 @@
             transform: rotate(45deg);
             margin: 14px !important;
         }
-        .diamond-shape > * {
+
+        .diamond-shape>* {
             transform: rotate(-45deg);
             display: inline-block;
         }
@@ -25,29 +26,42 @@
             transform: rotate(45deg);
             margin: 10px !important;
         }
-        .leaf-shape > * {
+
+        .leaf-shape>* {
             transform: rotate(-45deg);
             display: inline-block;
         }
 
-        .slanted-shape { clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%); }
-
-        .cut-corners {
-            clip-path: polygon(
-                12px 0, 100% 0, 
-                100% calc(100% - 12px), calc(100% - 12px) 100%, 
-                0 100%, 0 12px
-            );
+        .slanted-shape {
+            clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
         }
 
-        .blob-shape { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
+        .cut-corners {
+            clip-path: polygon(12px 0, 100% 0,
+                    100% calc(100% - 12px), calc(100% - 12px) 100%,
+                    0 100%, 0 12px);
+        }
 
-        .hexagon-shape { clip-path: polygon(10% 0%, 90% 0%, 100% 50%, 90% 100%, 10% 100%, 0% 50%); }
+        .blob-shape {
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+        }
+
+        .hexagon-shape {
+            clip-path: polygon(10% 0%, 90% 0%, 100% 50%, 90% 100%, 10% 100%, 0% 50%);
+        }
 
         /* --- SHADOW FIXES --- */
-        .shadow-sm { filter: drop-shadow(0 1px 1px rgb(0 0 0 / 0.05)); }
-        .shadow    { filter: drop-shadow(0 1px 2px rgb(0 0 0 / 0.1)) drop-shadow(0 1px 1px rgb(0 0 0 / 0.06)); }
-        .shadow-lg { filter: drop-shadow(0 10px 8px rgb(0 0 0 / 0.04)) drop-shadow(0 4px 3px rgb(0 0 0 / 0.1)); }
+        .shadow-sm {
+            filter: drop-shadow(0 1px 1px rgb(0 0 0 / 0.05));
+        }
+
+        .shadow {
+            filter: drop-shadow(0 1px 2px rgb(0 0 0 / 0.1)) drop-shadow(0 1px 1px rgb(0 0 0 / 0.06));
+        }
+
+        .shadow-lg {
+            filter: drop-shadow(0 10px 8px rgb(0 0 0 / 0.04)) drop-shadow(0 4px 3px rgb(0 0 0 / 0.1));
+        }
 
         /* --- ENHANCED GLASSMORPHISM BASE --- */
         /* Note: Background and Blur are now handled by JS for customization, 
@@ -57,11 +71,14 @@
             border-top: 1px solid rgba(255, 255, 255, 0.5);
             border-left: 1px solid rgba(255, 255, 255, 0.5);
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
-            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
         }
 
         /* 3D PRESS EFFECT */
-        .btn-3d { transition: transform 0.1s, box-shadow 0.1s; }
+        .btn-3d {
+            transition: transform 0.1s, box-shadow 0.1s;
+        }
+
         .btn-3d:active {
             transform: translateY(4px) !important;
             box-shadow: none !important;
@@ -69,51 +86,199 @@
 
         /* PREVIEW AREA TEXTURE */
         #previewArea {
-            background-image: linear-gradient(45deg, #e5e7eb 25%, transparent 25%), 
-                              linear-gradient(-45deg, #e5e7eb 25%, transparent 25%), 
-                              linear-gradient(45deg, transparent 75%, #e5e7eb 75%), 
-                              linear-gradient(-45deg, transparent 75%, #e5e7eb 75%);
+            background-image: linear-gradient(45deg, #e5e7eb 25%, transparent 25%),
+                linear-gradient(-45deg, #e5e7eb 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, #e5e7eb 75%),
+                linear-gradient(-45deg, transparent 75%, #e5e7eb 75%);
             background-size: 20px 20px;
             background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
         }
 
         /* --- HOVER EFFECTS --- */
-        .lift:hover { transform: translateY(-4px); }
-        .diamond-shape.lift:hover, .leaf-shape.lift:hover { transform: rotate(45deg) translateY(-4px); }
-        .scale:hover { transform: scale(1.08); }
-        .diamond-shape.scale:hover, .leaf-shape.scale:hover { transform: rotate(45deg) scale(1.08); }
-        .darken:hover { filter: brightness(0.8); }
-        .lighten:hover { filter: brightness(1.2); }
-        .glow:hover { box-shadow: 0 0 15px currentColor; }
-        .slanted-shape.glow:hover, .hexagon-shape.glow:hover, .cut-corners.glow:hover { 
-            box-shadow: none; filter: drop-shadow(0 0 8px currentColor); 
+        .lift:hover {
+            transform: translateY(-4px);
         }
-        .rotate:hover { transform: rotate(4deg); }
-        .skew:hover { transform: skewX(10deg); }
-        .borderGrow:hover { border-width: 4px !important; }
+
+        .diamond-shape.lift:hover,
+        .leaf-shape.lift:hover {
+            transform: rotate(45deg) translateY(-4px);
+        }
+
+        .scale:hover {
+            transform: scale(1.08);
+        }
+
+        .diamond-shape.scale:hover,
+        .leaf-shape.scale:hover {
+            transform: rotate(45deg) scale(1.08);
+        }
+
+        .darken:hover {
+            filter: brightness(0.8);
+        }
+
+        .lighten:hover {
+            filter: brightness(1.2);
+        }
+
+        .glow:hover {
+            box-shadow: 0 0 15px currentColor;
+        }
+
+        .slanted-shape.glow:hover,
+        .hexagon-shape.glow:hover,
+        .cut-corners.glow:hover {
+            box-shadow: none;
+            filter: drop-shadow(0 0 8px currentColor);
+        }
+
+        .rotate:hover {
+            transform: rotate(4deg);
+        }
+
+        .skew:hover {
+            transform: skewX(10deg);
+        }
+
+        .borderGrow:hover {
+            border-width: 4px !important;
+        }
 
         /* --- ANIMATIONS --- */
-        @keyframes shake { 0%,100%{transform:translateX(0);} 50%{transform:translateX(-4px);} }
-        .animate-shake { animation: shake .3s infinite; }
-        @keyframes wobble { 0%,100%{transform:rotate(0);} 25%{transform:rotate(-5deg);} 75%{transform:rotate(5deg);} }
-        .animate-wobble { animation: wobble .5s infinite; }
-        @keyframes flash { 0%,100%{opacity:1;} 50%{opacity:.2;} }
-        .animate-flash { animation: flash 1s infinite; }
-        @keyframes floatAnim { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-6px);} }
-        .animate-float { animation: floatAnim 2s infinite; }
-        @keyframes tilt { 0%,100%{transform:rotate(0);} 50%{transform:rotate(3deg);} }
-        .animate-tilt { animation: tilt 1s infinite; }
-        @keyframes expand { 0%{transform:scale(1);} 50%{transform:scale(1.12);} 100%{transform:scale(1);} }
-        .animate-expand { animation: expand 1.2s infinite; }
-        
-        .ripple-hover { position: relative; overflow: hidden; }
-        .ripple-hover::after {
-            content: ""; position: absolute; width: 0; height: 0;
-            background: rgba(255,255,255,0.5); border-radius: 50%; opacity: 0; transition: .4s;
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            50% {
+                transform: translateX(-4px);
+            }
         }
-        .ripple-hover:hover::after { width: 220%; height: 220%; opacity: 1; left: 50%; top: 50%; transform: translate(-50%, -50%); }
-        .neon-glow { box-shadow: 0 0 10px currentColor; }
-        .neon-glow:hover { box-shadow: 0 0 25px currentColor; }
+
+        .animate-shake {
+            animation: shake .3s infinite;
+        }
+
+        @keyframes wobble {
+
+            0%,
+            100% {
+                transform: rotate(0);
+            }
+
+            25% {
+                transform: rotate(-5deg);
+            }
+
+            75% {
+                transform: rotate(5deg);
+            }
+        }
+
+        .animate-wobble {
+            animation: wobble .5s infinite;
+        }
+
+        @keyframes flash {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: .2;
+            }
+        }
+
+        .animate-flash {
+            animation: flash 1s infinite;
+        }
+
+        @keyframes floatAnim {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-6px);
+            }
+        }
+
+        .animate-float {
+            animation: floatAnim 2s infinite;
+        }
+
+        @keyframes tilt {
+
+            0%,
+            100% {
+                transform: rotate(0);
+            }
+
+            50% {
+                transform: rotate(3deg);
+            }
+        }
+
+        .animate-tilt {
+            animation: tilt 1s infinite;
+        }
+
+        @keyframes expand {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.12);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .animate-expand {
+            animation: expand 1.2s infinite;
+        }
+
+        .ripple-hover {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ripple-hover::after {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            opacity: 0;
+            transition: .4s;
+        }
+
+        .ripple-hover:hover::after {
+            width: 220%;
+            height: 220%;
+            opacity: 1;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .neon-glow {
+            box-shadow: 0 0 10px currentColor;
+        }
+
+        .neon-glow:hover {
+            box-shadow: 0 0 25px currentColor;
+        }
     </style>
 </head>
 
@@ -140,10 +305,10 @@
                 <h3 class="font-semibold text-gray-700">Advanced Styles</h3>
 
                 <label class="flex items-center gap-2">
-                    <input id="useGradient" type="checkbox" class="rounded"> 
+                    <input id="useGradient" type="checkbox" class="rounded">
                     <span class="text-sm font-medium">Use Gradient</span>
                 </label>
-                
+
                 <div id="gradientControls" class="hidden pl-4 space-y-2 border-l-2 border-gray-300">
                     <label class="text-xs text-gray-500 block">From Color:</label>
                     <input id="gradientStart" type="color" class="w-full h-8 rounded" value="#4ade80">
@@ -158,7 +323,7 @@
                 </div>
 
                 <label class="flex items-center gap-2">
-                    <input id="btnGlass" type="checkbox" class="rounded"> 
+                    <input id="btnGlass" type="checkbox" class="rounded">
                     <span class="text-sm font-medium">Glassmorphism Effect</span>
                 </label>
 
@@ -167,18 +332,20 @@
                         <label class="text-xs text-gray-600 flex justify-between">
                             Opacity <span id="glassOpacityVal">0.25</span>
                         </label>
-                        <input id="glassOpacity" type="range" min="0" max="1" step="0.05" value="0.25" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                        <input id="glassOpacity" type="range" min="0" max="1" step="0.05" value="0.25"
+                            class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
                     </div>
                     <div>
                         <label class="text-xs text-gray-600 flex justify-between">
                             Blur Strength <span id="glassBlurVal">12px</span>
                         </label>
-                        <input id="glassBlur" type="range" min="0" max="40" step="1" value="12" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                        <input id="glassBlur" type="range" min="0" max="40" step="1" value="12"
+                            class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
                     </div>
                 </div>
 
                 <label class="flex items-center gap-2">
-                    <input id="btn3D" type="checkbox" class="rounded"> 
+                    <input id="btn3D" type="checkbox" class="rounded">
                     <span class="text-sm font-medium">3D Press Effect</span>
                 </label>
             </div>
@@ -289,4 +456,5 @@
     </div>
     <script src="scripts/button-generator.js"></script>
 </body>
+
 </html>

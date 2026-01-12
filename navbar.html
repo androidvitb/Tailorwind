@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beautiful Navbar Generator</title>
+    <title>Navbar Generator - TailorWind</title>
+    <link rel="icon" type="image/png" href="/Logo.png">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -23,12 +25,10 @@
     </script>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
             background-color: #f9f9f9;
             color: #333;
         }
-
-
 
         #generator {
             max-width: 600px;
@@ -86,7 +86,8 @@
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
-            background-color: transparent; /* Make the preview container background transparent */
+            background-color: transparent;
+            /* Make the preview container background transparent */
             color: inherit;
         }
 
@@ -222,6 +223,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Add Navbar -->
     <header class="flex items-center justify-between p-4 px-6 bg-white shadow md:px-10">
@@ -230,7 +232,7 @@
                 <img src="/Logo.png" alt="Tailwind Generator Logo" />
             </div>
             <span class="text-lg font-bold text-gray-800 md:text-xl">TailorWind</span>
-            
+
             <!-- Dark Mode Toggle Button -->
             <button id="darkModeToggle" class="ml-4 relative w-8 h-8 flex items-center justify-center">
                 <i class="fas fa-sun text-xl text-[#ffbc00] absolute" id="lightIcon"></i>
@@ -239,36 +241,28 @@
         </div>
 
         <!-- Hamburger Button -->
-        <button
-            id="menu-toggle"
-            class="block text-gray-800 md:hidden focus:outline-none"
-        >
-            <svg
-                class="w-6 h-6"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-            >
-                <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M4 6h16M4 12h16M4 18h16"
-                />
+        <button id="menu-toggle" class="block text-gray-800 md:hidden focus:outline-none">
+            <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
         </button>
 
         <!-- Navigation Menu -->
-        <nav
-            id="menu"
-            class="absolute left-0 flex flex-col hidden w-full py-4 bg-white shadow md:flex md:flex-row md:static top-16 md:w-auto md:shadow-none md:bg-transparent md:p-0"
-        >
-            <a href="/" class="text-black hover:text-[#049b9f] px-6 py-2 text-justify transition-colors duration-200">Home</a>
-            <a href="tools-and-generator" class="text-black hover:text-[#049b9f] px-6 py-2 text-justify transition-colors duration-200">Tools & Generator</a>
-            <a href="/#faq" class="text-black hover:text-[#049b9f] px-6 py-2 text-justify transition-colors duration-200">FAQ</a>
-            <a href="/#contact" class="text-black hover:text-[#049b9f] px-6 py-2 text-justify transition-colors duration-200">Contact</a>
-            <button class="bg-[#049b9f] text-white px-4 py-2 rounded mx-6 my-2 md:mx-0 md:my-0 hover:bg-[#037a7b] transition-colors duration-200" onclick="window.location.href='get-started.html'">
+        <nav id="menu"
+            class="absolute left-0 flex flex-col hidden w-full py-4 bg-white shadow md:flex md:flex-row md:static top-16 md:w-auto md:shadow-none md:bg-transparent md:p-0">
+            <a href="/"
+                class="text-black hover:text-[#049b9f] px-6 py-2 text-justify transition-colors duration-200">Home</a>
+            <a href="tools-and-generator"
+                class="text-black hover:text-[#049b9f] px-6 py-2 text-justify transition-colors duration-200">Tools &
+                Generator</a>
+            <a href="/#faq"
+                class="text-black hover:text-[#049b9f] px-6 py-2 text-justify transition-colors duration-200">FAQ</a>
+            <a href="/#contact"
+                class="text-black hover:text-[#049b9f] px-6 py-2 text-justify transition-colors duration-200">Contact</a>
+            <button
+                class="bg-[#049b9f] text-white px-4 py-2 rounded mx-6 my-2 md:mx-0 md:my-0 hover:bg-[#037a7b] transition-colors duration-200"
+                onclick="window.location.href='get-started.html'">
                 Get started
             </button>
         </nav>
@@ -299,25 +293,25 @@
 
     <script>
         function generateNavbar() {
-    const navTitle = document.getElementById("navTitle").value;
-    const navItems = document.getElementById("navItems").value.split(",");
-    const navBgColor = document.getElementById("navBgColor").value;
-    const navTextColor = document.getElementById("navTextColor").value;
+            const navTitle = document.getElementById("navTitle").value;
+            const navItems = document.getElementById("navItems").value.split(",");
+            const navBgColor = document.getElementById("navBgColor").value;
+            const navTextColor = document.getElementById("navTextColor").value;
 
-    // Generate Navbar Preview
-    const linksHtml = navItems
-        .map(item => `<a href="#" style="color: ${navTextColor};">${item.trim()}</a>`)
-        .join("");
-    const navbarHtml = `
+            // Generate Navbar Preview
+            const linksHtml = navItems
+                .map(item => `<a href="#" style="color: ${navTextColor};">${item.trim()}</a>`)
+                .join("");
+            const navbarHtml = `
         <div style="display: flex; justify-content: space-between; align-items: center; background-color: ${navBgColor}; color: ${navTextColor}; padding: 10px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;">
             <div style="transition: all 0.3s ease;">${navTitle}</div>
             <div style="display: flex; gap: 10px;">${linksHtml}</div>
         </div>
     `;
-    document.getElementById("navbarPreview").innerHTML = navbarHtml;
+            document.getElementById("navbarPreview").innerHTML = navbarHtml;
 
-    // Generate HTML and CSS Code
-    const generatedCode = `
+            // Generate HTML and CSS Code
+            const generatedCode = `
 <div class="w-full flex justify-between items-center p-4 rounded-lg shadow-md transition-all duration-300 ease-in-out hover:shadow-lg" style="background-color: ${navBgColor}; color: ${navTextColor};">
     <div class="text-lg font-bold transition-all duration-300">${navTitle}</div>
     <div class="flex space-x-4">
@@ -326,9 +320,9 @@
 </div>
     `;
 
-    // Show code output below the preview
-    showCodeOutput(generatedCode);
-}
+            // Show code output below the preview
+            showCodeOutput(generatedCode);
+        }
 
 
         function showCodeOutput(code) {
@@ -380,11 +374,11 @@
             const lightIcon = document.getElementById('lightIcon');
             const darkIcon = document.getElementById('darkIcon');
             const htmlElement = document.documentElement;
-            
+
             // Check initial theme
-            if (localStorage.getItem('darkMode') === 'enabled' || 
-                (localStorage.getItem('darkMode') === null && 
-                window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            if (localStorage.getItem('darkMode') === 'enabled' ||
+                (localStorage.getItem('darkMode') === null &&
+                    window.matchMedia('(prefers-color-scheme: dark)').matches)) {
                 htmlElement.classList.add('dark');
                 lightIcon.classList.add('hidden');
                 darkIcon.classList.remove('hidden');
@@ -394,16 +388,16 @@
                 // Animate icons
                 lightIcon.style.transform = 'rotate(180deg) scale(0.5)';
                 darkIcon.style.transform = 'rotate(180deg) scale(0.5)';
-                
+
                 setTimeout(() => {
                     htmlElement.classList.toggle('dark');
                     lightIcon.classList.toggle('hidden');
                     darkIcon.classList.toggle('hidden');
-                    
+
                     lightIcon.style.transform = 'rotate(0) scale(1)';
                     darkIcon.style.transform = 'rotate(0) scale(1)';
-                    
-                    localStorage.setItem('darkMode', 
+
+                    localStorage.setItem('darkMode',
                         htmlElement.classList.contains('dark') ? 'enabled' : 'disabled'
                     );
                 }, 150);
@@ -426,4 +420,5 @@
         });
     </script>
 </body>
+
 </html>
