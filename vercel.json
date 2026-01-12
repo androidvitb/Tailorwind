@@ -8,6 +8,7 @@
   ],
   "routes": [
     { "src": "^/tools-and-generator/?$", "dest": "/tools-and-generator.html" },
+    { "src": "^/button-generator/?$", "dest": "/button-generator.html" },
     { "src": "^/card-generator/?$", "dest": "/card-generator.html" },
     { "src": "^/grid-layout-generator/?$", "dest": "/grid-layout-generator.html" },
     { "src": "^/table-generator/?$", "dest": "/table-generator.html" },
