@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TailorWind</title>
-    <link rel="icon" type="image/png" href="/Favicon.png" />
+    <title>Grid Layout Generator - TailorWind</title>
+    <link rel="icon" type="image/png" href="/Logo.png">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="main.css" />
+    <link rel="stylesheet" href="/src/styles/main.css" />
 </head>
 
 <body class="bg-gray-100 min-h-screen flex flex-col">
@@ -25,9 +25,9 @@
         </div>
         <nav class="space-x-4">
             <a href="/index.html" class="text-black hover:text-[#049b9f]">Home</a>
-            <a href="/tools-and-generator" class="text-black hover:text-[#049b9f]">Tools & Generator</a>
-            <a href="/index.html" class="text-black hover:text-[#049b9f]">FAQ</a>
-            <a href="/index.html" class="text-black hover:text-[#049b9f]">Blog</a>
+            <a href="/src/pages/tools-and-generator.html" class="text-black hover:text-[#049b9f]">Tools & Generator</a>
+            <a href="/index.html#faq" class="text-black hover:text-[#049b9f]">FAQ</a>
+            <a href="/index.html#contact" class="text-black hover:text-[#049b9f]">Contact</a>
         </nav>
         <button class="bg-[#049b9f] text-white px-4 py-2 rounded">
             Get started
@@ -83,14 +83,14 @@
             <pre id="output-code" class="bg-gray-800 text-white p-3 rounded text-sm overflow-x-auto"></pre>
         </div>
     </div>
-    <script src="scripts/grid-layout-generator.js"></script>
+    <script type="module" src="/src/scripts/grid-layout-generator.js"></script>
     <script>
         // Dark mode implementation
         document.addEventListener('DOMContentLoaded', () => {
             const darkModeToggle = document.getElementById('darkModeToggle');
             const lightIcon = document.getElementById('lightIcon');
             const darkIcon = document.getElementById('darkIcon');
-            
+
             // Check for saved dark mode preference without animation
             if (localStorage.getItem('darkMode') === 'enabled') {
                 document.documentElement.classList.add('dark');
@@ -111,16 +111,16 @@
                 // Only animate on click
                 lightIcon.style.transform = 'rotate(180deg) scale(0.5)';
                 darkIcon.style.transform = 'rotate(180deg) scale(0.5)';
-                
+
                 setTimeout(() => {
                     document.documentElement.classList.toggle('dark');
                     lightIcon.classList.toggle('hidden');
                     darkIcon.classList.toggle('hidden');
-                    
+
                     lightIcon.style.transform = 'rotate(0) scale(1)';
                     darkIcon.style.transform = 'rotate(0) scale(1)';
-                    
-                    localStorage.setItem('darkMode', 
+
+                    localStorage.setItem('darkMode',
                         document.documentElement.classList.contains('dark') ? 'enabled' : 'disabled'
                     );
                 }, 150);

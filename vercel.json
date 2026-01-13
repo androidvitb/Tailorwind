@@ -7,16 +7,17 @@
     }
   ],
   "routes": [
-    { "src": "^/tools-and-generator/?$", "dest": "/tools-and-generator.html" },
-    { "src": "^/button-generator/?$", "dest": "/button-generator.html" },
-    { "src": "^/card-generator/?$", "dest": "/card-generator.html" },
-    { "src": "^/grid-layout-generator/?$", "dest": "/grid-layout-generator.html" },
-    { "src": "^/table-generator/?$", "dest": "/table-generator.html" },
-    { "src": "^/form-generator/?$", "dest": "/form-generator.html" },
-    { "src": "^/navbar-generator/?$", "dest": "/navbar.html" },
-    { "src": "^/assets/(.*)", "dest": "/assets/$1" },
+    { "src": "^/tools-and-generator/?$", "dest": "/src/pages/tools-and-generator.html" },
+    { "src": "^/button-generator/?$", "dest": "/src/pages/button-generator.html" },
+    { "src": "^/card-generator/?$", "dest": "/src/pages/card-generator.html" },
+    { "src": "^/grid-layout-generator/?$", "dest": "/src/pages/grid-layout-generator.html" },
+    { "src": "^/table-generator/?$", "dest": "/src/pages/table-generator.html" },
+    { "src": "^/form-generator/?$", "dest": "/src/pages/form-generator.html" },
+    { "src": "^/navbar-generator/?$", "dest": "/src/pages/navbar.html" },
+    { "src": "^/get-started/?$", "dest": "/src/pages/get-started.html" },
+    { "src": "^/sign-up/?$", "dest": "/src/pages/sign-up.html" },
+    { "src": "^/assets/(.*)", "dest": "/src/assets/$1" },
     { "src": "^/public/(.*)", "dest": "/public/$1" },
-    { "src": "^/scripts/(.*)", "dest": "/scripts/$1" },
     { "src": "/(.*)", "dest": "/$1" }
   ]
 }
