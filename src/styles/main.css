@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Smooth scroll behavior + Offset for fixed navbar */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 20px; 
+}
+
 /* Add your custom styles here for grid-layout-generator.html */
 .collapsible {
     cursor: pointer;

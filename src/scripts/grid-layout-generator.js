@@ -102,6 +102,13 @@ function updateRowConfig() {
     });
   }
 
+// Make functions global so HTML buttons can access them
+window.updateRowConfig = updateRowConfig;
+window.toggleRowConfig = toggleRowConfig;
+window.storeSpan = storeSpan;
+window.generateGrid = generateGrid;
+window.copyToClipboard = copyToClipboard;
+
   // Initialize default configuration
   updateRowConfig();
   generateGrid();
