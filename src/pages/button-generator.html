@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Button Generator - TailorWind</title>
+    <link rel="icon" type="image/png" href="/Logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <header class="bg-white shadow p-4 flex justify-between items-center px-10">
+    <div class="flex items-center space-x-2">
+      <div class="w-10 h-10 rounded">
+        <img src="/Logo.png" alt="Tailwind Generator Logo" />
+      </div>
+      <span class="font-bold text-xl text-gray-800">TailorWind</span>
+
+      <button id="darkModeToggle" class="ml-4 relative w-8 h-8 flex items-center justify-center">
+        <i class="fas fa-sun text-xl text-[#ffbc00] absolute" id="lightIcon"></i>
+        <i class="fas fa-moon text-xl text-[#ffbc00] absolute hidden" id="darkIcon"></i>
+      </button>
+    </div>
+    <nav class="space-x-4">
+      <a href="/index.html" class="text-black hover:text-[#049b9f]">Home</a>
+      
+      <a href="/src/pages/tools-and-generator.html" class="text-black hover:text-[#049b9f]">Tools & Generator</a>
+      
+      <a href="/index.html#faq" class="text-black hover:text-[#049b9f]">FAQ</a>
+      <a href="/index.html#contact" class="text-black hover:text-[#049b9f]">Contact</a>
+    </nav>
+    <button class="bg-[#049b9f] text-white px-4 py-2 rounded">
+      Get started
+    </button>
+  </header>
+
+    <style>
+        /* --- SHAPE LOGIC --- */
+        .diamond-shape {
+            transform: rotate(45deg);
+            margin: 14px !important;
+        }
+
+        .diamond-shape>* {
+            transform: rotate(-45deg);
+            display: inline-block;
+        }
+
+        .leaf-shape {
+            border-radius: 0% 50% 50% 50%;
+            transform: rotate(45deg);
+            margin: 10px !important;
+        }
+
+        .leaf-shape>* {
+            transform: rotate(-45deg);
+            display: inline-block;
+        }
+
+        .slanted-shape {
+            clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
+        }
+
+        .cut-corners {
+            clip-path: polygon(12px 0, 100% 0,
+                    100% calc(100% - 12px), calc(100% - 12px) 100%,
+                    0 100%, 0 12px);
+        }
+
+        .blob-shape {
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+        }
+
+        .hexagon-shape {
+            clip-path: polygon(10% 0%, 90% 0%, 100% 50%, 90% 100%, 10% 100%, 0% 50%);
+        }
+
+        /* --- SHADOW FIXES --- */
+        .shadow-sm {
+            filter: drop-shadow(0 1px 1px rgb(0 0 0 / 0.05));
+        }
+
+        .shadow {
+            filter: drop-shadow(0 1px 2px rgb(0 0 0 / 0.1)) drop-shadow(0 1px 1px rgb(0 0 0 / 0.06));
+        }
+
+        .shadow-lg {
+            filter: drop-shadow(0 10px 8px rgb(0 0 0 / 0.04)) drop-shadow(0 4px 3px rgb(0 0 0 / 0.1));
+        }
+
+        /* --- ENHANCED GLASSMORPHISM BASE --- */
+        /* Note: Background and Blur are now handled by JS for customization, 
+           but we keep border and shadow here for the "crisp edge" look. */
+        .glass {
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-top: 1px solid rgba(255, 255, 255, 0.5);
+            border-left: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 3D PRESS EFFECT */
+        .btn-3d {
+            transition: transform 0.1s, box-shadow 0.1s;
+        }
+
+        .btn-3d:active {
+            transform: translateY(4px) !important;
+            box-shadow: none !important;
+        }
+
+        /* PREVIEW AREA TEXTURE */
+        #previewArea {
+            background-image: linear-gradient(45deg, #e5e7eb 25%, transparent 25%),
+                linear-gradient(-45deg, #e5e7eb 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, #e5e7eb 75%),
+                linear-gradient(-45deg, transparent 75%, #e5e7eb 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+        }
+
+        /* --- HOVER EFFECTS --- */
+        .lift:hover {
+            transform: translateY(-4px);
+        }
+
+        .diamond-shape.lift:hover,
+        .leaf-shape.lift:hover {
+            transform: rotate(45deg) translateY(-4px);
+        }
+
+        .scale:hover {
+            transform: scale(1.08);
+        }
+
+        .diamond-shape.scale:hover,
+        .leaf-shape.scale:hover {
+            transform: rotate(45deg) scale(1.08);
+        }
+
+        .darken:hover {
+            filter: brightness(0.8);
+        }
+
+        .lighten:hover {
+            filter: brightness(1.2);
+        }
+
+        .glow:hover {
+            box-shadow: 0 0 15px currentColor;
+        }
+
+        .slanted-shape.glow:hover,
+        .hexagon-shape.glow:hover,
+        .cut-corners.glow:hover {
+            box-shadow: none;
+            filter: drop-shadow(0 0 8px currentColor);
+        }
+
+        .rotate:hover {
+            transform: rotate(4deg);
+        }
+
+        .skew:hover {
+            transform: skewX(10deg);
+        }
+
+        .borderGrow:hover {
+            border-width: 4px !important;
+        }
+
+        /* --- ANIMATIONS --- */
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            50% {
+                transform: translateX(-4px);
+            }
+        }
+
+        .animate-shake {
+            animation: shake .3s infinite;
+        }
+
+        @keyframes wobble {
+
+            0%,
+            100% {
+                transform: rotate(0);
+            }
+
+            25% {
+                transform: rotate(-5deg);
+            }
+
+            75% {
+                transform: rotate(5deg);
+            }
+        }
+
+        .animate-wobble {
+            animation: wobble .5s infinite;
+        }
+
+        @keyframes flash {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: .2;
+            }
+        }
+
+        .animate-flash {
+            animation: flash 1s infinite;
+        }
+
+        @keyframes floatAnim {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-6px);
+            }
+        }
+
+        .animate-float {
+            animation: floatAnim 2s infinite;
+        }
+
+        @keyframes tilt {
+
+            0%,
+            100% {
+                transform: rotate(0);
+            }
+
+            50% {
+                transform: rotate(3deg);
+            }
+        }
+
+        .animate-tilt {
+            animation: tilt 1s infinite;
+        }
+
+        @keyframes expand {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.12);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .animate-expand {
+            animation: expand 1.2s infinite;
+        }
+
+        .ripple-hover {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ripple-hover::after {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            opacity: 0;
+            transition: .4s;
+        }
+
+        .ripple-hover:hover::after {
+            width: 220%;
+            height: 220%;
+            opacity: 1;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .neon-glow {
+            box-shadow: 0 0 10px currentColor;
+        }
+
+        .neon-glow:hover {
+            box-shadow: 0 0 25px currentColor;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100">
+
+    <div class="max-w-4xl mx-auto mt-6 bg-white p-6 rounded shadow">
+        <h1 class="text-2xl font-bold">Button Generator</h1>
+
+        <div class="mt-4 bg-gray-50 p-4 rounded space-y-4">
+
+            <label>Text:
+                <input id="btnText" class="border p-2 rounded w-full" placeholder="Click Me">
+            </label>
+
+            <label>Background Color (Tint for Glass):
+                <input id="btnColor" type="color" class="w-full h-10 rounded">
+            </label>
+
+            <label>Text Color:
+                <input id="textColor" type="color" class="w-full h-10 rounded">
+            </label>
+
+            <div class="border-t pt-4 mt-4 space-y-3">
+                <h3 class="font-semibold text-gray-700">Advanced Styles</h3>
+
+                <label class="flex items-center gap-2">
+                    <input id="useGradient" type="checkbox" class="rounded">
+                    <span class="text-sm font-medium">Use Gradient</span>
+                </label>
+
+                <div id="gradientControls" class="hidden pl-4 space-y-2 border-l-2 border-gray-300">
+                    <label class="text-xs text-gray-500 block">From Color:</label>
+                    <input id="gradientStart" type="color" class="w-full h-8 rounded" value="#4ade80">
+                    <label class="text-xs text-gray-500 block">To Color:</label>
+                    <input id="gradientEnd" type="color" class="w-full h-8 rounded" value="#3b82f6">
+                    <label class="text-xs text-gray-500 block">Direction:</label>
+                    <select id="gradientDir" class="border p-1 rounded w-full text-sm">
+                        <option value="to right">Right</option>
+                        <option value="to bottom">Bottom</option>
+                        <option value="to bottom right">Diagonal</option>
+                    </select>
+                </div>
+
+                <label class="flex items-center gap-2">
+                    <input id="btnGlass" type="checkbox" class="rounded">
+                    <span class="text-sm font-medium">Glassmorphism Effect</span>
+                </label>
+
+                <div id="glassControls" class="hidden pl-4 space-y-3 border-l-2 border-teal-500 bg-teal-50 p-2 rounded">
+                    <div>
+                        <label class="text-xs text-gray-600 flex justify-between">
+                            Opacity <span id="glassOpacityVal">0.25</span>
+                        </label>
+                        <input id="glassOpacity" type="range" min="0" max="1" step="0.05" value="0.25"
+                            class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                    </div>
+                    <div>
+                        <label class="text-xs text-gray-600 flex justify-between">
+                            Blur Strength <span id="glassBlurVal">12px</span>
+                        </label>
+                        <input id="glassBlur" type="range" min="0" max="40" step="1" value="12"
+                            class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                    </div>
+                </div>
+
+                <label class="flex items-center gap-2">
+                    <input id="btn3D" type="checkbox" class="rounded">
+                    <span class="text-sm font-medium">3D Press Effect</span>
+                </label>
+            </div>
+            <label>Size:
+                <select id="btnSize" class="border p-2 rounded w-full">
+                    <option value="px-4 py-2 text-sm">Small</option>
+                    <option value="px-6 py-3 text-base">Medium</option>
+                    <option value="px-8 py-4 text-lg">Large</option>
+                </select>
+            </label>
+
+            <label>Shape:
+                <select id="btnShape" class="border p-2 rounded w-full">
+                    <option value="rounded">Rounded</option>
+                    <option value="rounded-lg">Rounded Large</option>
+                    <option value="pill">Pill</option>
+                    <option value="capsule">Capsule</option>
+                    <option value="square">Square</option>
+                    <option value="circle">Circle</option>
+                    <option value="diamond">Diamond</option>
+                    <option value="slanted">Slanted</option>
+                    <option value="cut">Cut Corners</option>
+                    <option value="blob">Blob</option>
+                    <option value="leaf">Leaf</option>
+                    <option value="hex">Hexagon</option>
+                </select>
+            </label>
+
+            <label class="flex gap-2 items-center">
+                <input id="btnOutline" type="checkbox"> Outline Button
+            </label>
+
+            <label>Shadow:
+                <select id="btnShadow" class="border p-2 rounded w-full">
+                    <option value="">None</option>
+                    <option value="shadow-sm">Small</option>
+                    <option value="shadow">Default</option>
+                    <option value="shadow-lg">Large</option>
+                </select>
+            </label>
+
+            <label>Hover Effect:
+                <select id="btnHover" class="border p-2 rounded w-full">
+                    <option value="">None</option>
+                    <option value="lift">Lift</option>
+                    <option value="scale">Scale</option>
+                    <option value="darken">Darken</option>
+                    <option value="lighten">Lighten</option>
+                    <option value="glow">Glow</option>
+                    <option value="rotate">Rotate</option>
+                    <option value="skew">Skew</option>
+                    <option value="borderGrow">Border Grow</option>
+                </select>
+            </label>
+
+            <label>Width:
+                <select id="btnWidth" class="border p-2 rounded w-full">
+                    <option value="w-auto">Auto</option>
+                    <option value="w-full">Full Width</option>
+                </select>
+            </label>
+
+            <label>Icon:
+                <input id="btnIcon" class="border p-2 rounded w-full" placeholder="fa-solid fa-star">
+            </label>
+
+            <label>Icon Position:
+                <select id="iconPosition" class="border p-2 rounded w-full">
+                    <option value="left">Left</option>
+                    <option value="right">Right</option>
+                </select>
+            </label>
+
+            <label>Animation:
+                <select id="btnAnimation" class="border p-2 rounded w-full">
+                    <option value="">None</option>
+                    <option value="animate-bounce">Bounce</option>
+                    <option value="animate-pulse">Pulse</option>
+                    <option value="animate-spin">Spin</option>
+                    <option value="animate-flash">Flash</option>
+                    <option value="animate-shake">Shake</option>
+                    <option value="animate-wobble">Wobble</option>
+                    <option value="animate-float">Float</option>
+                    <option value="animate-tilt">Tilt</option>
+                    <option value="animate-expand">Expand</option>
+                    <option value="ripple-hover">Ripple Hover</option>
+                    <option value="neon-glow">Neon Glow</option>
+                </select>
+            </label>
+
+            <button id="generateBtn" class="bg-teal-600 text-white py-2 rounded w-full">Generate Button</button>
+        </div>
+
+        <div class="mt-6">
+            <h2 class="text-xl font-semibold">Preview</h2>
+            <div id="previewArea" class="p-6 bg-gray-50 rounded shadow"></div>
+        </div>
+
+        <button id="showCode" class="mt-4 bg-gray-700 text-white py-2 rounded w-full">Show Code</button>
+
+        <div id="codeBox" class="hidden mt-4 bg-gray-200 p-4 rounded">
+            <pre id="generatedCode" class="bg-black text-white p-4 rounded"></pre>
+            <div class="flex gap-4 mt-4">
+                <button id="copyCode" class="bg-blue-500 text-white py-2 w-full rounded">Copy</button>
+                <button id="closeCode" class="bg-red-500 text-white py-2 w-full rounded">Close</button>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="/src/scripts/button-generator.js"></script>
+</body>
+
+</html>

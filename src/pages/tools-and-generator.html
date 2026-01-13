@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tools & Generator - TailorWind</title>
+    <link rel="icon" type="image/png" href="/Logo.png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/src/styles/main.css">
+    <style>
+        .list-view>div {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            border-radius: 0;
+            box-shadow: none;
+        }
+
+        .list-view img {
+            width: 10rem;
+            margin-right: 1rem;
+        }
+
+        .list-view h2,
+        .list-view p {
+            margin: 0;
+        }
+    </style>
+    <!-- Add Font Awesome link -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-50 font-sans">
+
+    <!-- Scroll-to-Top Button -->
+    <button id="scrollButton" title="Go to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Navbar -->
+    <header class="flex items-center justify-between p-4 px-6 bg-white shadow md:px-10 fixed top-0 w-full z-50">
+        <!-- Logo and Branding -->
+        <div class="flex items-center space-x-2">
+          <div class="w-10 h-10 rounded">
+            <img src="/Logo.png" alt="Tailwind Generator Logo" />
+          </div>
+          <span class="text-lg font-bold text-gray-800 md:text-xl">TailorWind</span>
+    
+          <!-- Add Dark Mode Toggle Button -->
+          <button id="darkModeToggle" class="ml-4 relative w-8 h-8 flex items-center justify-center">
+            <i class="fas fa-sun text-xl text-[#ffbc00] absolute" id="lightIcon"></i>
+            <i class="fas fa-moon text-xl text-[#ffbc00] absolute hidden" id="darkIcon"></i>
+          </button>
+        </div>
+    
+        <!-- Hamburger Button -->
+        <button id="menu-toggle" class="block text-gray-800 md:hidden focus:outline-none">
+          <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+    
+        <!-- Navigation Menu -->
+        <nav id="menu"
+          class="absolute left-0 flex flex-col hidden w-full space-x-4 space-y-4 bg-white shadow md:flex md:flex-row md:space-y-0 md:static top-16 md:w-auto md:shadow-none md:bg-transparent md:p-0 .sticky .top-0">
+          <!-- Navigation Links with Visible Hover Effects -->
+          <a href="/index.html" class="relative text-black px-6 py-2 font-medium transition-all duration-300 ease-in-out group">
+            <span
+              class="absolute inset-0 bg-[#049b9f] rounded-full scale-95 opacity-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 ease-in-out"></span>
+            <span class="relative z-10 group-hover:text-white transition-colors duration-300">Home</span>
+          </a>
+          <a href="/src/pages/tools-and-generator.html"
+            class="relative text-black px-6 py-2 font-medium transition-all duration-300 ease-in-out group">
+            <span
+              class="absolute inset-0 bg-[#049b9f] rounded-full scale-95 opacity-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 ease-in-out"></span>
+            <span class="relative z-10 group-hover:text-white transition-colors duration-300">Tools & Generator</span>
+          </a>
+          <a href="/index.html#faq" class="relative text-black px-6 py-2 font-medium transition-all duration-300 ease-in-out group">
+            <span
+              class="absolute inset-0 bg-[#049b9f] rounded-full scale-95 opacity-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 ease-in-out"></span>
+            <span class="relative z-10 group-hover:text-white transition-colors duration-300">FAQ</span>
+          </a>
+          <a href="/index.html#contact"
+            class="relative text-black px-6 py-2 font-medium transition-all duration-300 ease-in-out group">
+            <span
+              class="absolute inset-0 bg-[#049b9f] rounded-full scale-95 opacity-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 ease-in-out"></span>
+            <span class="relative z-10 group-hover:text-white transition-colors duration-300">Contact</span>
+          </a>
+          <a class="bg-[#049b9f] text-white px-6 py-2 rounded-lg mx-6 md:mx-0 shadow-md transition-all duration-300 ease-in-out hover:bg-[#037f7d] hover:shadow-lg hover:scale-105"
+            href="/src/pages/get-started.html">
+            Get started
+          </a>
+    
+        </nav>
+      </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-10">
+        <h1 class="text-3xl font-bold text-gray-800 mb-8">Generators</h1>
+        <p class="text-gray-600 mb-12">
+            Generate all kind of components and export the source code.
+        </p>
+
+        <!-- Grid View / List View Toggle -->
+        <div class="flex justify-end items-center mb-6 space-x-4">
+            <button id="grid-view" class="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">
+                Grid View
+            </button>
+            <button id="list-view" class="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">
+                List View
+            </button>
+        </div>
+
+        <!-- Generators Cards -->
+        <div id="card-container" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Card Generator -->
+            <div class="bg-white shadow rounded-lg flex flex-col justify-center items-center overflow-hidden">
+                <div class="card-content p-6 flex flex-col justify-center items-center">
+                    <img src="/src/assets/Homepage-HeroImage.png" alt="" class="mb-4" />
+                    <div>
+                        <h2 class="text-xl font-bold text-gray-800 mb-2">
+                            Card Generator
+                        </h2>
+                        <p class="text-gray-600">
+                            Cards are a modern way of displaying information on a website.
+                            Create, design and customize beautiful card components.
+                        </p>
+                    </div>
+                </div>
+                <button class="card-button bg-gray-100 w-full m-auto mr-8 text-left px-6 h-12 text-blue-600 font-medium"
+                    onclick="window.location.href='/src/pages/card-generator.html'">
+                    Get started
+                </button>
+            </div>
+
+            <!-- Grid Layout Generator -->
+            <div class="bg-white shadow rounded-lg flex flex-col justify-center items-center overflow-hidden">
+                <div class="card-content p-6 flex flex-col justify-center items-center">
+                    <img src="/src/assets/grid_layout_gen_image.png" alt="" class="mb-4" />
+                    <div>
+                        <h2 class="text-xl font-bold text-gray-800 mb-2">
+                            Grid Layout Generator
+                        </h2>
+                        <p class="text-gray-600">
+                            Easily create grid layouts using a graphical editor. Customize
+                            columns, rows, etc... or choose from various grid layout
+                            presets.
+                        </p>
+                    </div>
+                </div>
+                <button class="card-button bg-gray-100 w-full m-auto mr-8 text-left px-6 h-12 text-blue-600 font-medium"
+                    onclick="window.location.href='/src/pages/grid-layout-generator.html'">
+                    Get started
+                </button>
+            </div>
+
+            <!-- Table Generator -->
+            <div class="bg-white shadow rounded-lg flex flex-col justify-center items-center overflow-hidden">
+                <div class="card-content p-6 flex flex-col justify-center items-center">
+                    <img src="/src/assets/table_gen_image.png" alt="" class="mb-4" />
+                    <div>
+                        <h2 class="text-xl font-bold text-gray-800 mb-2">
+                            Table Generator
+                        </h2>
+                        <p class="text-gray-600">
+                            Create and design tables for Tailwind using a graphical editor.
+                            Leverage various export options, e.g. HTML + Tailwind source
+                            code.
+                        </p>
+                    </div>
+                </div>
+                <button class="card-button bg-gray-100 w-full m-auto mr-8 text-left px-6 h-12 text-blue-600 font-medium"
+                    onclick="window.location.href='/src/pages/table-generator.html'">
+                    Get started
+                </button>
+            </div>
+
+            <!-- Form Generator -->
+            <div class="bg-white shadow rounded-lg flex flex-col justify-center items-center overflow-hidden">
+                <div class="card-content p-6 flex flex-col justify-center items-center">
+                    <img src="/src/assets/form-generator.png" alt="" class="mb-4" />
+                    <div>
+                        <h2 class="text-xl font-bold text-gray-800 mb-2">
+                            Form Generator
+                        </h2>
+                        <p class="text-gray-600">
+                            Create and design dynamic forms using a user-friendly editor.
+                            Customize fields, add buttons, preview live changes, and export
+                            forms with HTML + TailwindCSS code for seamless integration.
+                        </p>
+                    </div>
+                </div>
+                <button class="card-button bg-gray-100 w-full m-auto mr-8 text-left px-6 h-12 text-blue-600 font-medium"
+                    onclick="window.location.href='/src/pages/form-generator.html'">
+                    Get started
+                </button>
+            </div>
+
+            <!-- Navbar Generator -->
+            <div class="bg-white shadow rounded-lg flex flex-col justify-center items-center overflow-hidden">
+                <div class="card-content p-6 flex flex-col justify-center items-center">
+                    <img src="/src/assets/navbar.png" alt="" class="mb-4" />
+                    <div>
+                        <h2 class="text-xl font-bold text-gray-800 mb-2">
+                            Navbar Generator
+                        </h2>
+                        <p class="text-gray-600">
+                            Create and design responsive navigation bars using a user-friendly editor.
+                            Customize links, add dropdowns, preview live changes, and export
+                            navbars with HTML + TailwindCSS code for seamless integration.
+                        </p>
+                    </div>
+                </div>
+                <button class="card-button bg-gray-100 w-full m-auto mr-8 text-left px-6 h-12 text-blue-600 font-medium"
+                    onclick="window.location.href='/src/pages/navbar.html'">
+                    Get started
+                </button>
+            </div>
+
+            <!-- Button Generator -->
+            <div class="bg-white shadow rounded-lg flex flex-col justify-center items-center overflow-hidden">
+                <div class="card-content p-6 flex flex-col justify-center items-center">
+                    <img src="/src/assets/button.png" alt="" class="mb-4" />
+                    <div>
+                        <h2 class="text-xl font-bold text-gray-800 mb-2">
+                            Button Generator
+                        </h2>
+                        <p class="text-gray-600">
+                            Create customizable buttons using TailwindCSS. Choose styles,
+                            colors, radius, hover effects and export the HTML code instantly.
+                        </p>
+                    </div>
+                </div>
+                <button class="card-button bg-gray-100 w-full m-auto mr-8 text-left px-6 h-12 text-blue-600 font-medium"
+                    onclick="window.location.href='/src/pages/button-generator.html'">
+                    Get started
+                </button>
+            </div>
+
+
+        </div>
+    </main>
+    <footer class="bg-gray-800 text-white py-6">
+        <div class="container mx-auto text-center">
+            <p class="text-sm mb-4">
+                ©
+                <script>document.write(new Date().getFullYear());</script> TailorWind. All rights reserved.
+            </p>
+            <a href="https://github.com/androidvitb/Tailorwind" target="_blank" class="text-[#049b9f] hover:underline">
+                Visit us on GitHub
+            </a>
+    </footer>
+    <script type="module" src="/src/scripts/tools-and-generator.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const lightIcon = document.getElementById('lightIcon');
+            const darkIcon = document.getElementById('darkIcon');
+
+            // Check for saved dark mode preference without animation
+            if (localStorage.getItem('darkMode') === 'enabled') {
+                document.documentElement.classList.add('dark');
+                lightIcon.classList.add('hidden');
+                darkIcon.classList.remove('hidden');
+                // Set initial position without animation
+                darkIcon.style.transform = 'rotate(0) scale(1)';
+                lightIcon.style.transform = 'rotate(0) scale(1)';
+            }
+
+            // Add transition classes after initial load
+            setTimeout(() => {
+                document.documentElement.classList.add('transition-colors', 'duration-500');
+                lightIcon.style.transition = 'all 0.3s ease-in-out';
+                darkIcon.style.transition = 'all 0.3s ease-in-out';
+            }, 100);
+
+            darkModeToggle.addEventListener('click', () => {
+                // Only animate on click
+                lightIcon.style.transform = 'rotate(180deg) scale(0.5)';
+                darkIcon.style.transform = 'rotate(180deg) scale(0.5)';
+
+                setTimeout(() => {
+                    document.documentElement.classList.toggle('dark');
+                    lightIcon.classList.toggle('hidden');
+                    darkIcon.classList.toggle('hidden');
+
+                    lightIcon.style.transform = 'rotate(0) scale(1)';
+                    darkIcon.style.transform = 'rotate(0) scale(1)';
+
+                    localStorage.setItem('darkMode',
+                        document.documentElement.classList.contains('dark') ? 'enabled' : 'disabled'
+                    );
+                }, 150);
+            });
+        });
+
+        // Toggle the menu on mobile
+        const menuToggle = document.getElementById('menu-toggle');
+        const menu = document.getElementById('menu');
+
+        menuToggle.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const scrollButton = document.getElementById("scrollButton");
+
+            // Show button when scrolled down
+            window.addEventListener("scroll", () => {
+                if (window.scrollY > 200) {
+                    scrollButton.style.display = "block"; // Show button
+                } else {
+                    scrollButton.style.display = "none"; // Hide button
+                }
+            });
+
+            // Scroll to the top when the button is clicked
+            scrollButton.addEventListener("click", () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth", // Smooth scroll effect
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

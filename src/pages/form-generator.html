@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Generator - TailorWind</title>
+    <link rel="icon" type="image/png" href="/Logo.png">
+    <link rel="stylesheet" href="/src/styles/main.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100 min-h-screen">
+    <!-- Navbar -->
+    <header class="bg-white shadow p-4 flex justify-between items-center px-10">
+        <div class="flex items-center space-x-2">
+            <div class="w-10 h-10 rounded">
+                <img src="/Logo.png" alt="Tailwind Generator Logo" />
+            </div>
+            <span class="font-bold text-xl text-gray-800">TailorWind</span>
+
+            <!-- Add Dark Mode Toggle Button -->
+            <button id="darkModeToggle" class="ml-4 relative w-8 h-8 flex items-center justify-center">
+                <i class="fas fa-sun text-xl text-[#ffbc00] absolute" id="lightIcon"></i>
+                <i class="fas fa-moon text-xl text-[#ffbc00] absolute hidden" id="darkIcon"></i>
+            </button>
+        </div>
+        <nav class="space-x-4">
+            <a href="/index.html" class="text-black hover:text-[#049b9f]">Home</a>
+            <a href="/src/pages/tools-and-generator.html" class="text-black hover:text-[#049b9f]">Tools & Generator</a>
+            <a href="/index.html#faq" class="text-black hover:text-[#049b9f]">FAQ</a>
+            <a href="/index.html#contact" class="text-black hover:text-[#049b9f]">Contact</a>
+        </nav>
+        <button class="bg-[#049b9f] text-white px-4 py-2 rounded">
+            Get started
+        </button>
+    </header>
+
+    <div class="max-w-5xl mx-auto bg-white p-6 mt-5 rounded shadow">
+        <h1 class="text-2xl font-bold mb-4">Advanced Form Generator</h1>
+
+        <!-- Customization Options -->
+        <div class="mb-4 p-4 bg-gray-50 rounded shadow">
+            <h2 class="text-lg font-semibold mb-2">Customization Options</h2>
+            <label class="block mb-2">
+                <span class="font-medium">Number of Fields in Row:</span>
+                <input id="numFieldsInRow" type="number" min="1" class="border border-gray-300 p-2 rounded w-full"
+                    placeholder="Enter number of inputs in a row" />
+            </label>
+            <div id="fieldOptions" class="space-y-4">
+                <div class="field-group">
+                    <label class="block mb-2">
+                        <span class="font-medium">Field Label:</span>
+                        <input type="text" class="field-label border border-gray-300 p-2 rounded w-full"
+                            placeholder="Enter field label" />
+                    </label>
+                    <label class="block mb-2">
+                        <span class="font-medium">Placeholder Text:</span>
+                        <input type="text" class="field-placeholder border border-gray-300 p-2 rounded w-full"
+                            placeholder="Enter placeholder text" />
+                    </label>
+                    <label class="block mb-2">
+                        <span class="font-medium">Field Type:</span>
+                        <select class="field-type border border-gray-300 p-2 rounded w-full">
+                            <option value="text">Text</option>
+                            <option value="email">Email</option>
+                            <option value="password">Password</option>
+                            <option value="number">Number</option>
+                            <option value="textarea">Textarea</option>
+                            <option value="checkbox">Checkbox</option>
+                            <option value="radio">Radio</option>
+                            <option value="date">Date</option>
+                            <option value="color">Color Picker</option>
+                        </select>
+                    </label>
+                </div>
+            </div>
+            <button id="addFieldGroup" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">
+                Add Another Field
+            </button>
+            <label class="block mt-4">
+                <span class="font-medium">Button Text:</span>
+                <input id="buttonText" type="text" class="border border-gray-300 p-2 rounded w-full"
+                    placeholder="Enter button text" />
+            </label>
+            <label class="block mt-2">
+                <span class="font-medium">Button Color:</span>
+                <input id="buttonColor" type="color" class="w-full h-10 rounded" />
+            </label>
+        </div>
+
+        <!-- Buttons to Add Fields -->
+        <div class="mb-4">
+            <button id="addField" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                Add Field(s)
+            </button>
+            <button id="addButton" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
+                Add Button
+            </button>
+        </div>
+
+        <!-- Form Preview -->
+        <form id="formPreview" class="space-y-4 bg-gray-50 p-4 rounded shadow">
+            <h2 class="text-lg font-semibold">Preview Form</h2>
+        </form>
+
+        <!-- Export Section -->
+        <button id="exportForm" class="bg-gray-700 text-white px-4 py-2 mt-4 rounded hover:bg-gray-800">
+            Export Form
+        </button>
+
+        <!-- Code Display -->
+        <div id="codeDisplay" class="mt-4 bg-gray-100 p-4 rounded shadow hidden">
+            <h2 class="text-lg font-semibold mb-2">Exported Form Code</h2>
+            <pre id="exportedCode" class="bg-gray-800 text-white p-4 rounded overflow-auto"></pre>
+        </div>
+    </div>
+    <script type="module" src="/src/scripts/form-generator.js"></script>
+    <script>
+        // Dark mode implementation
+        document.addEventListener('DOMContentLoaded', () => {
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const lightIcon = document.getElementById('lightIcon');
+            const darkIcon = document.getElementById('darkIcon');
+
+            // Check for saved dark mode preference without animation
+            if (localStorage.getItem('darkMode') === 'enabled') {
+                document.documentElement.classList.add('dark');
+                lightIcon.classList.add('hidden');
+                darkIcon.classList.remove('hidden');
+                darkIcon.style.transform = 'rotate(0) scale(1)';
+                lightIcon.style.transform = 'rotate(0) scale(1)';
+            }
+
+            // Add transition classes after initial load
+            setTimeout(() => {
+                document.documentElement.classList.add('transition-colors', 'duration-500');
+                lightIcon.style.transition = 'all 0.3s ease-in-out';
+                darkIcon.style.transition = 'all 0.3s ease-in-out';
+            }, 100);
+
+            darkModeToggle.addEventListener('click', () => {
+                // Only animate on click
+                lightIcon.style.transform = 'rotate(180deg) scale(0.5)';
+                darkIcon.style.transform = 'rotate(180deg) scale(0.5)';
+
+                setTimeout(() => {
+                    document.documentElement.classList.toggle('dark');
+                    lightIcon.classList.toggle('hidden');
+                    darkIcon.classList.toggle('hidden');
+
+                    lightIcon.style.transform = 'rotate(0) scale(1)';
+                    darkIcon.style.transform = 'rotate(0) scale(1)';
+
+                    localStorage.setItem('darkMode',
+                        document.documentElement.classList.contains('dark') ? 'enabled' : 'disabled'
+                    );
+                }, 150);
+            });
+        });
+    </script>
+</body>
+
+</html>

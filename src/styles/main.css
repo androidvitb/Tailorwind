@@ -1,0 +1,361 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Smooth scroll behavior + Offset for fixed navbar */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 20px; 
+}
+
+/* Add your custom styles here for grid-layout-generator.html */
+.collapsible {
+    cursor: pointer;
+}
+
+.collapsible.active .content {
+    display: block;
+}
+
+.content {
+    display: none;
+}
+#scrollButton {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: block;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease; /* Smooth transition for all properties */
+    text-align: center;
+    line-height: 50px;  /* Center the icon vertically */
+}
+
+#scrollButton i {
+    font-size: 24px;
+}
+
+/* Hover effect */
+#scrollButton:hover {
+    background-color: #0056b3;  /* Darker background color */
+    transform: scale(1.1);  /* Slightly increase the size */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);  /* Stronger shadow for depth */
+}
+
+#scrollButton:active {
+    transform: scale(0.9);  /* Slightly shrink the button when clicked */
+}
+
+/* Dark mode toggle button styles */
+#darkModeToggle {
+    padding: 8px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-left: 16px;
+}
+
+#darkModeToggle:hover {
+    transform: scale(1.1);
+}
+
+/* Remove the previous override and let Tailwind classes handle the colors */
+#darkModeToggle i {
+    transition: color 0.3s ease;
+}
+
+/* Add transition effects for dark mode switching */
+body,
+.bg-white,
+.text-gray-800,
+.text-gray-700,
+.text-gray-600,
+header,
+nav a,
+.bg-gray-100,
+form input,
+form textarea,
+.shadow-lg,
+.shadow-md {
+    transition: all 0.5s ease-in-out;
+}
+
+/* Add fade effect for dark mode icons */
+#darkModeToggle i {
+    transition: all 0.3s ease-in-out;
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+}
+
+#darkModeToggle i.hidden {
+    opacity: 0;
+    transform: rotate(180deg) scale(0.5);
+    position: absolute;
+}
+
+/* Dark mode styles */
+.dark {
+    background-color: #1a1a1a;
+    color: #ffffff;
+}
+
+.dark header {
+    background-color: #2d2d2d;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.dark nav a {
+    color: #ffffff;
+}
+
+.dark .bg-white {
+    background-color: #2d2d2d;
+}
+
+.dark .text-gray-800 {
+    color: #ffffff;
+}
+
+.dark .text-gray-700,
+.dark .text-gray-600 {
+    color: #e0e0e0;
+}
+
+.dark .shadow-lg,
+.dark .shadow-md {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.dark .bg-gray-100 {
+    background-color: #333333;
+}
+
+.dark form input,
+.dark form textarea {
+    background-color: #404040;
+    border-color: #555555;
+    color: #ffffff;
+}
+
+.dark form input::placeholder,
+.dark form textarea::placeholder {
+    color: #a0a0a0;
+}
+
+/* Add dark mode FAQ hover styles */
+.dark .bg-white.hover\:bg-gray-50:hover {
+    background-color: #555555 !important;
+    border: 1px solid #333;
+}
+
+/* Add specific styles for tools-and-generator page */
+.dark .card-button {
+    background-color: #2d2d2d !important;
+    color: #049b9f !important;
+}
+
+.dark .card-button:hover {
+    background-color: #1a1a1a !important;
+}
+
+/* Style the view toggle buttons in dark mode */
+.dark #grid-view,
+.dark #list-view {
+    background-color: #2d2d2d;
+    color: #ffffff;
+}
+
+.dark #grid-view:hover,
+.dark #list-view:hover {
+    background-color: #404040;
+}
+
+/* Style the list view in dark mode */
+.dark .list-view > div {
+    border-bottom: 1px solid #404040;
+}
+
+.dark .bg-gray-50 {
+    background-color: #1a1a1a;
+}
+
+.dark .bg-gray-200 {
+    background-color: #2d2d2d;
+    color: #ffffff;
+}
+
+.dark .hover\:bg-gray-300:hover {
+    background-color: #404040;
+}
+
+/* Add transitions for tools page elements */
+.card-button,
+#grid-view,
+#list-view,
+.list-view > div {
+    transition: all 0.3s ease-in-out;
+}
+
+/* Ensure proper contrast for text in dark mode */
+.dark .text-blue-600 {
+    color: #60a5fa;
+}
+
+/* Add specific styles for card-generator page */
+.dark aside {
+    background-color: #2d2d2d;
+    border-color: #404040;
+}
+
+.dark aside input[type="text"] {
+    background-color: #404040;
+    border-color: #555;
+    color: white;
+}
+
+.dark aside input[type="range"] {
+    background-color: #404040;
+}
+
+.dark aside label {
+    color: #e0e0e0;
+}
+
+.dark aside h2 {
+    color: white;
+}
+
+/* Card preview dark mode styles */
+.dark #card {
+    background-color: #2d2d2d;
+    color: white;
+}
+
+.dark #cardTitle {
+    color: white;
+}
+
+.dark #cardContent {
+    color: #e0e0e0;
+}
+
+/* Add specific styles for grid-layout-generator page */
+.dark pre#output-code {
+    background-color: #1a1a1a;
+    border-color: #404040;
+}
+
+.dark input[type="number"] {
+    background-color: #404040;
+    border-color: #555;
+    color: white;
+}
+
+.dark .collapsible {
+    background-color: #2d2d2d !important;
+    color: white;
+}
+
+.dark .collapsible:hover {
+    background-color: #404040 !important;
+}
+
+.dark #grid-container {
+    background-color: #2d2d2d;
+}
+
+.dark #grid-container div {
+    background-color: #404040;
+}
+
+.dark .text-gray-700 {
+    color: #e0e0e0;
+}
+
+.dark #output {
+    background-color: #2d2d2d;
+}
+
+/* Add specific styles for table-generator page */
+.dark #table-generator select,
+.dark #table-generator textarea {
+    background-color: #404040;
+    border-color: #555;
+    color: white;
+}
+
+.dark #table-preview th {
+    background-color: #2d2d2d;
+    color: white;
+    border-color: #555;
+}
+
+.dark #table-preview td {
+    background-color: #404040;
+    color: white;
+    border-color: #555;
+}
+
+.dark #export-code {
+    background-color: #2d2d2d;
+    color: white;
+}
+
+.dark .text-gray-700 {
+    color: #e0e0e0;
+}
+
+/* Add transition for table cells */
+#table-preview th,
+#table-preview td {
+    transition: all 0.3s ease-in-out;
+}
+
+/* Add specific styles for form-generator page */
+.dark #formPreview {
+    background-color: #2d2d2d;
+}
+
+.dark #codeDisplay {
+    background-color: #2d2d2d;
+}
+
+.dark #exportedCode {
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+}
+
+.dark .field-group {
+    background-color: #2d2d2d;
+}
+
+.dark select,
+.dark input[type="text"],
+.dark input[type="number"] {
+    background-color: #404040;
+    border-color: #555;
+    color: white;
+}
+
+.dark select option {
+    background-color: #2d2d2d;
+    color: white;
+}
+
+/* Add transitions for form elements */
+#formPreview,
+.field-group,
+select,
+input,
+#codeDisplay,
+#exportedCode {
+    transition: all 0.3s ease-in-out;
+}
