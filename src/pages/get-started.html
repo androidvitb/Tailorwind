@@ -33,6 +33,7 @@
         <div class="right-panel">
             <h1>Sign in to TailorWind</h1>
 
+            <!-- Google Login -->
             <button class="google-signin">
                 <i class="fa-brands fa-google google-icon"></i>
                 Sign in with Google
@@ -42,12 +43,13 @@
                 <span>or sign in with email</span>
             </div>
 
-            <form>
-                <label for="username">Username or Email</label>
-                <input type="text" id="username" placeholder="Enter your username or email">
+            <!-- Email Login -->
+            <form id="loginForm">
+                <label>Email</label>
+                <input type="email" id="loginEmail" placeholder="Enter your email" required>
 
-                <label for="password">Password</label>
-                <input type="password" id="password" placeholder="Enter your password">
+                <label>Password</label>
+                <input type="password" id="loginPassword" placeholder="Enter your password" required>
 
                 <div class="options">
                     <a href="#" class="forgot">Forgot?</a>
@@ -91,6 +93,9 @@
         });
     </script>
 
-</body>
+    <!-- 🔐 Firebase Login Logic -->
+    <script type="module" src="/src/scripts/login.js"></script>
 
+</body>
 </html>
+
