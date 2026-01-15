@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Color Palette Generator - TailorWind</title>
+
+  <link rel="icon" type="image/png" href="/Logo.png">
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" />
+</head>
+
+<body class="bg-gray-100 text-gray-800 min-h-screen">
+
+  <!-- Header -->
+  <header class="bg-white shadow px-6 py-4 flex items-center gap-3">
+    <img src="/Logo.png" class="w-10 h-10" />
+    <span class="font-bold text-xl text-[#049b9f]">TailorWind</span>
+  </header>
+
+  <!-- Main -->
+  <main class="max-w-6xl mx-auto p-6">
+
+    <h1 class="text-3xl font-bold text-center mb-2">🎨 Color Palette Generator</h1>
+    <p class="text-center text-gray-600 mb-8">
+      Generate, copy & save beautiful color combinations for your UI.
+    </p>
+
+    <!-- Controls -->
+    <div class="bg-white rounded-lg shadow p-6 flex flex-col md:flex-row gap-6 items-center justify-center mb-10">
+
+      <div>
+        <label class="block text-sm font-medium mb-1">Base Color</label>
+        <input type="color" id="baseColor" value="#049b9f"
+          class="w-16 h-10 cursor-pointer border rounded">
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium mb-1">Palette Type</label>
+        <select id="paletteType"
+          class="border rounded px-3 py-2">
+          <option value="monochrome">Monochrome</option>
+          <option value="analogous">Analogous</option>
+          <option value="complementary">Complementary</option>
+          <option value="triadic">Triadic</option>
+          <option value="random">Random</option>
+        </select>
+      </div>
+
+      <button id="generateBtn"
+        class="bg-[#049b9f] text-white px-6 py-2 rounded hover:bg-[#037b7f] transition">
+        Generate Palette
+      </button>
+
+    </div>
+
+    <!-- Palette -->
+    <div id="palette"
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-6 mb-10">
+    </div>
+
+    <!-- Actions -->
+    <div class="flex justify-center gap-4">
+      <button onclick="copyFullPalette()"
+        class="px-6 py-2 bg-gray-800 text-white rounded hover:bg-gray-900">
+        Copy Full Palette
+      </button>
+      <button onclick="savePalette()"
+        class="px-6 py-2 bg-[#049b9f] text-white rounded hover:bg-[#037b7f]">
+        Save Palette
+      </button>
+    </div>
+
+  </main>
+
+  <!-- Script -->
+  <script>
+    const paletteEl = document.getElementById("palette");
+
+    function hexToRgb(hex) {
+      const r = parseInt(hex.substr(1, 2), 16);
+      const g = parseInt(hex.substr(3, 2), 16);
+      const b = parseInt(hex.substr(5, 2), 16);
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+
+    function hexToHsl(hex) {
+      let r = parseInt(hex.substr(1,2),16)/255;
+      let g = parseInt(hex.substr(3,2),16)/255;
+      let b = parseInt(hex.substr(5,2),16)/255;
+
+      let max = Math.max(r,g,b), min = Math.min(r,g,b);
+      let h, s, l = (max + min) / 2;
+
+      if(max === min){
+        h = s = 0;
+      } else {
+        let d = max - min;
+        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+        switch(max){
+          case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+          case g: h = (b - r) / d + 2; break;
+          case b: h = (r - g) / d + 4; break;
+        }
+        h /= 6;
+      }
+      return `hsl(${Math.round(h*360)}, ${Math.round(s*100)}%, ${Math.round(l*100)}%)`;
+    }
+
+    function randomHex() {
+      return "#" + Math.floor(Math.random()*16777215).toString(16).padStart(6,"0");
+    }
+
+    function generateColors() {
+      const base = document.getElementById("baseColor").value;
+      const type = document.getElementById("paletteType").value;
+      let colors = [];
+
+      if (type === "random") {
+        for (let i=0;i<5;i++) colors.push(randomHex());
+      } else {
+        for (let i=0;i<5;i++) {
+          let factor = i * 15;
+          let col = base.replace("#","");
+
+          let r = Math.min(255, parseInt(col.substr(0,2),16)+factor);
+          let g = Math.min(255, parseInt(col.substr(2,2),16)+factor);
+          let b = Math.min(255, parseInt(col.substr(4,2),16)+factor);
+
+          colors.push(`#${r.toString(16).padStart(2,"0")}${g.toString(16).padStart(2,"0")}${b.toString(16).padStart(2,"0")}`);
+        }
+      }
+      renderPalette(colors);
+    }
+
+    function renderPalette(colors) {
+      paletteEl.innerHTML = "";
+      colors.forEach(color => {
+        const rgb = hexToRgb(color);
+        const hsl = hexToHsl(color);
+
+        const card = document.createElement("div");
+        card.className = "bg-white rounded shadow overflow-hidden";
+
+        card.innerHTML = `
+          <div class="h-32" style="background:${color}"></div>
+          <div class="p-4 space-y-2 text-sm">
+            <div><strong>HEX:</strong> ${color}</div>
+            <div><strong>RGB:</strong> ${rgb}</div>
+            <div><strong>HSL:</strong> ${hsl}</div>
+
+            <textarea class="w-full border rounded p-2 text-xs" rows="2" readonly>
+${color}
+${rgb}
+${hsl}
+            </textarea>
+
+            <button onclick="copyText('${color}\\n${rgb}\\n${hsl}')"
+              class="w-full bg-gray-800 text-white py-1 rounded hover:bg-black">
+              Copy
+            </button>
+          </div>
+        `;
+        paletteEl.appendChild(card);
+      });
+    }
+
+    function copyText(text) {
+      navigator.clipboard.writeText(text);
+      alert("Copied!");
+    }
+
+    function copyFullPalette() {
+      let text = "";
+      document.querySelectorAll("textarea").forEach(t => text += t.value + "\n\n");
+      navigator.clipboard.writeText(text);
+      alert("Palette copied!");
+    }
+
+    function savePalette() {
+      let saved = JSON.parse(localStorage.getItem("palettes")) || [];
+      let palette = [];
+      document.querySelectorAll("textarea").forEach(t => palette.push(t.value));
+      saved.push({ date: new Date().toISOString(), palette });
+      localStorage.setItem("palettes", JSON.stringify(saved));
+      alert("Palette saved!");
+    }
+
+    document.getElementById("generateBtn").addEventListener("click", generateColors);
+
+    // initial load
+    generateColors();
+  </script>
+
+</body>
+</html>
