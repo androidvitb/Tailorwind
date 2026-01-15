@@ -11,6 +11,7 @@
 </head>
 
 <body class="bg-gray-100 min-h-screen flex flex-col">
+
     <!-- Navbar -->
     <header class="bg-white shadow p-4 flex justify-between items-center px-10">
         <div class="flex items-center space-x-2">
@@ -19,147 +20,211 @@
             </div>
             <span class="font-bold text-xl text-gray-800">TailorWind</span>
 
-            <!-- Add Dark Mode Toggle Button -->
             <button id="darkModeToggle" class="ml-4 relative w-8 h-8 flex items-center justify-center">
                 <i class="fas fa-sun text-xl text-[#ffbc00] absolute" id="lightIcon"></i>
                 <i class="fas fa-moon text-xl text-[#ffbc00] absolute hidden" id="darkIcon"></i>
             </button>
         </div>
+
         <nav class="space-x-4">
             <a href="/index.html" class="text-black hover:text-[#049b9f]">Home</a>
             <a href="/src/pages/tools-and-generator.html" class="text-black hover:text-[#049b9f]">Tools & Generator</a>
             <a href="/index.html#faq" class="text-black hover:text-[#049b9f]">FAQ</a>
             <a href="/index.html#contact" class="text-black hover:text-[#049b9f]">Contact</a>
         </nav>
+
         <button class="bg-[#049b9f] text-white px-4 py-2 rounded">
             Get started
         </button>
     </header>
 
-    <div id="table-generator" class="p-4 max-w-4xl mx-auto">
-        <h1 class="text-2xl font-bold text-center mb-5 mt-5">Table Generator</h1>
-        <div class="max-w-4xl mx-auto bg-white p-5 shadow rounded">
-            <!-- Table Controls -->
+    <div class="p-4 max-w-4xl mx-auto">
+        <h1 class="text-2xl font-bold text-center mb-5 mt-5">
+            Table Generator
+        </h1>
+
+        <div class="bg-white p-5 shadow rounded">
+
+            <!-- Controls -->
             <div class="flex flex-wrap gap-4 mb-4">
-                <button id="add-row" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">
-                    Add Row
-                </button>
-                <button id="add-column" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded">
-                    Add Column
-                </button>
-                <button id="remove-row" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded">
-                    Remove Row
-                </button>
-                <button id="remove-column" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded">
-                    Remove Column
-                </button>
+                <button id="add-row" class="bg-blue-500 text-white px-4 py-2 rounded">Add Row</button>
+                <button id="add-column" class="bg-green-500 text-white px-4 py-2 rounded">Add Column</button>
+                <button id="remove-row" class="bg-red-500 text-white px-4 py-2 rounded">Remove Row</button>
+                <button id="remove-column" class="bg-red-500 text-white px-4 py-2 rounded">Remove Column</button>
             </div>
 
-            <!-- Border Customization -->
-
-
-            <!-- Additional Customizations -->
+            <!-- Styles -->
             <div class="flex flex-wrap gap-4 mb-4">
                 <div>
-                    <label for="border-style" class="block font-medium text-gray-700 mb-2">Select Border Style:</label>
-                    <select id="border-style" class="border-gray-300 rounded px-2 py-1">
-                        <option value="border">Default Border</option>
-                        <option value="border-none">No Border</option>
-                        <option value="border-dashed">Dashed Border</option>
-                        <option value="border-dotted">Dotted Border</option>
-                        <option value="border-double">Double Border</option>
+                    <label class="font-medium">Border Style</label>
+                    <select id="border-style" class="border rounded px-2 py-1">
+                        <option value="border">Default</option>
+                        <option value="border-none">None</option>
+                        <option value="border-dashed">Dashed</option>
+                        <option value="border-dotted">Dotted</option>
+                        <option value="border-double">Double</option>
                     </select>
                 </div>
+
                 <div>
-                    <label for="text-align" class="block font-medium text-gray-700 mb-2">Text Alignment:</label>
-                    <select id="text-align" class="border-gray-300 rounded px-2 py-1">
+                    <label class="font-medium">Text Align</label>
+                    <select id="text-align" class="border rounded px-2 py-1">
                         <option value="text-left">Left</option>
                         <option value="text-center">Center</option>
                         <option value="text-right">Right</option>
                     </select>
                 </div>
+
                 <div>
-                    <label for="cell-bg-color" class="block font-medium text-gray-700 mb-2">Cell Background
-                        Color:</label>
-                    <input type="color" id="cell-bg-color" value="#ffffff" class="w-12 h-10 border rounded" />
+                    <label class="font-medium">Cell Background</label>
+                    <input type="color" id="cell-bg-color" value="#ffffff"
+                        class="w-12 h-10 border rounded" />
                 </div>
             </div>
 
-            <!-- Table Preview -->
+            <!-- Preview -->
             <div class="border rounded overflow-auto mb-4">
-                <table id="table-preview" class="table-auto w-full border-collapse border border-gray-300">
+                <table id="table-preview"
+                    class="table-auto w-full border-collapse border border-gray-300">
                     <thead>
                         <tr>
-                            <th contenteditable="true" class="border border-gray-300 px-4 py-2 bg-gray-100">Header 1
-                            </th>
-                            <th contenteditable="true" class="border border-gray-300 px-4 py-2 bg-gray-100">Header 2
-                            </th>
+                            <th contenteditable="true" class="border px-4 py-2 bg-gray-100">Header 1</th>
+                            <th contenteditable="true" class="border px-4 py-2 bg-gray-100">Header 2</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td contenteditable="true" class="border border-gray-300 px-4 py-2">Row 1 Col 1</td>
-                            <td contenteditable="true" class="border border-gray-300 px-4 py-2">Row 1 Col 2</td>
+                            <td contenteditable="true" class="border px-4 py-2">Row 1 Col 1</td>
+                            <td contenteditable="true" class="border px-4 py-2">Row 1 Col 2</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
-            <!-- Code Export -->
-            <div>
-                <textarea id="export-code" rows="10" class="w-full border border-gray-300 rounded p-2 mb-2"
-                    readonly></textarea>
-                <button id="copy-code" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">
+            <!-- Code -->
+            <textarea id="export-code" rows="8"
+                class="w-full border rounded p-2 mb-2" readonly></textarea>
+
+            <div class="flex gap-3">
+                <button id="copy-code" class="bg-blue-600 text-white px-4 py-2 rounded w-full">
                     Copy Code
                 </button>
+
+                <button id="saveTable" class="bg-green-600 text-white px-4 py-2 rounded w-full">
+                    Save Table
+                </button>
+            </div>
+
+            <!-- Load Saved -->
+            <div class="mt-6">
+                <button id="loadSavedTables"
+                    class="bg-indigo-600 text-white px-4 py-2 rounded w-full">
+                    Load Saved Tables
+                </button>
+
+                <div id="savedTablesList" class="mt-4 space-y-4"></div>
             </div>
         </div>
     </div>
 
     <script type="module" src="/src/scripts/table-generator.js"></script>
-    <script>
-        // Dark mode implementation
-        document.addEventListener('DOMContentLoaded', () => {
-            const darkModeToggle = document.getElementById('darkModeToggle');
-            const lightIcon = document.getElementById('lightIcon');
-            const darkIcon = document.getElementById('darkIcon');
 
-            // Check for saved dark mode preference without animation
-            if (localStorage.getItem('darkMode') === 'enabled') {
-                document.documentElement.classList.add('dark');
-                lightIcon.classList.add('hidden');
-                darkIcon.classList.remove('hidden');
-                darkIcon.style.transform = 'rotate(0) scale(1)';
-                lightIcon.style.transform = 'rotate(0) scale(1)';
+    <script>
+        // ================= SAVE TABLE =================
+        document.getElementById("saveTable").addEventListener("click", () => {
+            const table = document.getElementById("table-preview");
+            const code = document.getElementById("export-code").value.trim();
+
+            if (!code) {
+                alert("Generate table code first!");
+                return;
             }
 
-            // Add transition classes after initial load
-            setTimeout(() => {
-                document.documentElement.classList.add('transition-colors', 'duration-500');
-                lightIcon.style.transition = 'all 0.3s ease-in-out';
-                darkIcon.style.transition = 'all 0.3s ease-in-out';
-            }, 100);
+            const saved =
+                JSON.parse(localStorage.getItem("tailorwind-components")) || [];
 
-            darkModeToggle.addEventListener('click', () => {
-                // Only animate on click
-                lightIcon.style.transform = 'rotate(180deg) scale(0.5)';
-                darkIcon.style.transform = 'rotate(180deg) scale(0.5)';
+            saved.push({
+                id: Date.now(),
+                type: "table",
+                code: code,
+                preview: table.outerHTML
+            });
 
-                setTimeout(() => {
-                    document.documentElement.classList.toggle('dark');
-                    lightIcon.classList.toggle('hidden');
-                    darkIcon.classList.toggle('hidden');
+            localStorage.setItem(
+                "tailorwind-components",
+                JSON.stringify(saved)
+            );
 
-                    lightIcon.style.transform = 'rotate(0) scale(1)';
-                    darkIcon.style.transform = 'rotate(0) scale(1)';
+            alert("Table saved successfully!");
+        });
 
-                    localStorage.setItem('darkMode',
-                        document.documentElement.classList.contains('dark') ? 'enabled' : 'disabled'
-                    );
-                }, 150);
+        // ================= LOAD SAVED TABLES =================
+        document.getElementById("loadSavedTables").addEventListener("click", () => {
+            const list = document.getElementById("savedTablesList");
+            list.innerHTML = "";
+
+            const saved =
+                JSON.parse(localStorage.getItem("tailorwind-components")) || [];
+
+            const tables = saved.filter(item => item.type === "table");
+
+            if (tables.length === 0) {
+                list.innerHTML =
+                    "<p class='text-gray-500'>No saved tables found.</p>";
+                return;
+            }
+
+            tables.forEach(item => {
+                const div = document.createElement("div");
+                div.className = "border p-4 rounded bg-gray-50";
+
+                div.innerHTML = `
+                    <div class="overflow-auto mb-3">
+                        ${item.preview}
+                    </div>
+                    <pre class="bg-gray-800 text-white p-2 rounded text-sm overflow-x-auto">
+${item.code}
+                    </pre>
+                    <button class="mt-3 bg-teal-600 text-white px-3 py-1 rounded">
+                        Load Table
+                    </button>
+                `;
+
+                div.querySelector("button").onclick = () => {
+                    document.getElementById("table-preview").outerHTML = item.preview;
+                    document.getElementById("export-code").value = item.code;
+                };
+
+                list.appendChild(div);
+            });
+        });
+
+        // ================= DARK MODE =================
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggle = document.getElementById('darkModeToggle');
+            const light = document.getElementById('lightIcon');
+            const dark = document.getElementById('darkIcon');
+
+            if (localStorage.getItem('darkMode') === 'enabled') {
+                document.documentElement.classList.add('dark');
+                light.classList.add('hidden');
+                dark.classList.remove('hidden');
+            }
+
+            toggle.addEventListener('click', () => {
+                document.documentElement.classList.toggle('dark');
+                light.classList.toggle('hidden');
+                dark.classList.toggle('hidden');
+
+                localStorage.setItem(
+                    'darkMode',
+                    document.documentElement.classList.contains('dark')
+                        ? 'enabled'
+                        : 'disabled'
+                );
             });
         });
     </script>
-</body>
 
+</body>
 </html>

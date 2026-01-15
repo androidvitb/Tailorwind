@@ -4,44 +4,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- font awesome  -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
-        integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <title>Login</title>
+    <title>Login - TailorWind</title>
     <link rel="icon" type="image/png" href="/Logo.png">
     <link rel="stylesheet" href="/src/styles/get-started.css">
 </head>
 
 <body>
+
+    <!-- Dark Mode Toggle -->
+    <button id="darkModeToggle"
+        style="position: fixed; top: 20px; right: 20px; z-index: 50;"
+        class="w-10 h-10 rounded-full flex items-center justify-center bg-white shadow">
+        <i class="fas fa-sun text-[#ffbc00]" id="lightIcon"></i>
+        <i class="fas fa-moon text-[#ffbc00] hidden" id="darkIcon"></i>
+    </button>
+
     <div class="container">
         <div class="left-panel">
-            <img src="/src/assets/login-bg.jpeg" autoplay muted loop class="background-img"></img>
+            <img src="/src/assets/login-bg.jpeg" class="background-img" />
         </div>
+
         <div class="right-panel">
-            <h1> Sign in to TailorWind</h1>
-            <button class="google-signin"> <i class="fa-brands fa-google google-icon" aria-hidden="true"></i>
+            <h1>Sign in to TailorWind</h1>
+
+            <button class="google-signin">
+                <i class="fa-brands fa-google google-icon"></i>
                 Sign in with Google
             </button>
+
             <div class="divider">
-                <span>
-                    or sign in with email
-                </span>
+                <span>or sign in with email</span>
             </div>
-            <form action="#">
+
+            <form>
                 <label for="username">Username or Email</label>
-                <input type="text" id="username" name="username" placeholder="Enter your username or email">
+                <input type="text" id="username" placeholder="Enter your username or email">
+
                 <label for="password">Password</label>
-                <input type="password" id="password" name="password" placeholder="Enter your password">
+                <input type="password" id="password" placeholder="Enter your password">
+
                 <div class="options">
                     <a href="#" class="forgot">Forgot?</a>
                 </div>
-                <button type="submit" class="signin-button">Sign In</button>
+
+                <button type="submit" class="signin-button">
+                    Sign In
+                </button>
             </form>
-            <p class="signup">Don't have an account? <a href="/src/pages/sign-up.html">Sign up</a></p>
+
+            <p class="signup">
+                Don't have an account?
+                <a href="/src/pages/sign-up.html">Sign up</a>
+            </p>
         </div>
     </div>
+
+    <!-- Dark Mode Script -->
+    <script>
+        const toggle = document.getElementById("darkModeToggle");
+        const lightIcon = document.getElementById("lightIcon");
+        const darkIcon = document.getElementById("darkIcon");
+
+        if (localStorage.getItem("darkMode") === "enabled") {
+            document.body.classList.add("dark");
+            lightIcon.classList.add("hidden");
+            darkIcon.classList.remove("hidden");
+        }
+
+        toggle.addEventListener("click", () => {
+            document.body.classList.toggle("dark");
+            lightIcon.classList.toggle("hidden");
+            darkIcon.classList.toggle("hidden");
+
+            localStorage.setItem(
+                "darkMode",
+                document.body.classList.contains("dark")
+                    ? "enabled"
+                    : "disabled"
+            );
+        });
+    </script>
+
 </body>
 
 </html>
