@@ -476,8 +476,17 @@
         <div id="codeBox" class="hidden mt-4 bg-gray-200 p-4 rounded">
             <pre id="generatedCode" class="bg-black text-white p-4 rounded"></pre>
             <div class="flex gap-4 mt-4">
-                <button id="copyCode" class="bg-blue-500 text-white py-2 w-full rounded">Copy</button>
-                <button id="closeCode" class="bg-red-500 text-white py-2 w-full rounded">Close</button>
+                <button id="copyCode" class="bg-blue-500 text-white py-2 w-full rounded">
+                    Copy
+                </button>
+
+                <button id="saveCode" class="bg-green-600 text-white py-2 w-full rounded">
+                    Save
+                </button>
+
+                <button id="closeCode" class="bg-red-500 text-white py-2 w-full rounded">
+                    Close
+                </button>
             </div>
         </div>
     </div>
@@ -524,6 +533,34 @@
             }, 150);
         });
     });
+
+    const saveBtn = document.getElementById("saveCode");
+
+saveBtn.addEventListener("click", () => {
+    const code = document.getElementById("generatedCode").innerText.trim();
+
+        if (!code) {
+            alert("No code to save!");
+            return;
+        }
+
+        const savedComponents =
+            JSON.parse(localStorage.getItem("tailorwind-components")) || [];
+
+        savedComponents.push({
+            id: Date.now(),
+            type: "button",
+            code: code
+        });
+
+        localStorage.setItem(
+            "tailorwind-components",
+            JSON.stringify(savedComponents)
+        );
+
+        alert("Button component saved successfully!");
+    });
+
 </script>
 </body>
 

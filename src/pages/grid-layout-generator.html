@@ -11,6 +11,7 @@
 </head>
 
 <body class="bg-gray-100 min-h-screen flex flex-col">
+
     <!-- Navbar -->
     <header class="bg-white shadow p-4 flex justify-between items-center px-10">
         <div class="flex items-center space-x-2">
@@ -18,115 +19,195 @@
                 <img src="/Logo.png" alt="Tailwind Generator Logo" />
             </div>
             <span class="font-bold text-xl text-gray-800">TailorWind</span>
+
             <button id="darkModeToggle" class="ml-4 relative w-8 h-8 flex items-center justify-center">
                 <i class="fas fa-sun text-xl text-[#ffbc00] absolute" id="lightIcon"></i>
                 <i class="fas fa-moon text-xl text-[#ffbc00] absolute hidden" id="darkIcon"></i>
             </button>
         </div>
+
         <nav class="space-x-4">
             <a href="/index.html" class="text-black hover:text-[#049b9f]">Home</a>
             <a href="/src/pages/tools-and-generator.html" class="text-black hover:text-[#049b9f]">Tools & Generator</a>
             <a href="/index.html#faq" class="text-black hover:text-[#049b9f]">FAQ</a>
             <a href="/index.html#contact" class="text-black hover:text-[#049b9f]">Contact</a>
         </nav>
+
         <button class="bg-[#049b9f] text-white px-4 py-2 rounded">
             Get started
         </button>
     </header>
 
-    <h1 class="text-2xl font-bold text-center mb-5 mt-5">Tailwind Grid Layout Generator</h1>
+    <h1 class="text-2xl font-bold text-center my-5">
+        Tailwind Grid Layout Generator
+    </h1>
+
     <div class="max-w-4xl mx-auto bg-white p-5 shadow rounded">
-        <!-- Main Controls -->
+
+        <!-- Controls -->
         <div id="controls" class="mb-5 grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-                <label for="rows" class="block text-sm font-medium text-gray-700">Rows:</label>
+                <label class="block text-sm font-medium text-gray-700">Rows</label>
                 <input type="number" id="rows" value="3" min="1"
-                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                    class="mt-1 w-full rounded-md border-gray-300 shadow-sm"
                     onchange="updateRowConfig()" />
             </div>
+
             <div>
-                <label for="columns" class="block text-sm font-medium text-gray-700">Columns:</label>
+                <label class="block text-sm font-medium text-gray-700">Columns</label>
                 <input type="number" id="columns" value="3" min="1"
-                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                    class="mt-1 w-full rounded-md border-gray-300 shadow-sm"
                     onchange="updateRowConfig()" />
             </div>
         </div>
-        <!-- this div is here because it render col-span class otherwise it is not working -->
-        <div class="grid-cols-4 gap-4 p-4 bg-gray-100 mb-5 space-y-3 hidden">
-            <div class="col-span-2 bg-blue-500 text-white p-4 rounded">Span 2</div>
-            <div class="col-span-1 bg-green-500 text-white p-4 rounded">Span 1</div>
-            <div class="col-span-1 bg-red-500 text-white p-4 rounded">Span 1</div>
-        </div>
-        <!-- Row Configuration -->
-        <div id="row-config" class="mb-5 space-y-3">
-            <!-- Dynamic Row Configuration Panel -->
+
+        <!-- Required dummy grid -->
+        <div class="grid-cols-4 gap-4 p-4 bg-gray-100 mb-5 hidden">
+            <div class="col-span-2"></div>
         </div>
 
-        <!-- Generate Button -->
-        <button onclick="generateGrid()"
-            class="w-full bg-indigo-600 text-white font-semibold py-2 px-4 rounded hover:bg-indigo-700">
-            Generate Grid
-        </button>
+        <!-- Row Config -->
+        <div id="row-config" class="mb-5 space-y-3"></div>
 
-        <!-- Grid Preview -->
+        <!-- Buttons -->
+        <div class="flex gap-3 flex-wrap">
+            <button onclick="generateGrid()"
+                class="flex-1 bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700">
+                Generate Grid
+            </button>
+
+            <button id="saveGrid"
+                class="flex-1 bg-green-600 text-white py-2 rounded hover:bg-green-700">
+                Save Grid
+            </button>
+        </div>
+
+        <!-- Preview -->
         <div id="grid-container" class="mt-5"></div>
 
-        <!-- Generated Code -->
+        <!-- Code Output -->
         <div id="output" class="mt-5 p-4 bg-gray-100 rounded">
             <h2 class="text-lg font-semibold mb-3 flex justify-between items-center">
-                Generated Tailwind Code:
-                <button id="copy-code" class="text-sm bg-indigo-600 text-white px-3 py-1 rounded hover:bg-indigo-700"
-                    onclick="copyToClipboard()">
+                Generated Tailwind Code
+                <button onclick="copyToClipboard()"
+                    class="bg-indigo-600 text-white px-3 py-1 rounded hover:bg-indigo-700">
                     Copy Code
                 </button>
             </h2>
-            <pre id="output-code" class="bg-gray-800 text-white p-3 rounded text-sm overflow-x-auto"></pre>
+
+            <pre id="output-code"
+                class="bg-gray-800 text-white p-3 rounded text-sm overflow-x-auto"></pre>
+        </div>
+
+        <!-- Load Saved -->
+        <div class="mt-6">
+            <button id="loadSavedGrids"
+                class="bg-indigo-700 text-white px-4 py-2 rounded hover:bg-indigo-800 w-full">
+                Load Saved Grids
+            </button>
+
+            <div id="savedGridsList" class="mt-4 space-y-4"></div>
         </div>
     </div>
-    <script type="module" src="/src/scripts/grid-layout-generator.js"></script>
-    <script>
-        // Dark mode implementation
-        document.addEventListener('DOMContentLoaded', () => {
-            const darkModeToggle = document.getElementById('darkModeToggle');
-            const lightIcon = document.getElementById('lightIcon');
-            const darkIcon = document.getElementById('darkIcon');
 
-            // Check for saved dark mode preference without animation
-            if (localStorage.getItem('darkMode') === 'enabled') {
-                document.documentElement.classList.add('dark');
-                lightIcon.classList.add('hidden');
-                darkIcon.classList.remove('hidden');
-                darkIcon.style.transform = 'rotate(0) scale(1)';
-                lightIcon.style.transform = 'rotate(0) scale(1)';
+    <script type="module" src="/src/scripts/grid-layout-generator.js"></script>
+
+    <script>
+        // ================= SAVE GRID =================
+        document.getElementById("saveGrid").addEventListener("click", () => {
+            const code = document.getElementById("output-code").innerText.trim();
+            const preview = document.getElementById("grid-container");
+
+            if (!code || !preview.innerHTML.trim()) {
+                alert("Generate a grid before saving!");
+                return;
             }
 
-            // Add transition classes after initial load
-            setTimeout(() => {
-                document.documentElement.classList.add('transition-colors', 'duration-500');
-                lightIcon.style.transition = 'all 0.3s ease-in-out';
-                darkIcon.style.transition = 'all 0.3s ease-in-out';
-            }, 100);
+            const saved =
+                JSON.parse(localStorage.getItem("tailorwind-components")) || [];
 
-            darkModeToggle.addEventListener('click', () => {
-                // Only animate on click
-                lightIcon.style.transform = 'rotate(180deg) scale(0.5)';
-                darkIcon.style.transform = 'rotate(180deg) scale(0.5)';
+            saved.push({
+                id: Date.now(),
+                type: "grid",
+                code: code,
+                preview: preview.innerHTML
+            });
 
-                setTimeout(() => {
-                    document.documentElement.classList.toggle('dark');
-                    lightIcon.classList.toggle('hidden');
-                    darkIcon.classList.toggle('hidden');
+            localStorage.setItem(
+                "tailorwind-components",
+                JSON.stringify(saved)
+            );
 
-                    lightIcon.style.transform = 'rotate(0) scale(1)';
-                    darkIcon.style.transform = 'rotate(0) scale(1)';
+            alert("Grid layout saved successfully!");
+        });
 
-                    localStorage.setItem('darkMode',
-                        document.documentElement.classList.contains('dark') ? 'enabled' : 'disabled'
-                    );
-                }, 150);
+        // ================= LOAD SAVED GRIDS =================
+        document.getElementById("loadSavedGrids").addEventListener("click", () => {
+            const list = document.getElementById("savedGridsList");
+            list.innerHTML = "";
+
+            const saved =
+                JSON.parse(localStorage.getItem("tailorwind-components")) || [];
+
+            const grids = saved.filter(item => item.type === "grid");
+
+            if (grids.length === 0) {
+                list.innerHTML =
+                    "<p class='text-gray-500'>No saved grids found.</p>";
+                return;
+            }
+
+            grids.forEach(item => {
+                const div = document.createElement("div");
+                div.className = "border p-4 rounded bg-gray-50";
+
+                div.innerHTML = `
+                    <div class="mb-3">${item.preview}</div>
+                    <pre class="bg-gray-800 text-white p-2 rounded text-sm overflow-x-auto">
+${item.code}
+                    </pre>
+                    <button class="mt-3 bg-teal-600 text-white px-3 py-1 rounded hover:bg-teal-700">
+                        Load Grid
+                    </button>
+                `;
+
+                div.querySelector("button").onclick = () => {
+                    document.getElementById("grid-container").innerHTML = item.preview;
+                    document.getElementById("output-code").innerText = item.code;
+                };
+
+                list.appendChild(div);
             });
         });
     </script>
-</body>
 
+    <!-- Dark Mode -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggle = document.getElementById('darkModeToggle');
+            const light = document.getElementById('lightIcon');
+            const dark = document.getElementById('darkIcon');
+
+            if (localStorage.getItem('darkMode') === 'enabled') {
+                document.documentElement.classList.add('dark');
+                light.classList.add('hidden');
+                dark.classList.remove('hidden');
+            }
+
+            toggle.addEventListener('click', () => {
+                document.documentElement.classList.toggle('dark');
+                light.classList.toggle('hidden');
+                dark.classList.toggle('hidden');
+
+                localStorage.setItem(
+                    'darkMode',
+                    document.documentElement.classList.contains('dark')
+                        ? 'enabled'
+                        : 'disabled'
+                );
+            });
+        });
+    </script>
+
+</body>
 </html>

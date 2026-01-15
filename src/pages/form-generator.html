@@ -12,6 +12,7 @@
 </head>
 
 <body class="bg-gray-100 min-h-screen">
+
     <!-- Navbar -->
     <header class="bg-white shadow p-4 flex justify-between items-center px-10">
         <div class="flex items-center space-x-2">
@@ -20,18 +21,19 @@
             </div>
             <span class="font-bold text-xl text-gray-800">TailorWind</span>
 
-            <!-- Add Dark Mode Toggle Button -->
             <button id="darkModeToggle" class="ml-4 relative w-8 h-8 flex items-center justify-center">
                 <i class="fas fa-sun text-xl text-[#ffbc00] absolute" id="lightIcon"></i>
                 <i class="fas fa-moon text-xl text-[#ffbc00] absolute hidden" id="darkIcon"></i>
             </button>
         </div>
+
         <nav class="space-x-4">
             <a href="/index.html" class="text-black hover:text-[#049b9f]">Home</a>
             <a href="/src/pages/tools-and-generator.html" class="text-black hover:text-[#049b9f]">Tools & Generator</a>
             <a href="/index.html#faq" class="text-black hover:text-[#049b9f]">FAQ</a>
             <a href="/index.html#contact" class="text-black hover:text-[#049b9f]">Contact</a>
         </nav>
+
         <button class="bg-[#049b9f] text-white px-4 py-2 rounded">
             Get started
         </button>
@@ -43,23 +45,26 @@
         <!-- Customization Options -->
         <div class="mb-4 p-4 bg-gray-50 rounded shadow">
             <h2 class="text-lg font-semibold mb-2">Customization Options</h2>
+
             <label class="block mb-2">
                 <span class="font-medium">Number of Fields in Row:</span>
-                <input id="numFieldsInRow" type="number" min="1" class="border border-gray-300 p-2 rounded w-full"
-                    placeholder="Enter number of inputs in a row" />
+                <input id="numFieldsInRow" type="number" min="1"
+                    class="border border-gray-300 p-2 rounded w-full" />
             </label>
+
             <div id="fieldOptions" class="space-y-4">
                 <div class="field-group">
                     <label class="block mb-2">
                         <span class="font-medium">Field Label:</span>
-                        <input type="text" class="field-label border border-gray-300 p-2 rounded w-full"
-                            placeholder="Enter field label" />
+                        <input type="text" class="field-label border border-gray-300 p-2 rounded w-full" />
                     </label>
+
                     <label class="block mb-2">
                         <span class="font-medium">Placeholder Text:</span>
-                        <input type="text" class="field-placeholder border border-gray-300 p-2 rounded w-full"
-                            placeholder="Enter placeholder text" />
+                        <input type="text"
+                            class="field-placeholder border border-gray-300 p-2 rounded w-full" />
                     </label>
+
                     <label class="block mb-2">
                         <span class="font-medium">Field Type:</span>
                         <select class="field-type border border-gray-300 p-2 rounded w-full">
@@ -76,27 +81,40 @@
                     </label>
                 </div>
             </div>
-            <button id="addFieldGroup" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">
+
+            <button id="addFieldGroup"
+                class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">
                 Add Another Field
             </button>
+
             <label class="block mt-4">
                 <span class="font-medium">Button Text:</span>
-                <input id="buttonText" type="text" class="border border-gray-300 p-2 rounded w-full"
-                    placeholder="Enter button text" />
+                <input id="buttonText" type="text"
+                    class="border border-gray-300 p-2 rounded w-full" />
             </label>
+
             <label class="block mt-2">
                 <span class="font-medium">Button Color:</span>
                 <input id="buttonColor" type="color" class="w-full h-10 rounded" />
             </label>
         </div>
 
-        <!-- Buttons to Add Fields -->
-        <div class="mb-4">
+        <!-- Controls -->
+        <div class="mb-4 flex gap-3 flex-wrap">
             <button id="addField" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
                 Add Field(s)
             </button>
+
             <button id="addButton" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
                 Add Button
+            </button>
+
+            <button id="exportForm" class="bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-800">
+                Export Form
+            </button>
+
+            <button id="saveForm" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-800">
+                Save Form
             </button>
         </div>
 
@@ -105,61 +123,118 @@
             <h2 class="text-lg font-semibold">Preview Form</h2>
         </form>
 
-        <!-- Export Section -->
-        <button id="exportForm" class="bg-gray-700 text-white px-4 py-2 mt-4 rounded hover:bg-gray-800">
-            Export Form
-        </button>
-
         <!-- Code Display -->
         <div id="codeDisplay" class="mt-4 bg-gray-100 p-4 rounded shadow hidden">
             <h2 class="text-lg font-semibold mb-2">Exported Form Code</h2>
-            <pre id="exportedCode" class="bg-gray-800 text-white p-4 rounded overflow-auto"></pre>
+            <pre id="exportedCode"
+                class="bg-gray-800 text-white p-4 rounded overflow-auto"></pre>
+        </div>
+
+        <!-- Load Saved Forms -->
+        <div class="mt-6">
+            <button id="loadSavedForms"
+                class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 w-full">
+                Load Saved Forms
+            </button>
+
+            <div id="savedFormsList" class="mt-4 space-y-4"></div>
         </div>
     </div>
-    <script type="module" src="/src/scripts/form-generator.js"></script>
-    <script>
-        // Dark mode implementation
-        document.addEventListener('DOMContentLoaded', () => {
-            const darkModeToggle = document.getElementById('darkModeToggle');
-            const lightIcon = document.getElementById('lightIcon');
-            const darkIcon = document.getElementById('darkIcon');
 
-            // Check for saved dark mode preference without animation
-            if (localStorage.getItem('darkMode') === 'enabled') {
-                document.documentElement.classList.add('dark');
-                lightIcon.classList.add('hidden');
-                darkIcon.classList.remove('hidden');
-                darkIcon.style.transform = 'rotate(0) scale(1)';
-                lightIcon.style.transform = 'rotate(0) scale(1)';
+    <script type="module" src="/src/scripts/form-generator.js"></script>
+
+    <script>
+        // ================= SAVE FORM =================
+        document.getElementById("saveForm").addEventListener("click", () => {
+            const form = document.getElementById("formPreview");
+
+            if (!form || form.children.length <= 1) {
+                alert("Nothing to save!");
+                return;
             }
 
-            // Add transition classes after initial load
-            setTimeout(() => {
-                document.documentElement.classList.add('transition-colors', 'duration-500');
-                lightIcon.style.transition = 'all 0.3s ease-in-out';
-                darkIcon.style.transition = 'all 0.3s ease-in-out';
-            }, 100);
+            const saved =
+                JSON.parse(localStorage.getItem("tailorwind-components")) || [];
 
-            darkModeToggle.addEventListener('click', () => {
-                // Only animate on click
-                lightIcon.style.transform = 'rotate(180deg) scale(0.5)';
-                darkIcon.style.transform = 'rotate(180deg) scale(0.5)';
+            saved.push({
+                id: Date.now(),
+                type: "form",
+                code: form.outerHTML
+            });
 
-                setTimeout(() => {
-                    document.documentElement.classList.toggle('dark');
-                    lightIcon.classList.toggle('hidden');
-                    darkIcon.classList.toggle('hidden');
+            localStorage.setItem(
+                "tailorwind-components",
+                JSON.stringify(saved)
+            );
 
-                    lightIcon.style.transform = 'rotate(0) scale(1)';
-                    darkIcon.style.transform = 'rotate(0) scale(1)';
+            alert("Form saved successfully!");
+        });
 
-                    localStorage.setItem('darkMode',
-                        document.documentElement.classList.contains('dark') ? 'enabled' : 'disabled'
-                    );
-                }, 150);
+        // ================= LOAD SAVED FORMS =================
+        document.getElementById("loadSavedForms").addEventListener("click", () => {
+            const list = document.getElementById("savedFormsList");
+            list.innerHTML = "";
+
+            const saved =
+                JSON.parse(localStorage.getItem("tailorwind-components")) || [];
+
+            const forms = saved.filter(item => item.type === "form");
+
+            if (forms.length === 0) {
+                list.innerHTML =
+                    "<p class='text-gray-500'>No saved forms found.</p>";
+                return;
+            }
+
+            forms.forEach(item => {
+                const div = document.createElement("div");
+                div.className = "border p-4 rounded bg-gray-50";
+
+                div.innerHTML = `
+                    <div class="overflow-x-auto">
+                        ${item.code}
+                    </div>
+                    <button class="mt-3 bg-teal-600 text-white px-3 py-1 rounded hover:bg-teal-700">
+                        Load Form
+                    </button>
+                `;
+
+                div.querySelector("button").onclick = () => {
+                    document.getElementById("formPreview").outerHTML = item.code;
+                };
+
+                list.appendChild(div);
             });
         });
     </script>
-</body>
 
+    <!-- Dark Mode Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggle = document.getElementById('darkModeToggle');
+            const light = document.getElementById('lightIcon');
+            const dark = document.getElementById('darkIcon');
+
+            if (localStorage.getItem('darkMode') === 'enabled') {
+                document.documentElement.classList.add('dark');
+                light.classList.add('hidden');
+                dark.classList.remove('hidden');
+            }
+
+            toggle.addEventListener('click', () => {
+                document.documentElement.classList.toggle('dark');
+                light.classList.toggle('hidden');
+                dark.classList.toggle('hidden');
+
+                localStorage.setItem(
+                    'darkMode',
+                    document.documentElement.classList.contains('dark')
+                        ? 'enabled'
+                        : 'disabled'
+                );
+            });
+        });
+    </script>
+
+</body>
 </html>
