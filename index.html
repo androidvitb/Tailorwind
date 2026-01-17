@@ -318,30 +318,40 @@
         </p>
       </div>
       <div class="max-w-4xl mx-auto">
-        <form class="p-8 space-y-6 bg-white rounded-lg shadow">
+        <form id="contactForm" class="p-8 space-y-6 bg-white rounded-lg shadow">
+          
           <div>
             <label for="name" class="block font-medium text-gray-700">Name</label>
-            <input type="text" id="name" class="w-full mt-2 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#049b9f] 
-                       transition-all duration-300 hover:shadow-md hover:border-[#049b9f]" placeholder="Your name" />
+            <input type="text" id="name" required
+              class="w-full mt-2 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#049b9f]
+                    transition-all duration-300 hover:shadow-md hover:border-[#049b9f]"
+              placeholder="Your name" />
           </div>
+
           <div>
             <label for="email" class="block font-medium text-gray-700">Email</label>
-            <input type="email" id="email" class="w-full mt-2 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#049b9f] 
-                       transition-all duration-300 hover:shadow-md hover:border-[#049b9f]" placeholder="Your email" />
+            <input type="email" id="email" required
+              class="w-full mt-2 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#049b9f]
+                    transition-all duration-300 hover:shadow-md hover:border-[#049b9f]"
+              placeholder="Your email" />
           </div>
+
           <div>
             <label for="message" class="block font-medium text-gray-700">Message</label>
-            <textarea id="message" class="w-full mt-2 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#049b9f] 
-                          transition-all duration-300 hover:shadow-md hover:border-[#049b9f]" rows="5"
+            <textarea id="message" rows="5" required
+              class="w-full mt-2 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#049b9f]
+                    transition-all duration-300 hover:shadow-md hover:border-[#049b9f]"
               placeholder="Your message"></textarea>
           </div>
+
           <div class="mt-4">
             <button type="submit"
-              class="w-full bg-[#049b9f] text-white font-medium py-3 rounded-lg 
-                       transition-all duration-300 hover:bg-[#037b7f] hover:shadow-lg hover:scale-105 focus:outline-none">
+              class="w-full bg-[#049b9f] text-white font-medium py-3 rounded-lg
+                    transition-all duration-300 hover:bg-[#037b7f] hover:shadow-lg hover:scale-105 focus:outline-none">
               Send Message
             </button>
           </div>
+
         </form>
       </div>
     </section>
@@ -438,6 +448,7 @@
 
     // Existing scroll button script
   </script>
+  <script type="module" src="/src/scripts/contact.js"></script>
 
 </body>
 
