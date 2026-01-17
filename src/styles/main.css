@@ -359,3 +359,7 @@ input,
 #exportedCode {
     transition: all 0.3s ease-in-out;
 }
+
+.star-active {
+  color: #facc15; /* yellow-400 */
+}
