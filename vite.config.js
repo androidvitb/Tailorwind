@@ -20,7 +20,8 @@ export default defineConfig({
         form: resolve(__dirname, 'src/pages/form-generator.html'),
         navbar: resolve(__dirname, 'src/pages/navbar-generator.html'),
         signup: resolve(__dirname, 'src/pages/sign-up.html'),
-        getstarted: resolve(__dirname, 'src/pages/get-started.html')
+        getstarted: resolve(__dirname, 'src/pages/get-started.html'),
+        colorPalette: resolve(__dirname, 'src/pages/color-palette.html'),
       }
     }
   },
