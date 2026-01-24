@@ -1,7 +1,12 @@
 import { defineConfig } from 'vite'
 import { resolve } from 'path'
+import { ViteEjsPlugin } from 'vite-plugin-ejs';
 
 export default defineConfig({
+  plugins: [
+    // This enables EJS inside your .html files
+    ViteEjsPlugin()
+  ],
   build: {
     outDir: 'dist',
     rollupOptions: {
@@ -13,8 +18,8 @@ export default defineConfig({
         grid: resolve(__dirname, 'src/pages/grid-layout-generator.html'),
         table: resolve(__dirname, 'src/pages/table-generator.html'),
         form: resolve(__dirname, 'src/pages/form-generator.html'),
-        navbar: resolve(__dirname, 'src/pages/navbar.html'),
-        signup: resolve(__dirname, 'src/pages/sign-up.html'), 
+        navbar: resolve(__dirname, 'src/pages/navbar-generator.html'),
+        signup: resolve(__dirname, 'src/pages/sign-up.html'),
         getstarted: resolve(__dirname, 'src/pages/get-started.html')
       }
     }

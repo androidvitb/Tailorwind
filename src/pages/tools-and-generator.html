@@ -48,14 +48,12 @@
             <i class="fas fa-bars"></i>
         </button>
 
-        <nav id="menu"
-            class="hidden md:flex gap-4">
+        <nav id="menu" class="hidden md:flex gap-4">
             <a href="/index.html">Home</a>
             <a href="/src/pages/tools-and-generator.html">Tools & Generator</a>
             <a href="/index.html#faq">FAQ</a>
             <a href="/index.html#contact">Contact</a>
-            <a href="/src/pages/get-started.html"
-                class="bg-[#049b9f] text-white px-4 py-2 rounded">
+            <a href="/src/pages/get-started.html" class="bg-[#049b9f] text-white px-4 py-2 rounded">
                 Get started
             </a>
         </nav>
@@ -80,14 +78,13 @@
             <!-- 🆕 Saved Components -->
             <div class="bg-white shadow rounded-lg flex flex-col items-center">
                 <div class="p-6 text-center">
-                    <img src="/src/assets/saved.png" class="mb-4 mx-auto w-32" />
+                    <img src="https://placehold.co/400x300" class="mb-4 mx-auto w-32" />
                     <h2 class="text-xl font-bold mb-2">Saved Components</h2>
                     <p class="text-gray-600">
                         View, load, and manage all components you’ve saved across generators.
                     </p>
                 </div>
-                <button
-                    class="w-full bg-gray-100 text-blue-600 px-6 py-3 font-medium"
+                <button class="w-full bg-gray-100 text-blue-600 px-6 py-3 font-medium"
                     onclick="window.location.href='/src/pages/saved-components.html'">
                     Open Dashboard
                 </button>
@@ -153,10 +150,24 @@
                     <p class="text-gray-600">Create responsive navbars.</p>
                 </div>
                 <button class="w-full bg-gray-100 px-6 py-3 text-blue-600"
-                    onclick="location.href='/src/pages/navbar.html'">
+                    onclick="location.href='/src/pages/navbar-generator.html'">
                     Get started
                 </button>
             </div>
+
+            <!-- Color Palette Generator -->
+            <div class="bg-white shadow rounded-lg flex flex-col items-center">
+                <div class="p-6 text-center">
+                    <img src="/src/assets/color-plate.png" class="mb-4 mx-auto" />
+                    <h2 class="text-xl font-bold mb-2">Color Palette Generator</h2>
+                    <p class="text-gray-600">Generate color combinations for your UI.</p>
+                </div>
+                <button class="w-full bg-gray-100 px-6 py-3 text-blue-600"
+                    onclick="location.href='/src/pages/color-palette.html'">
+                    Get started
+                </button>
+            </div>
+
 
             <!-- Button -->
             <div class="bg-white shadow rounded-lg flex flex-col items-center">
@@ -175,9 +186,11 @@
     </main>
 
     <footer class="bg-gray-800 text-white py-6 text-center">
-        © <script>document.write(new Date().getFullYear())</script> TailorWind
+        ©
+        <script>document.write(new Date().getFullYear())</script> TailorWind
     </footer>
 
     <script type="module" src="/src/scripts/tools-and-generator.js"></script>
 </body>
+
 </html>

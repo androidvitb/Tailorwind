@@ -44,7 +44,8 @@
     <nav id="menu"
       class="absolute left-0 flex flex-col hidden w-full space-x-4 space-y-4 bg-white shadow md:flex md:flex-row md:space-y-0 md:static top-16 md:w-auto md:shadow-none md:bg-transparent md:p-0 .sticky .top-0">
       <!-- Navigation Links with Visible Hover Effects -->
-      <a href="/index.html" class="relative text-black px-6 py-2 font-medium transition-all duration-300 ease-in-out group">
+      <a href="/index.html"
+        class="relative text-black px-6 py-2 font-medium transition-all duration-300 ease-in-out group">
         <span
           class="absolute inset-0 bg-[#049b9f] rounded-full scale-95 opacity-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 ease-in-out"></span>
         <span class="relative z-10 group-hover:text-white transition-colors duration-300">Home</span>
@@ -55,7 +56,8 @@
           class="absolute inset-0 bg-[#049b9f] rounded-full scale-95 opacity-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 ease-in-out"></span>
         <span class="relative z-10 group-hover:text-white transition-colors duration-300">Tools & Generator</span>
       </a>
-      <a href="/index.html#faq" class="relative text-black px-6 py-2 font-medium transition-all duration-300 ease-in-out group">
+      <a href="/index.html#faq"
+        class="relative text-black px-6 py-2 font-medium transition-all duration-300 ease-in-out group">
         <span
           class="absolute inset-0 bg-[#049b9f] rounded-full scale-95 opacity-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 ease-in-out"></span>
         <span class="relative z-10 group-hover:text-white transition-colors duration-300">FAQ</span>
@@ -131,7 +133,8 @@
 
         <!-- Grid Layout Generator -->
         <div class="flex flex-col items-center overflow-hidden bg-white rounded-lg shadow-lg">
-          <img src="/src/assets/grid_layout_gen_image.png" alt="Grid Layout Generator" class="object-cover w-full h-40" />
+          <img src="/src/assets/grid_layout_gen_image.png" alt="Grid Layout Generator"
+            class="object-cover w-full h-40" />
           <div class="p-6 text-center">
             <h4 class="mb-2 text-xl font-bold text-gray-800">
               Grid Layout Generator
@@ -209,7 +212,7 @@
             </p>
             <button
               class="bg-[#049b9f] text-white px-4 py-2 rounded-lg shadow-md transform transition duration-300 ease-in-out hover:bg-[#037a7b] hover:scale-105 hover:shadow-lg hover:text-[#e0f7f8] focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-[#049b9f] active:scale-95 active:bg-[#026a6c] relative overflow-hidden group text-sm"
-              onclick="window.location.href='/src/pages/navbar.html'">
+              onclick="window.location.href='/src/pages/navbar-generator.html'">
               <span
                 class="absolute inset-0 bg-gradient-to-r from-[#04c4d0] via-[#049b9f] to-[#037a7b] opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out"></span>
               <span class="relative z-10">Get Started</span>
@@ -219,8 +222,7 @@
 
         <!-- Color Palette Generator -->
         <div class="flex flex-col items-center overflow-hidden bg-white rounded-lg shadow-lg">
-          <img src="/src/assets/color-plate.png" alt="Color Palette Generator"
-            class="object-cover w-full h-40" />
+          <img src="/src/assets/color-plate.png" alt="Color Palette Generator" class="object-cover w-full h-40" />
           <div class="p-6 text-center">
             <h4 class="mb-2 text-xl font-bold text-gray-800">
               Color Palette Generator
@@ -229,14 +231,12 @@
               Generate beautiful color combinations for your UI.
               Create palettes, copy HEX values, and reuse them across components.
             </p>
-            <button
-              class="bg-[#049b9f] text-white px-4 py-2 rounded-lg shadow-md transform transition duration-300 ease-in-out
+            <button class="bg-[#049b9f] text-white px-4 py-2 rounded-lg shadow-md transform transition duration-300 ease-in-out
                     hover:bg-[#037a7b] hover:scale-105 hover:shadow-lg hover:text-[#e0f7f8]
                     focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-[#049b9f]
                     active:scale-95 active:bg-[#026a6c] relative overflow-hidden group text-sm"
               onclick="window.location.href='/src/pages/color-palette.html'">
-              <span
-                class="absolute inset-0 bg-gradient-to-r from-[#04c4d0] via-[#049b9f] to-[#037a7b]
+              <span class="absolute inset-0 bg-gradient-to-r from-[#04c4d0] via-[#049b9f] to-[#037a7b]
                       opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out">
               </span>
               <span class="relative z-10">Get Started</span>
@@ -319,34 +319,28 @@
       </div>
       <div class="max-w-4xl mx-auto">
         <form id="contactForm" class="p-8 space-y-6 bg-white rounded-lg shadow">
-          
+
           <div>
             <label for="name" class="block font-medium text-gray-700">Name</label>
-            <input type="text" id="name" required
-              class="w-full mt-2 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#049b9f]
-                    transition-all duration-300 hover:shadow-md hover:border-[#049b9f]"
-              placeholder="Your name" />
+            <input type="text" id="name" required class="w-full mt-2 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#049b9f]
+                    transition-all duration-300 hover:shadow-md hover:border-[#049b9f]" placeholder="Your name" />
           </div>
 
           <div>
             <label for="email" class="block font-medium text-gray-700">Email</label>
-            <input type="email" id="email" required
-              class="w-full mt-2 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#049b9f]
-                    transition-all duration-300 hover:shadow-md hover:border-[#049b9f]"
-              placeholder="Your email" />
+            <input type="email" id="email" required class="w-full mt-2 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#049b9f]
+                    transition-all duration-300 hover:shadow-md hover:border-[#049b9f]" placeholder="Your email" />
           </div>
 
           <div>
             <label for="message" class="block font-medium text-gray-700">Message</label>
-            <textarea id="message" rows="5" required
-              class="w-full mt-2 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#049b9f]
+            <textarea id="message" rows="5" required class="w-full mt-2 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#049b9f]
                     transition-all duration-300 hover:shadow-md hover:border-[#049b9f]"
               placeholder="Your message"></textarea>
           </div>
 
           <div class="mt-4">
-            <button type="submit"
-              class="w-full bg-[#049b9f] text-white font-medium py-3 rounded-lg
+            <button type="submit" class="w-full bg-[#049b9f] text-white font-medium py-3 rounded-lg
                     transition-all duration-300 hover:bg-[#037b7f] hover:shadow-lg hover:scale-105 focus:outline-none">
               Send Message
             </button>
