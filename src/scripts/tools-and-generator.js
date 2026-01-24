@@ -81,65 +81,24 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
+// Scroll Effect
+document.addEventListener("DOMContentLoaded", () => {
+    const scrollButton = document.getElementById("scrollButton");
 
-  const TOOL_KEY = "color-palette-rating";
-
-  let ratingData = JSON.parse(localStorage.getItem(TOOL_KEY)) || {
-    totalScore: 0,
-    totalRatings: 0
-  };
-
-  const stars = document.querySelectorAll(".star");
-  const avgEl = document.getElementById("avgRating");
-  const countEl = document.getElementById("ratingCount");
-
-  let selectedRating = 0;
-
-  function updateStats() {
-    const avg = ratingData.totalRatings
-      ? (ratingData.totalScore / ratingData.totalRatings).toFixed(1)
-      : "0.0";
-
-    avgEl.textContent = avg;
-    countEl.textContent = ratingData.totalRatings;
-  }
-
-  function fillStars(value) {
-    stars.forEach(star => {
-      const starValue = Number(star.dataset.value);
-      if (starValue <= value) {
-        star.classList.remove("fa-regular");
-        star.classList.add("fa-solid", "text-yellow-400");
+    // Show button when scrolled down
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 200) {
+        scrollButton.style.display = "block"; // Show button
       } else {
-        star.classList.remove("fa-solid", "text-yellow-400");
-        star.classList.add("fa-regular");
+        scrollButton.style.display = "none"; // Hide button
       }
     });
-  }
 
-  stars.forEach(star => {
-    // Hover effect
-    star.addEventListener("mouseenter", () => {
-      fillStars(star.dataset.value);
-    });
-
-    // Reset on mouse leave
-    star.addEventListener("mouseleave", () => {
-      fillStars(selectedRating);
-    });
-
-    // Click to rate
-    star.addEventListener("click", () => {
-      selectedRating = Number(star.dataset.value);
-
-      ratingData.totalScore += selectedRating;
-      ratingData.totalRatings += 1;
-
-      localStorage.setItem(TOOL_KEY, JSON.stringify(ratingData));
-
-      fillStars(selectedRating);
-      updateStats();
+    // Scroll to the top when the button is clicked
+    scrollButton.addEventListener("click", () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth", // Smooth scroll effect
+      });
     });
   });
-
-  updateStats();
