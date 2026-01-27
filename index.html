@@ -18,63 +18,7 @@
   </button>
 
   <!-- Navbar -->
-  <header class="flex items-center justify-between p-4 px-6 bg-white shadow md:px-10 fixed top-0 w-full z-50">
-    <!-- Logo and Branding -->
-    <div class="flex items-center space-x-2">
-      <div class="w-10 h-10 rounded">
-        <img src="/Logo.png" alt="Tailwind Generator Logo" />
-      </div>
-      <span class="text-lg font-bold text-gray-800 md:text-xl">TailorWind</span>
-
-      <!-- Add Dark Mode Toggle Button -->
-      <button id="darkModeToggle" class="ml-4 relative w-8 h-8 flex items-center justify-center">
-        <i class="fas fa-sun text-xl text-[#ffbc00] absolute" id="lightIcon"></i>
-        <i class="fas fa-moon text-xl text-[#ffbc00] absolute hidden" id="darkIcon"></i>
-      </button>
-    </div>
-
-    <!-- Hamburger Button -->
-    <button id="menu-toggle" class="block text-gray-800 md:hidden focus:outline-none">
-      <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-      </svg>
-    </button>
-
-    <!-- Navigation Menu -->
-    <nav id="menu"
-      class="absolute left-0 flex flex-col hidden w-full space-x-4 space-y-4 bg-white shadow md:flex md:flex-row md:space-y-0 md:static top-16 md:w-auto md:shadow-none md:bg-transparent md:p-0 .sticky .top-0">
-      <!-- Navigation Links with Visible Hover Effects -->
-      <a href="/index.html"
-        class="relative text-black px-6 py-2 font-medium transition-all duration-300 ease-in-out group">
-        <span
-          class="absolute inset-0 bg-[#049b9f] rounded-full scale-95 opacity-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 ease-in-out"></span>
-        <span class="relative z-10 group-hover:text-white transition-colors duration-300">Home</span>
-      </a>
-      <a href="/src/pages/tools-and-generator.html"
-        class="relative text-black px-6 py-2 font-medium transition-all duration-300 ease-in-out group">
-        <span
-          class="absolute inset-0 bg-[#049b9f] rounded-full scale-95 opacity-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 ease-in-out"></span>
-        <span class="relative z-10 group-hover:text-white transition-colors duration-300">Tools & Generator</span>
-      </a>
-      <a href="/index.html#faq"
-        class="relative text-black px-6 py-2 font-medium transition-all duration-300 ease-in-out group">
-        <span
-          class="absolute inset-0 bg-[#049b9f] rounded-full scale-95 opacity-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 ease-in-out"></span>
-        <span class="relative z-10 group-hover:text-white transition-colors duration-300">FAQ</span>
-      </a>
-      <a href="/index.html#contact"
-        class="relative text-black px-6 py-2 font-medium transition-all duration-300 ease-in-out group">
-        <span
-          class="absolute inset-0 bg-[#049b9f] rounded-full scale-95 opacity-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 ease-in-out"></span>
-        <span class="relative z-10 group-hover:text-white transition-colors duration-300">Contact</span>
-      </a>
-      <a class="bg-[#049b9f] text-white px-6 py-2 rounded-lg mx-6 md:mx-0 shadow-md transition-all duration-300 ease-in-out hover:bg-[#037f7d] hover:shadow-lg hover:scale-105"
-        href="/src/pages/get-started.html">
-        Get started
-      </a>
-
-    </nav>
-  </header>
+  <%- include("src/partials/navbar.ejs") %>
 
 
   <main class="main pt-[10vh]">
@@ -351,25 +295,10 @@
     </section>
   </main>
 
-  <footer class="py-6 text-white bg-gray-800">
-    <div class="container mx-auto text-center">
-      <p class="mb-4 text-sm">©
-        <script>document.write(new Date().getFullYear());</script> TailorWind. All rights reserved.
-      </p>
-      <a href="https://github.com/androidvitb/Tailorwind" target="_blank" class="text-[#049b9f] hover:underline">
-        Visit us on GitHub
-      </a>
-    </div>
-  </footer>
-  <script>
-    // Toggle the menu on mobile
-    const menuToggle = document.getElementById('menu-toggle');
-    const menu = document.getElementById('menu');
+  <!-- Footer -->
+  <%- include("src/partials/footer.ejs") %>
 
-    menuToggle.addEventListener('click', () => {
-      menu.classList.toggle('hidden');
-    });
-  </script>
+  
   <script>
 
     document.addEventListener("DOMContentLoaded", () => {
@@ -393,55 +322,9 @@
       });
     });
   </script>
-  <script>
-    // Existing menu toggle script
-    // ...existing code...
-
-    // Dark mode implementation
-    document.addEventListener('DOMContentLoaded', () => {
-      const darkModeToggle = document.getElementById('darkModeToggle');
-      const lightIcon = document.getElementById('lightIcon');
-      const darkIcon = document.getElementById('darkIcon');
-
-      // Add transition class to html element
-      document.documentElement.classList.add('transition-colors', 'duration-500');
-
-      // Check for saved dark mode preference
-      if (localStorage.getItem('darkMode') === 'enabled') {
-        document.documentElement.classList.add('dark');
-        lightIcon.classList.add('hidden');
-        darkIcon.classList.remove('hidden');
-      }
-
-      darkModeToggle.addEventListener('click', () => {
-        // Animate icons
-        lightIcon.style.transform = 'rotate(180deg) scale(0.5)';
-        darkIcon.style.transform = 'rotate(180deg) scale(0.5)';
-
-        setTimeout(() => {
-          // Toggle dark mode
-          document.documentElement.classList.toggle('dark');
-
-          // Toggle icons
-          lightIcon.classList.toggle('hidden');
-          darkIcon.classList.toggle('hidden');
-
-          // Reset transforms
-          lightIcon.style.transform = 'rotate(0) scale(1)';
-          darkIcon.style.transform = 'rotate(0) scale(1)';
-
-          // Save preference
-          if (document.documentElement.classList.contains('dark')) {
-            localStorage.setItem('darkMode', 'enabled');
-          } else {
-            localStorage.setItem('darkMode', 'disabled');
-          }
-        }, 150);
-      });
-    });
-
-    // Existing scroll button script
-  </script>
+  
+  <!-- Script for Menu Toggle and Dark Mode -->
+  <script type="module" src="/src/scripts/navbar.js"></script>
   <script type="module" src="/src/scripts/contact.js"></script>
 
 </body>

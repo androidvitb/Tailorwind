@@ -2,7 +2,7 @@
 module.exports = {
   content: [
     "./index.html",            // Scan root index
-    "./src/**/*.{html,js}"     // Scan everything inside src
+    "./src/**/*.{html,js,ejs}"     // Scan everything inside src
   ],
   theme: {
     extend: {},

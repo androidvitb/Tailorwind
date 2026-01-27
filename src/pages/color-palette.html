@@ -8,19 +8,17 @@
   <link rel="icon" type="image/png" href="/Logo.png">
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/src/styles/main.css">
 </head>
 
 <body class="bg-gray-100 text-gray-800 min-h-screen">
 
-  <!-- Header -->
-  <header class="bg-white shadow px-6 py-4 flex items-center gap-3">
-    <img src="/Logo.png" class="w-10 h-10" />
-    <span class="font-bold text-xl text-[#049b9f]">TailorWind</span>
-  </header>
+  <!-- Navbar -->
+  <%- include("src/partials/navbar.ejs") %>
 
-  <main class="max-w-6xl mx-auto p-6">
+  <main class="max-w-6xl mx-auto mt-16 p-6">
 
     <h1 class="text-3xl font-bold text-center mb-2">🎨 Color Palette Generator</h1>
     <p class="text-center text-gray-600 mb-8">
@@ -91,6 +89,12 @@
       </div>
 
   </main>
+
+  <!-- Footer -->
+  <%- include("src/partials/footer.ejs") %>
+
+  <!-- Dark Mode and Menu Toggle -->
+  <script type="module" src="/src/scripts/navbar.js"></script>
 
   <!-- Script -->
   <script>

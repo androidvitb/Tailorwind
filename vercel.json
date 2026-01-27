@@ -36,6 +36,10 @@
       "dest": "/src/pages/navbar-generator.html"
     },
     {
+      "src": "^/color-palette/?$",
+      "dest": "/src/pages/color-palette.html"
+    },
+    {
       "src": "^/get-started/?$",
       "dest": "/src/pages/get-started.html"
     },

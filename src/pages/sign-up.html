@@ -4,28 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-
     <title>Sign Up - TailorWind</title>
     <link rel="icon" type="image/png" href="/Logo.png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/src/styles/main.css">
     <link rel="stylesheet" href="/src/styles/sign-up.css">
 </head>
 
 <body>
 
-    <!-- Dark Mode Toggle -->
-    <button id="darkModeToggle"
-        style="position: fixed; top: 20px; right: 20px; z-index: 50;"
-        class="w-10 h-10 rounded-full flex items-center justify-center bg-white shadow">
-        <i class="fas fa-sun text-[#ffbc00]" id="lightIcon"></i>
-        <i class="fas fa-moon text-[#ffbc00] hidden" id="darkIcon"></i>
-    </button>
+    <!-- Navbar -->
+    <%- include("src/partials/navbar.ejs") %>
 
-    <div class="container">
+    <div class="container mt-32">
         <div class="left-section">
             <img src="/src/assets/sign-up-bg.jpeg" class="background-img" />
         </div>
@@ -72,31 +63,8 @@
         </div>
     </div>
 
-    <!-- Dark Mode Script -->
-    <script>
-        const toggle = document.getElementById("darkModeToggle");
-        const lightIcon = document.getElementById("lightIcon");
-        const darkIcon = document.getElementById("darkIcon");
-
-        if (localStorage.getItem("darkMode") === "enabled") {
-            document.body.classList.add("dark");
-            lightIcon.classList.add("hidden");
-            darkIcon.classList.remove("hidden");
-        }
-
-        toggle.addEventListener("click", () => {
-            document.body.classList.toggle("dark");
-            lightIcon.classList.toggle("hidden");
-            darkIcon.classList.toggle("hidden");
-
-            localStorage.setItem(
-                "darkMode",
-                document.body.classList.contains("dark")
-                    ? "enabled"
-                    : "disabled"
-            );
-        });
-    </script>
+    <!-- Dark Mode and Navbar Script -->
+    <script type="module" src="/src/scripts/navbar.js"></script>
 
     <!-- Firebase Sign-Up Logic -->
     <script type="module" src="/src/scripts/signup.js"></script>

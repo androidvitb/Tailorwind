@@ -13,32 +13,9 @@
 <body class="bg-gray-100 min-h-screen flex flex-col">
 
     <!-- Navbar -->
-    <header class="bg-white shadow p-4 flex justify-between items-center px-10">
-        <div class="flex items-center space-x-2">
-            <div class="w-10 h-10 rounded">
-                <img src="/Logo.png" alt="Tailwind Generator Logo" />
-            </div>
-            <span class="font-bold text-xl text-gray-800">TailorWind</span>
+    <%- include("src/partials/navbar.ejs") %>
 
-            <button id="darkModeToggle" class="ml-4 relative w-8 h-8 flex items-center justify-center">
-                <i class="fas fa-sun text-xl text-[#ffbc00] absolute" id="lightIcon"></i>
-                <i class="fas fa-moon text-xl text-[#ffbc00] absolute hidden" id="darkIcon"></i>
-            </button>
-        </div>
-
-        <nav class="space-x-4">
-            <a href="/index.html" class="text-black hover:text-[#049b9f]">Home</a>
-            <a href="/src/pages/tools-and-generator.html" class="text-black hover:text-[#049b9f]">Tools & Generator</a>
-            <a href="/index.html#faq" class="text-black hover:text-[#049b9f]">FAQ</a>
-            <a href="/index.html#contact" class="text-black hover:text-[#049b9f]">Contact</a>
-        </nav>
-
-        <button class="bg-[#049b9f] text-white px-4 py-2 rounded">
-            Get started
-        </button>
-    </header>
-
-    <div class="p-4 max-w-4xl mx-auto">
+    <div class="container mx-auto px-6 py-24 max-w-4xl">
         <h1 class="text-2xl font-bold text-center mb-5 mt-5">
             Table Generator
         </h1>
@@ -146,6 +123,10 @@
       </div>
     </div>
 
+    <!-- Footer -->
+    <%- include("src/partials/footer.ejs") %>
+
+    <script type="module" src="/src/scripts/navbar.js"></script>
     <script type="module" src="/src/scripts/table-generator.js"></script>
 
     <script>

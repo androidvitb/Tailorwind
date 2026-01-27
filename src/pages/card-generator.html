@@ -12,32 +12,11 @@
 </head>
 
 <body class="bg-gray-100 min-h-screen flex flex-col">
-  <header class="bg-white shadow p-4 flex justify-between items-center px-10">
-    <div class="flex items-center space-x-2">
-      <div class="w-10 h-10 rounded">
-        <img src="/Logo.png" alt="Tailwind Generator Logo" />
-      </div>
-      <span class="font-bold text-xl text-gray-800">TailorWind</span>
+  
+  <!-- Navbar -->
+  <%- include("src/partials/navbar.ejs") %>
 
-      <button id="darkModeToggle" class="ml-4 relative w-8 h-8 flex items-center justify-center">
-        <i class="fas fa-sun text-xl text-[#ffbc00] absolute" id="lightIcon"></i>
-        <i class="fas fa-moon text-xl text-[#ffbc00] absolute hidden" id="darkIcon"></i>
-      </button>
-    </div>
-    <nav class="space-x-4">
-      <a href="/index.html" class="text-black hover:text-[#049b9f]">Home</a>
-      
-      <a href="/src/pages/tools-and-generator.html" class="text-black hover:text-[#049b9f]">Tools & Generator</a>
-      
-      <a href="/index.html#faq" class="text-black hover:text-[#049b9f]">FAQ</a>
-      <a href="/index.html#contact" class="text-black hover:text-[#049b9f]">Contact</a>
-    </nav>
-    <button class="bg-[#049b9f] text-white px-4 py-2 rounded">
-      Get started
-    </button>
-  </header>
-
-  <div class="flex flex-1">
+  <div class="flex flex-1 mt-16">
     <aside class="w-64 bg-white p-6 border-r">
       <h2 class="text-lg font-semibold mb-4">Layout</h2>
       <label class="block mb-2">Width:
@@ -112,7 +91,7 @@
     </aside>
   </div>
 
-  <div>
+  <div class="mt-16">
         <section class="mt-14 text-center bg-white p-6 rounded-lg shadow">
           <h3 class="text-lg font-semibold mb-2">Rate this Tool</h3>
 
@@ -130,80 +109,14 @@
           </p>
         </section>
   </div>
+
+  <!-- Footer -->
+  <%- include("src/partials/footer.ejs") %>
+
+  <!-- Dark Mode and Menu Toggle -->
+  <script type="module" src="/src/scripts/navbar.js"></script>
   
   <script type="module" src="/src/scripts/card-generator.js"></script>
   
-  <script>
-    // Dark mode implementation
-    document.addEventListener('DOMContentLoaded', () => {
-      const darkModeToggle = document.getElementById('darkModeToggle');
-      const lightIcon = document.getElementById('lightIcon');
-      const darkIcon = document.getElementById('darkIcon');
-
-      // Check for saved dark mode preference without animation
-      if (localStorage.getItem('darkMode') === 'enabled') {
-        document.documentElement.classList.add('dark');
-        lightIcon.classList.add('hidden');
-        darkIcon.classList.remove('hidden');
-        darkIcon.style.transform = 'rotate(0) scale(1)';
-        lightIcon.style.transform = 'rotate(0) scale(1)';
-      }
-
-      // Add transition classes after initial load
-      setTimeout(() => {
-        document.documentElement.classList.add('transition-colors', 'duration-500');
-        lightIcon.style.transition = 'all 0.3s ease-in-out';
-        darkIcon.style.transition = 'all 0.3s ease-in-out';
-      }, 100);
-
-      darkModeToggle.addEventListener('click', () => {
-        // Only animate on click
-        lightIcon.style.transform = 'rotate(180deg) scale(0.5)';
-        darkIcon.style.transform = 'rotate(180deg) scale(0.5)';
-
-        setTimeout(() => {
-          document.documentElement.classList.toggle('dark');
-          lightIcon.classList.toggle('hidden');
-          darkIcon.classList.toggle('hidden');
-
-          lightIcon.style.transform = 'rotate(0) scale(1)';
-          darkIcon.style.transform = 'rotate(0) scale(1)';
-
-          localStorage.setItem('darkMode',
-            document.documentElement.classList.contains('dark') ? 'enabled' : 'disabled'
-          );
-        }, 150);
-      });
-    });
-
-    const saveCardBtn = document.getElementById("saveCard");
-
-    saveCardBtn.addEventListener("click", () => {
-      const cardElement = document.getElementById("card");
-
-      if (!cardElement) {
-        alert("No card to save!");
-        return;
-      }
-
-      const cardHTML = cardElement.outerHTML;
-
-      const savedComponents =
-        JSON.parse(localStorage.getItem("tailorwind-components")) || [];
-
-      savedComponents.push({
-        id: Date.now(),
-        type: "card",
-        code: cardHTML
-      });
-
-      localStorage.setItem(
-        "tailorwind-components",
-        JSON.stringify(savedComponents)
-      );
-
-      alert("Card component saved successfully!");
-    });
-  </script>
 </body>
 </html>
