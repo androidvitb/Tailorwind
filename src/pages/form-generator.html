@@ -14,32 +14,9 @@
 <body class="bg-gray-100 min-h-screen">
 
     <!-- Navbar -->
-    <header class="bg-white shadow p-4 flex justify-between items-center px-10">
-        <div class="flex items-center space-x-2">
-            <div class="w-10 h-10 rounded">
-                <img src="/Logo.png" alt="Tailwind Generator Logo" />
-            </div>
-            <span class="font-bold text-xl text-gray-800">TailorWind</span>
+    <%- include("src/partials/navbar.ejs") %>
 
-            <button id="darkModeToggle" class="ml-4 relative w-8 h-8 flex items-center justify-center">
-                <i class="fas fa-sun text-xl text-[#ffbc00] absolute" id="lightIcon"></i>
-                <i class="fas fa-moon text-xl text-[#ffbc00] absolute hidden" id="darkIcon"></i>
-            </button>
-        </div>
-
-        <nav class="space-x-4">
-            <a href="/index.html" class="text-black hover:text-[#049b9f]">Home</a>
-            <a href="/src/pages/tools-and-generator.html" class="text-black hover:text-[#049b9f]">Tools & Generator</a>
-            <a href="/index.html#faq" class="text-black hover:text-[#049b9f]">FAQ</a>
-            <a href="/index.html#contact" class="text-black hover:text-[#049b9f]">Contact</a>
-        </nav>
-
-        <button class="bg-[#049b9f] text-white px-4 py-2 rounded">
-            Get started
-        </button>
-    </header>
-
-    <div class="max-w-5xl mx-auto bg-white p-6 mt-5 rounded shadow">
+    <div class="max-w-5xl mx-auto bg-white p-6 mt-24 rounded shadow">
         <h1 class="text-2xl font-bold mb-4">Advanced Form Generator</h1>
 
         <!-- Customization Options -->
@@ -160,6 +137,11 @@
       </div>
     </div>
 
+    <!-- Footer -->
+    <%- include("src/partials/footer.ejs") %>
+
+    <!-- Dark Mode and Menu Toggle -->
+    <script type="module" src="/src/scripts/navbar.js"></script>
     <script type="module" src="/src/scripts/form-generator.js"></script>
 
     <script>
@@ -223,34 +205,6 @@
                 };
 
                 list.appendChild(div);
-            });
-        });
-    </script>
-
-    <!-- Dark Mode Script -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const toggle = document.getElementById('darkModeToggle');
-            const light = document.getElementById('lightIcon');
-            const dark = document.getElementById('darkIcon');
-
-            if (localStorage.getItem('darkMode') === 'enabled') {
-                document.documentElement.classList.add('dark');
-                light.classList.add('hidden');
-                dark.classList.remove('hidden');
-            }
-
-            toggle.addEventListener('click', () => {
-                document.documentElement.classList.toggle('dark');
-                light.classList.toggle('hidden');
-                dark.classList.toggle('hidden');
-
-                localStorage.setItem(
-                    'darkMode',
-                    document.documentElement.classList.contains('dark')
-                        ? 'enabled'
-                        : 'disabled'
-                );
             });
         });
     </script>

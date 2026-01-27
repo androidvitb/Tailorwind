@@ -20,23 +20,11 @@
 
 <body>
 
-    <!-- Header -->
-    <header class="flex items-center justify-between p-4 px-6 bg-white shadow md:px-10">
-        <div class="flex items-center space-x-2">
-            <div class="w-10 h-10 rounded">
-                <img src="/Logo.png" alt="Logo" />
-            </div>
-            <span class="text-lg font-bold">TailorWind</span>
-
-            <button id="darkModeToggle" class="ml-4 relative w-8 h-8">
-                <i class="fas fa-sun absolute text-[#ffbc00]" id="lightIcon"></i>
-                <i class="fas fa-moon absolute text-[#ffbc00] hidden" id="darkIcon"></i>
-            </button>
-        </div>
-    </header>
+    <!-- Navbar -->
+    <%- include("src/partials/navbar.ejs") %>
 
     <!-- Generator -->
-    <div id="generator" class="max-w-xl mx-auto bg-white p-6 mt-6 rounded shadow">
+    <div id="generator" class="max-w-xl mx-auto bg-white p-6 mt-28 rounded shadow">
         <h1 class="text-xl font-bold text-center mb-4">Beautiful Navbar Generator</h1>
 
         <label>Navbar Title</label>
@@ -93,9 +81,12 @@
             <span id="ratingCount">0</span> ratings
           </p>
         </section>
-      </div>
+    </div>
 
+    <!-- Footer -->
+    <%- include("src/partials/footer.ejs") %>
 
+    <script type="module" src="/src/scripts/navbar.js"></script>
     <script src="/src/scripts/navbar-generator.js"></script>
     <script>
         let latestNavbarCode = "";
