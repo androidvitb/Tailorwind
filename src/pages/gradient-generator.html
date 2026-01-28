@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gradient Generator - TailorWind</title>
+
+  <link rel="icon" type="image/png" href="/Logo.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/src/styles/main.css">
+  <link rel="stylesheet" href="/src/styles/gradient-generator.css">
+</head>
+
+<body class="bg-gray-100 text-gray-800 min-h-screen">
+
+  <!-- Navbar -->
+  <%- include("src/partials/navbar.ejs") %>
+
+  <main class="max-w-6xl mx-auto mt-16 p-6">
+
+    <h1 class="text-3xl font-bold text-center mb-2">🌈 Gradient Generator</h1>
+    <p class="text-center text-gray-600 mb-8">
+      Create beautiful Tailwind CSS gradients visually and copy ready-to-use classes.
+    </p>
+
+    <!-- Controls -->
+    <div class="bg-white rounded-lg shadow p-6 flex flex-col md:flex-row gap-6 justify-center mb-10">
+
+      <div>
+        <label class="block text-sm font-medium mb-1">Direction</label>
+        <select id="direction" class="border rounded px-3 py-2">
+          <option value="to-r">Left → Right</option>
+          <option value="to-l">Right → Left</option>
+          <option value="to-b">Top → Bottom</option>
+          <option value="to-t">Bottom → Top</option>
+          <option value="to-tr">Bottom Left → Top Right</option>
+          <option value="to-br">Top Left → Bottom Right</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium mb-1">From</label>
+        <input type="color" id="fromColor" value="#6366f1" class="w-16 h-10 border rounded cursor-pointer">
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium mb-1">Via</label>
+        <input type="color" id="viaColor" value="#8b5cf6" class="w-16 h-10 border rounded cursor-pointer">
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium mb-1">To</label>
+        <input type="color" id="toColor" value="#ec4899" class="w-16 h-10 border rounded cursor-pointer">
+      </div>
+
+    </div>
+
+    <!-- Preview -->
+    <div id="gradientPreview" class="gradient-preview rounded-lg shadow mb-6"></div>
+
+    <!-- Output -->
+    <div class="bg-white p-4 rounded-lg shadow flex flex-col md:flex-row items-center justify-between gap-4">
+      <code id="gradientOutput" class="text-sm bg-gray-100 px-4 py-2 rounded w-full md:w-auto"></code>
+      <button id="copyGradient"
+        class="px-6 py-2 bg-gray-800 text-white rounded hover:bg-black">
+        Copy Classes
+      </button>
+    </div>
+
+    <!-- Rating -->
+    <section class="mt-14 text-center bg-white p-6 rounded-lg shadow">
+      <h3 class="text-lg font-semibold mb-2">Rate this Tool</h3>
+
+      <div id="stars" class="flex justify-center gap-2 text-3xl cursor-pointer">
+        <i class="fa-regular fa-star star" data-value="1"></i>
+        <i class="fa-regular fa-star star" data-value="2"></i>
+        <i class="fa-regular fa-star star" data-value="3"></i>
+        <i class="fa-regular fa-star star" data-value="4"></i>
+        <i class="fa-regular fa-star star" data-value="5"></i>
+      </div>
+
+      <p class="mt-2 text-sm text-gray-600">
+        ⭐ <span id="avgRating">0.0</span> / 5 ·
+        <span id="ratingCount">0</span> ratings
+      </p>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <%- include("src/partials/footer.ejs") %>
+
+  <script type="module" src="/src/scripts/navbar.js"></script>
+  <script src="/src/scripts/gradient-generator.js"></script>
+
+</body>
+</html>
