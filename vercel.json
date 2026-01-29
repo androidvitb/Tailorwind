@@ -20,6 +20,14 @@
       "dest": "/src/pages/card-generator.html"
     },
     {
+      "src": "^/toast-generator/?$",
+      "dest": "/src/pages/toast-generator.html"
+    },
+    {
+      "src": "^/gradient-generator/?$",
+      "dest": "/src/pages/gradient-generator.html"
+    },
+    {
       "src": "^/grid-layout-generator/?$",
       "dest": "/src/pages/grid-layout-generator.html"
     },

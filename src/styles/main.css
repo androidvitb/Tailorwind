@@ -138,15 +138,29 @@ form textarea,
     background-color: #333333;
 }
 
-.dark form input,
-.dark form textarea {
+/* .dark form input,
+.dark form textarea,
+.dark input::placeholder,
+.dark textarea::placeholder{
+    background-color: #404040;
+    border-color: #555555;
+    color: #ffffff;
+} */
+
+/* Updated Dark Mode Input Rules */
+.dark input[type="text"],
+.dark input[type="number"],
+.dark input[type="email"],
+.dark input[type="password"],
+.dark textarea,
+.dark select {
     background-color: #404040;
     border-color: #555555;
     color: #ffffff;
 }
 
-.dark form input::placeholder,
-.dark form textarea::placeholder {
+.dark input::placeholder,
+.dark textarea::placeholder {
     color: #a0a0a0;
 }
 
