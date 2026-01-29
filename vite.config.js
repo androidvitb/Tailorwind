@@ -15,6 +15,7 @@ export default defineConfig({
         tools: resolve(__dirname, 'src/pages/tools-and-generator.html'),
         button: resolve(__dirname, 'src/pages/button-generator.html'),
         card: resolve(__dirname, 'src/pages/card-generator.html'),
+        toast: resolve(__dirname, 'src/pages/toast-generator.html'),
         grid: resolve(__dirname, 'src/pages/grid-layout-generator.html'),
         table: resolve(__dirname, 'src/pages/table-generator.html'),
         form: resolve(__dirname, 'src/pages/form-generator.html'),

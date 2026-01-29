@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Toast Generator - TailorWind</title>
+  <link rel="icon" type="image/png" href="/Logo.png">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/src/styles/main.css">
+  
+  <style>
+    /* Pattern background for preview area */
+    .preview-pattern {
+        background-color: #e5e7eb;
+        background-image: radial-gradient(#757575 1px, transparent 1px);
+        background-size: 20px 20px;
+    }
+    .dark .preview-pattern {
+        background-color: #1f2937;
+        background-image: radial-gradient(#374151 1px, transparent 1px);
+    }
+  </style>
+</head>
+
+<body class="bg-gray-100 min-h-screen flex flex-col transition-colors duration-500">
+  
+  <%- include("src/partials/navbar.ejs") %>
+
+  <div class="flex flex-1 mt-16 flex-col md:flex-row">
+    
+    <aside class="w-full md:w-72 bg-white p-6 border-r z-10 overflow-y-auto h-auto md:h-[calc(100vh-4rem)]">
+      <h2 class="text-lg font-semibold mb-4 text-gray-800">Toast Settings</h2>
+      
+      <label class="block mb-4">
+        <span class="text-sm font-medium text-gray-700">Type / Variant</span>
+        <select id="toastType" class="w-full mt-1 border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-[#049b9f] outline-none">
+          <option value="success">Success (Green)</option>
+          <option value="error">Error (Red)</option>
+          <option value="warning">Warning (Yellow)</option>
+          <option value="info">Info (Blue)</option>
+          <option value="neutral">Neutral (Gray)</option>
+        </select>
+      </label>
+
+      <label class="block mb-4">
+        <span class="text-sm font-medium text-gray-700">Position</span>
+        <select id="toastPosition" class="w-full mt-1 border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-[#049b9f] outline-none">
+          <option value="top-left">Top Left</option>
+          <option value="top-center">Top Center</option>
+          <option value="top-right" selected>Top Right</option>
+          <option value="bottom-left">Bottom Left</option>
+          <option value="bottom-center">Bottom Center</option>
+          <option value="bottom-right">Bottom Right</option>
+        </select>
+      </label>
+
+      <label class="block mb-4">
+        <span class="text-sm font-medium text-gray-700">Animation</span>
+        <select id="toastAnimation" class="w-full mt-1 border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-[#049b9f] outline-none">
+          <option value="animate-bounce">Bounce</option>
+          <option value="animate-pulse">Pulse</option>
+          <option value="animate-none" selected>None</option>
+        </select>
+      </label>
+
+      <h2 class="text-lg font-semibold mt-6 mb-4 text-gray-800">Components</h2>
+      <div class="space-y-3">
+        <label class="flex items-center space-x-2 cursor-pointer">
+            <input type="checkbox" id="showIcon" checked class="text-[#049b9f] focus:ring-[#049b9f]" /> 
+            <span class="text-gray-700">Show Icon</span>
+        </label>
+        <label class="flex items-center space-x-2 cursor-pointer">
+            <input type="checkbox" id="showCloseBtn" checked class="text-[#049b9f] focus:ring-[#049b9f]" /> 
+            <span class="text-gray-700">Close Button</span>
+        </label>
+        <label class="flex items-center space-x-2 cursor-pointer">
+            <input type="checkbox" id="showProgressBar" class="text-[#049b9f] focus:ring-[#049b9f]" /> 
+            <span class="text-gray-700">Progress Bar</span>
+        </label>
+      </div>
+
+      <div class="mt-8 space-y-3">
+        <button id="exportCode" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded w-full transition-colors">
+            <i class="fas fa-code mr-2"></i> Export Code
+        </button>
+        <button id="saveToast" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded w-full transition-colors">
+            <i class="fas fa-save mr-2"></i> Save Toast
+        </button>
+      </div>
+    </aside>
+
+    <main class="flex-1 p-4 md:p-10 relative flex flex-col items-center justify-center dark:bg-gray-900 bg-gray-50 transition-colors">
+
+      <span class="absolute top-4 left-4 text-xs text-gray-400 font-mono pointer-events-none">
+        Screen Viewport Simulation
+      </span>
+      
+      <div class="w-full p-4 max-w-4xl h-[500px] border-2 border-dashed border-gray-300 rounded-xl relative overflow-hidden preview-pattern shadow-inner" id="previewContainer">
+        
+        <div id="toastPreview" class="absolute top-4 right-4 flex items-center w-full max-w-xs p-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800 transition-all duration-300" role="alert">
+            
+            <div id="toastIconContainer" class="bg-green-100 dark:bg-green-800 dark:text-green-200 inline-flex items-center justify-center flex-shrink-0 w-8 h-8 rounded-lg">
+                <i id="toastIcon" class="fas fa-check"></i>
+            </div>
+            
+            <div class="ml-3 text-sm font-normal break-words flex-1">
+                <span id="toastMessage" class="font-semibold text-gray-900 dark:text-white block">Success</span>
+                <span id="toastDescription" class="block">Item saved successfully.</span>
+            </div>
+            
+            <button id="toastCloseBtn" type="button" class="ml-auto -mx-0.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700 transition-colors !duration-200">
+                <i class="fa fa-times"></i>
+            </button>
+
+            <div id="toastProgressBar" class="absolute bottom-0 left-0 h-1 bg-green-500 rounded-b-lg transition-all duration-[3000ms] w-full hidden"></div>
+        </div>
+
+      </div>
+    </main>
+
+    <aside class="w-full md:w-72 bg-white p-6 border-l z-10 overflow-y-auto h-auto md:h-[calc(100vh-4rem)]">
+      <h2 class="text-lg font-semibold mb-4 text-gray-800">Content</h2>
+      
+      <label class="block mb-4">
+        <span class="text-sm font-medium text-gray-700">Message Title</span>
+        <input type="text" id="inputTitle" value="Success"
+          class="w-full mt-1 border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-[#049b9f]" />
+      </label>
+
+      <label class="block mb-4">
+        <span class="text-sm font-medium text-gray-700">Description</span>
+        <textarea id="inputDesc" rows="2"
+          class="w-full mt-1 border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-[#049b9f]">Item saved successfully.</textarea>
+      </label>
+
+      <section class="mt-8 text-center bg-gray-50 p-6 rounded-lg shadow-sm border dark:bg-gray-50">
+        <h3 class="text-md font-semibold mb-2">Rate this Tool</h3>
+        <div id="stars" class="flex justify-center gap-2 text-2xl cursor-pointer text-gray-300">
+          <i class="fa-regular fa-star star transition hover:scale-110" data-value="1"></i>
+          <i class="fa-regular fa-star star transition hover:scale-110" data-value="2"></i>
+          <i class="fa-regular fa-star star transition hover:scale-110" data-value="3"></i>
+          <i class="fa-regular fa-star star transition hover:scale-110" data-value="4"></i>
+          <i class="fa-regular fa-star star transition hover:scale-110" data-value="5"></i>
+        </div>
+        <p class="mt-2 text-xs text-gray-500">
+          ⭐ <span id="avgRating">0.0</span> / 5 · <span id="ratingCount">0</span> ratings
+        </p>
+      </section>
+
+    </aside>
+  </div>
+
+  <%- include("src/partials/footer.ejs") %>
+
+  <script type="module" src="/src/scripts/navbar.js"></script>
+  <script type="module" src="/src/scripts/toast-generator.js"></script>
+  
+</body>
+</html>
