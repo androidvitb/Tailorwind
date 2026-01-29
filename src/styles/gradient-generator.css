@@ -1,0 +1,10 @@
+.gradient-preview {
+    height: 180px;
+    transition: background 0.3s ease;
+  }
+  
+  code {
+    font-family: monospace;
+    word-break: break-all;
+  }
+  
