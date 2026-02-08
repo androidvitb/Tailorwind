@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Smooth Shadow Generator - TailorWind</title>
+    <link rel="icon" type="image/png" href="/Logo.png">
+    <link rel="stylesheet" href="/src/styles/main.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+    <%- include("src/partials/navbar.ejs") %>
+
+    <div class="container mx-auto px-6 py-10 mt-20">
+        <h1 class="text-3xl font-bold text-center mb-2">Smooth Shadow Generator</h1>
+        <p class="text-center text-gray-500 mb-10">Create layered, non-linear drop shadows for ultra-realistic depth.</p>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            
+            <div class="lg:col-span-4 space-y-6">
+                
+                <div class="bg-white p-6 rounded-lg shadow-md space-y-5">
+                    <h2 class="text-lg font-semibold border-b pb-2">Layer Configuration</h2>
+                    
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <label class="text-sm font-medium text-gray-700">Layers</label>
+                            <span id="valLayers" class="text-xs text-gray-500">6</span>
+                        </div>
+                        <input type="range" id="inLayers" min="1" max="10" value="6" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#049b9f]">
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <label class="text-sm font-medium text-gray-700">Final Opacity</label>
+                            <span id="valAlpha" class="text-xs text-gray-500">0.07</span>
+                        </div>
+                        <input type="range" id="inAlpha" min="0.01" max="0.5" step="0.01" value="0.07" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#049b9f]">
+                    </div>
+
+                    <div>
+                        <label class="text-sm font-medium text-gray-700 mb-1 block">Easing Curve</label>
+                        <select id="inCurve" class="w-full border-gray-300 border rounded-md shadow-sm py-2 px-3 text-sm focus:outline-none focus:ring-1 focus:ring-[#049b9f]">
+                            <option value="1">Linear (1x)</option>
+                            <option value="1.5">Ease In (1.5x)</option>
+                            <option value="2" selected>Quadratic (2x)</option>
+                            <option value="3">Cubic (3x)</option>
+                            <option value="4">Quartic (4x)</option>
+                        </select>
+                        <p class="text-[10px] text-gray-400 mt-1">Controls how fast the shadow diffuses.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-md space-y-5">
+                    <h2 class="text-lg font-semibold border-b pb-2">Dimensions</h2>
+
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <label class="text-sm font-medium text-gray-700">Max Vertical Distance</label>
+                            <span id="valY" class="text-xs text-gray-500">100px</span>
+                        </div>
+                        <input type="range" id="inY" min="0" max="200" value="100" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#049b9f]">
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <label class="text-sm font-medium text-gray-700">Max Blur Strength</label>
+                            <span id="valBlur" class="text-xs text-gray-500">80px</span>
+                        </div>
+                        <input type="range" id="inBlur" min="0" max="150" value="80" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#049b9f]">
+                    </div>
+                    
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <label class="text-sm font-medium text-gray-700">Horizontal Offset</label>
+                            <span id="valX" class="text-xs text-gray-500">0px</span>
+                        </div>
+                        <input type="range" id="inX" min="-50" max="50" value="0" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#049b9f]">
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="lg:col-span-8 space-y-6">
+                
+                <div class="h-96 w-full rounded-xl bg-[#f3f4f6] flex items-center justify-center overflow-hidden border border-gray-200 relative">
+                    <div class="absolute inset-0 opacity-[0.03]" style="background-image: radial-gradient(#000 1px, transparent 1px); background-size: 20px 20px;"></div>
+                    
+                    <div id="shadowPreview" class="w-40 h-40 bg-white rounded-3xl transition-all duration-300 flex items-center justify-center text-gray-400 text-sm font-medium">
+                        Elevated
+                    </div>
+                </div>
+
+                <div class="bg-gray-900 rounded-lg shadow-lg overflow-hidden">
+                    <div class="flex justify-between items-center bg-gray-800 px-4 py-2 border-b border-gray-700">
+                        <span class="text-gray-300 text-sm font-mono">Tailwind Arbitrary Value</span>
+                        <button id="copyBtn" class="text-xs bg-blue-600 hover:bg-blue-500 text-white px-3 py-1 rounded transition">Copy</button>
+                    </div>
+                    <div class="p-4">
+                        <code id="codeOutput" class="font-mono text-green-400 text-xs break-all leading-relaxed">
+                            </code>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+        <div class="mt-16 bg-white p-8 rounded-lg shadow-md text-center max-w-2xl mx-auto">
+            <h3 class="text-2xl font-bold mb-4">Rate this Tool</h3>
+            <div class="flex justify-center space-x-2 text-3xl mb-4 cursor-pointer">
+              <i class="fa-regular fa-star star text-gray-300 hover:text-yellow-400 transition" data-value="1"></i>
+              <i class="fa-regular fa-star star text-gray-300 hover:text-yellow-400 transition" data-value="2"></i>
+              <i class="fa-regular fa-star star text-gray-300 hover:text-yellow-400 transition" data-value="3"></i>
+              <i class="fa-regular fa-star star text-gray-300 hover:text-yellow-400 transition" data-value="4"></i>
+              <i class="fa-regular fa-star star text-gray-300 hover:text-yellow-400 transition" data-value="5"></i>
+            </div>
+            <p class="text-gray-600">Average Rating: <span id="avgRating" class="font-bold text-gray-900">0.0</span> (<span id="ratingCount">0</span> ratings)</p>
+        </div>
+
+    </div>
+
+    <%- include("src/partials/footer.ejs") %>
+
+    <script type="module" src="/src/scripts/smooth-shadow-generator.js"></script>
+</body>
+</html>
