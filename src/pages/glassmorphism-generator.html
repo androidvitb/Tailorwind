@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Glassmorphism Generator - TailorWind</title>
+    <link rel="icon" type="image/png" href="/Logo.png">
+    <link rel="stylesheet" href="/src/styles/main.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+    <%- include("src/partials/navbar.ejs") %>
+
+    <div class="container mx-auto px-6 py-10 mt-20">
+        <h1 class="text-3xl font-bold text-center mb-2">Optical Glassmorphism Generator</h1>
+        <p class="text-center text-gray-500 mb-10">Generate production-ready frosted glass effects with optical compositing.</p>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            
+            <div class="lg:col-span-4 space-y-6">
+                
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h2 class="text-lg font-semibold mb-4">Compositing Settings</h2>
+                    
+                    <div class="mb-5">
+                        <div class="flex justify-between mb-1">
+                            <label class="text-sm font-medium text-gray-700">Transparency (Alpha)</label>
+                            <span id="valOpacity" class="text-xs text-gray-500">0.2</span>
+                        </div>
+                        <input type="range" id="inOpacity" min="0" max="1" step="0.05" value="0.2" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#049b9f]">
+                    </div>
+
+                    <div class="mb-5">
+                        <div class="flex justify-between mb-1">
+                            <label class="text-sm font-medium text-gray-700">Blur Intensity (px)</label>
+                            <span id="valBlur" class="text-xs text-gray-500">16px</span>
+                        </div>
+                        <input type="range" id="inBlur" min="0" max="40" step="1" value="16" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#049b9f]">
+                    </div>
+
+                    <div class="mb-5">
+                        <div class="flex justify-between mb-1">
+                            <label class="text-sm font-medium text-gray-700">Saturation Boost</label>
+                            <span id="valSaturation" class="text-xs text-gray-500">150%</span>
+                        </div>
+                        <input type="range" id="inSaturation" min="100" max="200" step="10" value="150" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#049b9f]">
+                    </div>
+                     
+                     <div class="mb-2">
+                        <div class="flex justify-between mb-1">
+                            <label class="text-sm font-medium text-gray-700">Border Whiteness</label>
+                            <span id="valBorder" class="text-xs text-gray-500">0.2</span>
+                        </div>
+                        <input type="range" id="inBorder" min="0" max="1" step="0.05" value="0.2" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#049b9f]">
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h2 class="text-lg font-semibold mb-4">Glass Tint</h2>
+                    <div class="flex gap-4">
+                        <button id="btnLight" class="flex-1 py-2 border-2 border-[#049b9f] bg-blue-50 text-[#049b9f] font-bold rounded">Light</button>
+                        <button id="btnDark" class="flex-1 py-2 border-2 border-gray-200 text-gray-500 hover:border-gray-400 rounded">Dark</button>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="lg:col-span-8 space-y-6">
+                
+                <div class="relative h-96 w-full rounded-xl overflow-hidden shadow-inner flex items-center justify-center bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 animate-gradient">
+                    
+                    <div class="absolute top-10 left-10 w-32 h-32 bg-yellow-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+                    <div class="absolute top-10 right-10 w-32 h-32 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+                    <div class="absolute -bottom-8 left-20 w-32 h-32 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+
+                    <div id="glassPreview" class="relative w-80 h-48 p-6 flex flex-col justify-between rounded-xl shadow-lg transition-all duration-300 border">
+                        <div>
+                            <div class="h-2 w-1/3 bg-current opacity-50 rounded mb-2"></div>
+                            <div class="h-2 w-2/3 bg-current opacity-30 rounded"></div>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-sm font-bold opacity-80">0123 4567 8910</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-900 rounded-lg shadow-lg overflow-hidden">
+                    <div class="flex justify-between items-center bg-gray-800 px-4 py-2 border-b border-gray-700">
+                        <span class="text-gray-300 text-sm font-mono">Tailwind CSS Classes</span>
+                        <button id="copyBtn" class="text-xs bg-blue-600 hover:bg-blue-500 text-white px-3 py-1 rounded transition">Copy</button>
+                    </div>
+                    <div class="p-4">
+                        <code id="codeOutput" class="font-mono text-green-400 text-sm break-all">
+                            </code>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+        <div class="mt-16 bg-white p-8 rounded-lg shadow-md text-center max-w-2xl mx-auto">
+            <h3 class="text-2xl font-bold mb-4">Rate this Tool</h3>
+            <div class="flex justify-center space-x-2 text-3xl mb-4 cursor-pointer">
+              <i class="fa-regular fa-star star text-gray-300 hover:text-yellow-400 transition" data-value="1"></i>
+              <i class="fa-regular fa-star star text-gray-300 hover:text-yellow-400 transition" data-value="2"></i>
+              <i class="fa-regular fa-star star text-gray-300 hover:text-yellow-400 transition" data-value="3"></i>
+              <i class="fa-regular fa-star star text-gray-300 hover:text-yellow-400 transition" data-value="4"></i>
+              <i class="fa-regular fa-star star text-gray-300 hover:text-yellow-400 transition" data-value="5"></i>
+            </div>
+            <p class="text-gray-600">Average Rating: <span id="avgRating" class="font-bold text-gray-900">0.0</span> (<span id="ratingCount">0</span> ratings)</p>
+        </div>
+
+    </div>
+
+    <%- include("src/partials/footer.ejs") %>
+    
+    <style>
+        @keyframes blob {
+            0% { transform: translate(0px, 0px) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+            100% { transform: translate(0px, 0px) scale(1); }
+        }
+        .animate-blob {
+            animation: blob 7s infinite;
+        }
+        .animation-delay-2000 {
+            animation-delay: 2s;
+        }
+        .animation-delay-4000 {
+            animation-delay: 4s;
+        }
+    </style>
+
+    <script type="module" src="/src/scripts/glassmorphism-generator.js"></script>
+</body>
+</html>
