@@ -16,6 +16,7 @@ export default defineConfig({
         button: resolve(__dirname, 'src/pages/button-generator.html'),
         card: resolve(__dirname, 'src/pages/card-generator.html'),
         toast: resolve(__dirname, 'src/pages/toast-generator.html'),
+        skeleton: resolve(__dirname, 'src/pages/skeleton-generator.html'),
         gradient: resolve(__dirname, 'src/pages/gradient-generator.html'),
         grid: resolve(__dirname, 'src/pages/grid-layout-generator.html'),
         table: resolve(__dirname, 'src/pages/table-generator.html'),
@@ -25,6 +26,9 @@ export default defineConfig({
         getstarted: resolve(__dirname, 'src/pages/get-started.html'),
         colorPalette: resolve(__dirname, 'src/pages/color-palette.html'),
         smoothShadow: resolve(__dirname, 'src/pages/smooth-shadow-generator.html'),
+        neumorphism: resolve(__dirname, 'src/pages/neumorphism-generator.html'),
+        glassmorphism: resolve(__dirname, 'src/pages/glassmorphism-generator.html'),
+        keyframe: resolve(__dirname, 'src/pages/keyframe-generator.html'),
       }
     }
   },
