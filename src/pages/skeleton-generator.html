@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Skeleton Generator - TailorWind</title>
+  <link rel="icon" type="image/png" href="/Logo.png">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/src/styles/main.css">
+  
+  <style>
+    /* Custom Shimmer Animation */
+    @keyframes shimmer {
+        0% { background-position: -200% 0; }
+        100% { background-position: 200% 0; }
+    }
+    
+    .animate-shimmer {
+        animation: shimmer 1.5s infinite linear;
+        background: linear-gradient(to right, #f3f4f6 4%, #e5e7eb 25%, #f3f4f6 36%);
+        background-size: 1000px 100%;
+    }
+    
+    .dark .animate-shimmer {
+        background: linear-gradient(to right, #374151 4%, #4b5563 25%, #374151 36%);
+        background-size: 1000px 100%;
+    }
+
+    /* Selection Highlight */
+    .selected-block {
+        outline: 2px solid #049b9f;
+        outline-offset: 2px;
+        cursor: pointer;
+    }
+    
+    .hover-block:hover {
+        outline: 1px dashed #9ca3af;
+        cursor: pointer;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-100 min-h-screen flex flex-col transition-colors duration-500">
+  
+  <%- include("src/partials/navbar.ejs") %>
+
+  <div class="flex flex-1 mt-16 flex-col md:flex-row h-[calc(100vh-4rem)]">
+    
+    <aside class="w-full md:w-64 bg-white p-6 border-r z-10 overflow-y-auto">
+      <h2 class="text-lg font-semibold mb-4 text-gray-950">Add Elements</h2>
+      
+      <div class="grid grid-cols-2 gap-3 mb-8">
+        <button onclick="addBlock('text')" class="p-3 border rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 dark:border-gray-600 transition flex flex-col items-center gap-2">
+            <div class="w-8 h-2 bg-gray-300 rounded"></div>
+            <span class="text-xs text-gray-600 dark:text-gray-300">Text</span>
+        </button>
+        <button onclick="addBlock('title')" class="p-3 border rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 dark:border-gray-600 transition flex flex-col items-center gap-2">
+            <div class="w-8 h-4 bg-gray-300 rounded"></div>
+            <span class="text-xs text-gray-600 dark:text-gray-300">Title</span>
+        </button>
+        <button onclick="addBlock('avatar')" class="p-3 border rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 dark:border-gray-600 transition flex flex-col items-center gap-2">
+            <div class="w-6 h-6 bg-gray-300 rounded-full"></div>
+            <span class="text-xs text-gray-600 dark:text-gray-300">Avatar</span>
+        </button>
+        <button onclick="addBlock('image')" class="p-3 border rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 dark:border-gray-600 transition flex flex-col items-center gap-2">
+            <div class="w-8 h-8 bg-gray-300 rounded"></div>
+            <span class="text-xs text-gray-600 dark:text-gray-300">Image</span>
+        </button>
+      </div>
+
+      <h2 class="text-lg font-semibold mb-4 text-gray-800 dark:text-white">Global Settings</h2>
+      
+      <label class="block mb-4">
+        <span class="text-sm font-medium text-gray-700">Animation</span>
+        <select id="globalAnimation" class="w-full mt-1 border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-[#049b9f] outline-none dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+          <option value="animate-pulse">Pulse (Fade)</option>
+          <option value="animate-shimmer">Shimmer (Wave)</option>
+          <option value="none">None</option>
+        </select>
+      </label>
+
+      <button id="resetCanvas" class="rounded-lg p-2 bg-red-100 text-red-900 text-sm hover:bg-red-200 mt-4">
+        Reset Canvas
+      </button>
+    </aside>
+
+    <main class="flex-1 p-8 bg-gray-50 dark:bg-gray-900 overflow-y-auto flex items-start justify-center">
+      <div class="w-full max-w-lg bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg min-h-[300px]" id="previewContainer">
+        <p class="text-gray-400 text-center mt-20 pointer-events-none select-none" id="emptyState">
+            Click elements on the left to add them
+        </p>
+      </div>
+    </main>
+
+    <aside class="w-full md:w-72 bg-white p-6 border-l z-10 overflow-y-auto">
+      <h2 class="text-lg font-semibold mb-4 text-gray-800 dark:text-white">Properties</h2>
+      
+      <div id="propertiesPanel" class="hidden">
+        <div class="mb-4 p-3 bg-blue-50 dark:bg-blue-900/30 rounded text-sm text-blue-600">
+            Editing: <span id="selectedType" class="font-bold">Text</span>
+        </div>
+
+        <label class="block mb-4">
+            <span class="text-sm font-medium text-gray-700">Width</span>
+            <div class="flex items-center gap-2">
+                <input type="range" id="propWidth" min="10" max="100" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                <span class="text-xs w-12 text-right font-mono" id="propWidthVal">100%</span>
+            </div>
+        </label>
+
+        <label class="block mb-4">
+            <span class="text-sm font-medium text-gray-700">Height (rem)</span>
+            <div class="flex items-center gap-2">
+                <input type="range" id="propHeight" min="0.5" max="20" step="0.5" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                <span class="text-xs w-12 text-right font-mono" id="propHeightVal">1rem</span>
+            </div>
+        </label>
+
+        <label class="block mb-4">
+            <span class="text-sm font-medium text-gray-700">Border Radius</span>
+            <select id="propRadius" class="w-full mt-1 border border-gray-300 rounded-lg p-2 outline-none dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                <option value="rounded-none">None</option>
+                <option value="rounded">Small</option>
+                <option value="rounded-md">Medium</option>
+                <option value="rounded-lg">Large</option>
+                <option value="rounded-full">Full (Circle)</option>
+            </select>
+        </label>
+
+        <div class="flex gap-2 mt-8">
+            <button id="deleteBlock" class="flex-1 bg-red-100 text-red-600 py-2 rounded hover:bg-red-200 transition">
+                <i class="fas fa-trash mr-1"></i> Delete
+            </button>
+            <button id="duplicateBlock" class="flex-1 bg-gray-100 text-white-300 py-2 rounded hover:bg-gray-900">
+                <i class="fas fa-copy mr-1"></i> Copy
+            </button>
+        </div>
+      </div>
+
+      <div id="noSelectionMsg" class="text-center text-gray-400 mt-10">
+        <i class="fas fa-mouse-pointer mb-2 text-2xl"></i>
+        <p>Select an element in the preview to edit its properties.</p>
+      </div>
+
+      <div class="mt-auto pt-6 border-t mt-8">
+        <button id="exportCode" class="w-full bg-[#049b9f] hover:bg-[#037a7b] text-white py-3 rounded-lg shadow transition font-semibold">
+            <i class="fas fa-code mr-2"></i> Export HTML
+        </button>
+      </div>
+      
+      <section class="mt-8 text-center bg-gray-50 p-6 rounded-lg shadow-sm border dark:bg-gray-50">
+        <h3 class="text-md font-semibold mb-2">Rate this Tool</h3>
+        <div id="stars" class="flex justify-center gap-2 text-2xl cursor-pointer text-gray-300">
+          <i class="fa-regular fa-star star transition hover:scale-110" data-value="1"></i>
+          <i class="fa-regular fa-star star transition hover:scale-110" data-value="2"></i>
+          <i class="fa-regular fa-star star transition hover:scale-110" data-value="3"></i>
+          <i class="fa-regular fa-star star transition hover:scale-110" data-value="4"></i>
+          <i class="fa-regular fa-star star transition hover:scale-110" data-value="5"></i>
+        </div>
+        <p class="mt-2 text-xs text-gray-500">
+          ⭐ <span id="avgRating">0.0</span> / 5 · <span id="ratingCount">0</span> ratings
+        </p>
+      </section>
+
+    </aside>
+  </div>
+
+  <%- include("src/partials/footer.ejs") %>
+
+  <script type="module" src="/src/scripts/navbar.js"></script>
+  <script type="module" src="/src/scripts/skeleton-generator.js"></script>
+  
+</body>
+</html>

@@ -124,10 +124,10 @@ form textarea,
     color: #ffffff;
 }
 
-.dark .text-gray-700,
+/* .dark .text-gray-700,
 .dark .text-gray-600 {
     color: #e0e0e0;
-}
+} */
 
 .dark .shadow-lg,
 .dark .shadow-md {
