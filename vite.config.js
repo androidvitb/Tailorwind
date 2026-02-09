@@ -25,6 +25,7 @@ export default defineConfig({
         signup: resolve(__dirname, 'src/pages/sign-up.html'),
         getstarted: resolve(__dirname, 'src/pages/get-started.html'),
         colorPalette: resolve(__dirname, 'src/pages/color-palette.html'),
+        fluidTypography: resolve(__dirname, 'src/pages/fluid-typography.html'),
         smoothShadow: resolve(__dirname, 'src/pages/smooth-shadow-generator.html'),
         neumorphism: resolve(__dirname, 'src/pages/neumorphism-generator.html'),
         glassmorphism: resolve(__dirname, 'src/pages/glassmorphism-generator.html'),
