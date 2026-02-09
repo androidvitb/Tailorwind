@@ -25,6 +25,7 @@ export default defineConfig({
         signup: resolve(__dirname, 'src/pages/sign-up.html'),
         getstarted: resolve(__dirname, 'src/pages/get-started.html'),
         colorPalette: resolve(__dirname, 'src/pages/color-palette.html'),
+        keyframe: resolve(__dirname, 'src/pages/keyframe-generator.html'),
       }
     }
   },
