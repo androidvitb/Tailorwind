@@ -24,6 +24,10 @@
       "dest": "/src/pages/toast-generator.html"
     },
     {
+      "src": "^/skeleton-generator/?$",
+      "dest": "/src/pages/skeleton-generator.html"
+    },
+    {
       "src": "^/gradient-generator/?$",
       "dest": "/src/pages/gradient-generator.html"
     },
