@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Neumorphism Generator - TailorWind</title>
+    <link rel="icon" type="image/png" href="/Logo.png">
+    <link rel="stylesheet" href="/src/styles/main.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans transition-colors duration-300" id="mainBody">
+
+    <%- include("src/partials/navbar.ejs") %>
+
+    <div class="container mx-auto px-6 py-10 mt-20">
+        <h1 class="text-3xl font-bold text-center mb-2">Neumorphism Engine</h1>
+        <p class="text-center text-gray-500 mb-10">Generate Soft UI shadows with simulated light physics.</p>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            
+            <div class="lg:col-span-4 space-y-6">
+                
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h2 class="text-lg font-semibold mb-4">Light Source</h2>
+                    
+                    <div class="flex justify-center mb-6">
+                        <div id="lightDial" class="relative w-24 h-24 rounded-full border-2 border-dashed border-gray-300 cursor-pointer bg-gray-50">
+                            <div id="lightDot" class="absolute w-4 h-4 bg-yellow-400 rounded-full shadow-sm top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none transition-all duration-75"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center text-sm font-mono text-gray-500 mb-2">
+                        Angle: <span id="valAngle">145</span>°
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-md space-y-5">
+                    <h2 class="text-lg font-semibold">Surface Physics</h2>
+                    
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <label class="text-sm font-medium text-gray-700">Distance</label>
+                            <span id="valDistance" class="text-xs text-gray-500">20px</span>
+                        </div>
+                        <input type="range" id="inDistance" min="5" max="50" value="20" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <label class="text-sm font-medium text-gray-700">Blur</label>
+                            <span id="valBlur" class="text-xs text-gray-500">60px</span>
+                        </div>
+                        <input type="range" id="inBlur" min="0" max="100" value="60" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                    </div>
+
+                    <div>
+                        <label class="text-sm font-medium text-gray-700 mb-2 block">Shape Type</label>
+                        <div class="flex bg-gray-100 p-1 rounded-lg">
+                            <button class="flex-1 py-1 text-sm rounded-md shadow-sm bg-white font-medium transition" id="btnFlat">Flat</button>
+                            <button class="flex-1 py-1 text-sm rounded-md text-gray-500 hover:bg-white/50 transition" id="btnInset">Pressed</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h2 class="text-lg font-semibold mb-2">Base Color</h2>
+                    <p class="text-xs text-gray-500 mb-3">Neumorphism requires the element and body to share the same color.</p>
+                    <div class="flex items-center gap-3">
+                        <input type="color" id="inColor" value="#e0e5ec" class="h-10 w-10 p-0 border-0 rounded cursor-pointer">
+                        <input type="text" id="hexDisplay" value="#e0e5ec" class="border rounded px-2 py-1 text-sm w-full uppercase font-mono">
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="lg:col-span-8 space-y-6">
+                
+                <div class="h-96 w-full rounded-xl flex items-center justify-center transition-colors duration-300" id="previewCanvas" style="background-color: #e0e5ec;">
+                    
+                    <div id="neuElement" class="w-48 h-48 rounded-[3rem] flex items-center justify-center text-gray-500 font-bold text-2xl transition-all duration-300">
+                        Soft UI
+                    </div>
+
+                </div>
+
+                <div class="bg-gray-900 rounded-lg shadow-lg overflow-hidden">
+                    <div class="flex justify-between items-center bg-gray-800 px-4 py-2 border-b border-gray-700">
+                        <span class="text-gray-300 text-sm font-mono">Tailwind Arbitrary Value</span>
+                        <button id="copyBtn" class="text-xs bg-blue-600 hover:bg-blue-500 text-white px-3 py-1 rounded transition">Copy</button>
+                    </div>
+                    <div class="p-4">
+                        <code id="codeOutput" class="font-mono text-green-400 text-sm break-all">
+                            </code>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="mt-16 bg-white p-8 rounded-lg shadow-md text-center max-w-2xl mx-auto">
+            <h3 class="text-2xl font-bold mb-4">Rate this Tool</h3>
+            <div class="flex justify-center space-x-2 text-3xl mb-4 cursor-pointer">
+              <i class="fa-regular fa-star star text-gray-300 hover:text-yellow-400 transition" data-value="1"></i>
+              <i class="fa-regular fa-star star text-gray-300 hover:text-yellow-400 transition" data-value="2"></i>
+              <i class="fa-regular fa-star star text-gray-300 hover:text-yellow-400 transition" data-value="3"></i>
+              <i class="fa-regular fa-star star text-gray-300 hover:text-yellow-400 transition" data-value="4"></i>
+              <i class="fa-regular fa-star star text-gray-300 hover:text-yellow-400 transition" data-value="5"></i>
+            </div>
+            <p class="text-gray-600">Average Rating: <span id="avgRating" class="font-bold text-gray-900">0.0</span> (<span id="ratingCount">0</span> ratings)</p>
+        </div>
+
+    </div>
+
+    <%- include("src/partials/footer.ejs") %>
+
+    <script type="module" src="/src/scripts/neumorphism-generator.js"></script>
+</body>
+</html>
